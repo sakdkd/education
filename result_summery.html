@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
+
+
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+    <!-- Standard Favicon -->
+    <link rel="icon" href="img/fav/favicon-96x96.png">
+
+    <!-- Touch Icons - iOS and Android 2.1+ -->
+    <link rel="apple-touch-icon" href="img/fav/android-icon-48x48.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/fav/android-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="img/fav/apple-icon-114x114.png" />
+    
+    <!--bootstrap v4.0.0-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/material-kit.min.css">
+    <!--animate-->
+    <link rel="stylesheet" type="text/css" href="css/aos.css">
+    <!--reset css-->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    
+    <!--owl-carousel-->
+    <link rel="stylesheet" type="text/css" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="css/owl.theme.default.min.css">
+    <!--pop up css-->
+    <link rel="stylesheet" type="text/css" href="css/magnific-popup.css">
+    <!--swiper css-->
+    <link rel="stylesheet" type="text/css" href="css/swiper.css">
+    <!--fontawesome cdn-->
+    <link href="../use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <!--animation spin css-->
+    <link rel="stylesheet" type="text/css" href="css/animation-spin.css">
+
+    <!--main style-->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:400,500,600,700,900" rel="stylesheet">
+
+    <!--modernizr-->
+    <script src="js/vendor/modernizr.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5/respond.min.js"></script>
+    <![endif]-->
+    
+    <style>
+    a.navbar-brand img {
+    width: 190px;
+    }
+    </style>
+    
+     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+           ['Task', 'Hours per Day'],
+          ['Correct',     11],
+          ['incorrect',      2],
+          ['Unanswered',  2],
+        ]);
+
+        var options = {
+          pieHole: 0.4,
+         'width': 350,
+         'height': 400,
+         'chartArea': {'width': '100%', 'height': '80%'},
+         'legend': {'position': 'bottom'}    
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart1'));
+        chart.draw(data, options);
+      }
+    </script>
+    
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Correct',     11],
+          ['incorrect',      2],
+          ['Unanswered',  2],
+        ]);
+
+        var options = {
+          pieHole: 0.4,
+         'width': 350,
+         'height': 400,
+         'chartArea': {'width': '100%', 'height': '80%'},
+         'legend': {'position': 'bottom'}    
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart2'));
+        chart.draw(data, options);
+      }
+    </script>
+    
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Correct',     11],
+          ['incorrect',      2],
+          ['Unanswered',  2],
+        ]);
+
+         var options = {
+          pieHole: 0.4,
+         'width': 350,
+         'height': 400,
+         'chartArea': {'width': '100%', 'height': '80%'},
+         'legend': {'position': 'bottom'}    
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart3'));
+        chart.draw(data, options);
+      }
+    </script>
+    
+    
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+<!--    <div class="se-pre-con"></div>-->
+
+    <!-- main nav start -->
+
+    <nav class="navbar navbar-expand-lg navbar-transparent fixed-top center-brand static-nav">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="#">
+                    <img src="img/logo.png" alt="logo" class="logo-default">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="xeronav">
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item drop_menu"> <a class="nav-link" href="index.html">Home</a>
+                       
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link " href="how-it-works.html">How it works</a>
+                    </li>
+                    <li class="nav-item drop_menu"> <a class="nav-link" href="testimonials.html">Testimonials</a>
+                        
+                    </li>
+                    <li class="nav-item drop_menu"> <a class="nav-link" href="school-data.html">School Data </a>
+                        
+                    </li>
+
+                    <li class="nav-item drop_menu"> <a class="nav-link" href="pricing.html">Pricing <i class="fas fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#">Primary Level ISEE</a></li>
+                            <li><a href="#">Lower Level ISEE</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item drop_menu"> <a class="nav-link" href="#">Tutoring <i class="fas fa-caret-down"></i></a>
+                        <ul>
+                            <li><a href="#">1-on-1 Tutoring</a></li>
+                            <li><a href="#">Single</a></li>
+                        </ul>
+                    </li>
+
+                    
+                    <li class="nav-item btn_sign">
+                       <a class="nav-link btn" href="#" data-toggle="modal" data-target="#exampleModalLong">Log in</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!--/.CONTAINER-->
+    </nav>
+    <!-- /.navbar -->
+<section class="top-head">
+    <h1>Welcome!
+</h1>
+</section>
+ 
+<section class="main-container">
+
+
+<div class="upper-box-wrapper">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-9">
+                <div class="wrapper-title">
+                    <h3>ISEE MIDDLE #6</h3>
+                    <h1>SECTION 1: VERBAL REASONING</h1>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="time-wrapper">
+                    <div class="time-bar">
+                        <div class="time-title">TIME REMAINING</div>
+                        <div class="time">00:07:17</div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>    
+           
+           
+      
+              
+    
+<div class="gray-bg pt-20 pb-50">
+        <div class="container">
+           <div class="row">
+               <div class="col-md-12">
+                  <div class="card question-side">
+                   <div class="row no-gutters">
+                       <div class="col-md-2">
+                           <div class="tab ">
+                               <a href="#"><p class="small">SUMMERY</p>
+                                   <p>Test <br>Overview</p></a>
+                           </div>
+                       </div>
+                       <div class="col-md-2">
+                           <div class="tab active">
+                               <a href="#"><p class="small">VIEW RESULTS</p>
+                                   <p>1 VERBAL REASONING</p></a>
+                           </div>
+                       </div>
+                       <div class="col-md-2">
+                           <div class="tab">
+                               <a href="#"><p class="small">START</p>
+                                   <p>2 QUANTITATIVE REASONING</p></a>
+                           </div>
+                       </div>
+                       <div class="col-md-2">
+                           <div class="tab">
+                               <a href="#"><p>CONTINUE</p>
+                                   <p>3 READING COMPREHENSION</p></a>
+                           </div>
+                       </div>
+                       <div class="col-md-2">
+                           <div class="tab">
+                               <a href="#"><p>VIEW RESULTS</p>
+                                   <p>4 MATHEMATICS ACHIEVEMENT</p></a>
+                           </div>
+                       </div>
+                       <div class="col-md-2">
+                           <div class="tab">
+                              <a href="#"> <p>START</p>
+                                   <p>5 ESSAY</p></a>
+                           </div>
+                       </div>
+                   </div>
+                   </div>
+                   
+                   <div class="summery-detail">
+                      <div class="row">
+                          <div class="col-md-12 text-center"><h2>How you did, by difficulty</h2></div>
+                      </div>
+                       <div class="row">
+                           <div class="col-md-4"><div id="donutchart1" style="width: 100%; "></div></div>
+                           <div class="col-md-4"><div id="donutchart2" style="width: 100%; "></div></div>
+                           <div class="col-md-4"><div id="donutchart3" style="width: 100%; "></div></div>
+                       </div>
+                       
+                       <div class="row">
+                           <div class="col-md-12">
+                               <div class="text-center"><h2 class="title">How you did, by subtype</h2></div>
+                           </div>
+                           
+                        <div class="col-md-12">
+                             <div class="meter">
+                                   <div class="row">
+                                         <div class="col-md-4 offset-1">
+                                           <div class="text-right "><div class="sentence">Sentence Completion</div></div>
+                                       </div>
+                                       <div class="col-md-6">
+                                           <div class="yellow-bar"></div>
+                                           
+                                       </div>
+                                   </div>
+                              </div>
+                         </div>
+                                 <div class="col-md-12">
+                                    <div class="meter">
+                                          <div class="row">
+                                         <div class="col-md-4 offset-1">
+                                           <div class="text-right "><div class="sentence">Sentence Completion</div></div>
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                           <div class="tripple-bar">
+                                           <div class="bar1 bar"></div>
+                                           <div class="bar2 bar"></div>
+                                           <div class="bar3 bar"></div>
+                                                                        </div>
+                                           
+                                                                        </div>
+                                                                    </div>
+                                     </div>
+                                 </div>
+                           
+                           
+                       </div>
+                       
+                   </div>
+               </div>
+               
+           </div>
+            
+    </div>
+    </div>
+</section>    
+    <!--get plan-->
+
+    <!--recent-blog-->
+    <section class="blog_sec" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title text-center">
+                        <h3>Our Latest News</h3>
+                    </div><!--/.title-->
+                </div>
+                <div class="w-100"></div>
+                <div class="col-md-12">
+                    <div class="owl-carousel" id="blog_slider_owl">
+                        <div>
+                            <div class="single_blog_in">
+                                <div class="card">
+                                    <div class="images">
+                                        <img src="img/blog1.jpg" alt=""/>
+                                        <div class="dates">
+                                            <p>Sep 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2><a href="#">We design platform for all global customers</a></h2>
+                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                                        <ul>
+                                            <li>
+                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
+                                            </li>
+                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--/.single_blog_in-->
+                        </div>
+                        <div>
+                            <div class="single_blog_in">
+                                <div class="card">
+                                    <div class="images">
+                                        <img src="img/blog2.jpg" alt=""/>
+                                        <div class="dates">
+                                            <p>Sep 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
+                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                                        <ul>
+                                            <li>
+                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
+                                            </li>
+                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--/.single_blog_in-->
+                        </div>
+                        <div>
+                            <div class="single_blog_in">
+                                <div class="card">
+                                    <div class="images">
+                                        <img src="img/blog3.jpg" alt=""/>
+                                        <div class="dates">
+                                            <p>Sep 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2><a href="#">We design platform for all global customers</a></h2>
+                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                                        <ul>
+                                            <li>
+                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
+                                            </li>
+                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div><!--/.single_blog_in-->
+                        </div>
+                        <div>
+                            <div class="single_blog_in">
+                                <div class="card">
+                                    <div class="images">
+                                        <img src="img/blog2.jpg" alt=""/>
+                                        <div class="dates">
+                                            <p>Sep 2018</p>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
+                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
+                                        <ul>
+                                            <li>
+                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
+                                            </li>
+                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
+                                            <li>
+                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
+                                            </li>
+                                        </ul>
+                                        
+                                    </div>
+                                </div>
+                            </div><!--/.single_blog_in-->
+                        </div>
+
+                    </div><!--/.blog_slider_owl-->
+                </div>
+            </div>
+        </div><!--/.container-->
+    </section>
+    <!--recent-blog-->
+
+    <!--footer widget-->
+    <section class="footer_x_widger">
+        <div class="container">
+            <div class="row">
+                
+                <div class="w-100"></div>
+                <div class="col-md-3">
+                    <div class="widget widget_info">
+                        <img src="img/logo-footer.png" alt="" width="200px">
+                        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor amet sed diam nonumy eirmod tempor.</p>
+                        
+                    </div><!--/.widget_info-->
+                </div>
+                <div class="col-md-3">
+                    <div class="widget widget_links">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> About Company</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Shop</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Service</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Features</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Case Studies</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> News &amp; Blog</a></li>
+                        </ul>
+                    </div><!--/.widget_links-->
+                </div>
+                 <div class="col-md-3">
+                    <div class="widget widget_links">
+                        <h3>About</h3>
+                         <ul>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Tips</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> SSAT</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> ACT</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> SAT</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Tutoring</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> For Schools</a></li>
+                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Scholarships</a></li>
+                        </ul>
+                    </div><!--/.widget_links-->
+                </div>
+                <div class="col-md-3">
+                    <div class="widget widget_address">
+                        <h3>Connect</h3>
+                                           <div class="footer_social">
+                        <ul>
+                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fas fa-rss"></i></a></li>
+                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                                           
+                                            </div><!--/.widget_address-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--footer widget-->
+
+    <!--footer-->
+    <footer class="footers">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright_text text-center">
+                        <p>2019 © Bosh Education Group. All rights reserved.</p>
+                    </div><!--/.copyright_text-->
+                </div>
+                
+            </div>
+        </div><!--/.container-->
+    </footer>
+    <!--footer-->
+
+   
+   
+    <div class="modal fade" id="startexam" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"><i data-feather="edit"></i>ISEE MIDDLE #6 <br>
+<span>SECTION 1: VERBAL REASONING</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <h3>How do you want to take this section?</h3>
+
+                <div class="row">
+                    <div class="col-md-6 text-center"><img src="img/online.svg" alt=""><p>Online</p></div>
+                    <div class="col-md-6 text-center"><img src="img/paper.svg" alt=""><p>On Paper</p></div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      
+
+   <!--jquery-->
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <!--bootstrap v4 js-->
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <!--popper js-->
+    <script src="js/vendor/popper.min.js"></script>
+    <!--material kit-->
+    <script src="js/vendor/bootstrap-material-design.min.js"></script>
+    <script src="js/vendor/material-kit.min.js"></script>
+    <!--aos js-->
+    <script src="js/vendor/aos.js"></script>
+    <!--owl carousel -->
+    <script src="js/vendor/owl-carousel.js"></script>
+    <!--iso top-->
+    <script src="js/vendor/isotop.js"></script>
+    <!--magnifice popup-->
+    <script src="js/vendor/magnifice-js.js"></script>
+    <!--swiper slider-->
+    <script src="js/vendor/swiper.js"></script>
+    <!--easing js-->
+    <script src="js/vendor/easing.js"></script>
+    <!--main script-->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>

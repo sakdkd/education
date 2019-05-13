@@ -1,0 +1,64 @@
+[05-Jan-2019 13:43:54 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 30
+[05-Jan-2019 13:43:54 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:43:54 Asia/Calcutta] PHP Fatal error:  Call to undefined function sendBasicMail() in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 35
+[05-Jan-2019 13:44:12 Asia/Calcutta] PHP Notice:  Undefined index: email in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 12
+[05-Jan-2019 13:46:02 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 30
+[05-Jan-2019 13:46:02 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:46:02 Asia/Calcutta] PHP Fatal error:  Call to undefined function sendBasicMail() in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 35
+[05-Jan-2019 13:46:43 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 31
+[05-Jan-2019 13:46:43 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:46:43 Asia/Calcutta] PHP Fatal error:  Call to undefined function sendBasicMail() in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 36
+[05-Jan-2019 13:50:24 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 31
+[05-Jan-2019 13:50:24 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:50:24 Asia/Calcutta] PHP Fatal error:  Class 'PHPMailer' not found in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7698
+[05-Jan-2019 13:51:01 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 13:51:01 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:51:01 Asia/Calcutta] PHP Fatal error:  Class 'PHPMailer' not found in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7698
+[05-Jan-2019 13:51:34 Asia/Calcutta] PHP Notice:  Undefined index: email in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 12
+[05-Jan-2019 13:54:00 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 13:54:00 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:54:00 Asia/Calcutta] PHP Fatal error:  Class 'PHPMailer' not found in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7698
+[05-Jan-2019 13:54:43 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 13:54:43 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 13:55:21 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 13:55:21 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 14:53:28 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 14:53:28 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[05-Jan-2019 15:09:35 Asia/Calcutta] PHP Notice:  Undefined variable: id in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/forgetpassword.php on line 29
+[05-Jan-2019 15:09:35 Asia/Calcutta] PHP Notice:  Undefined variable: memName in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 7484
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  include(../configuration/connect.php): failed to open stream: No such file or directory in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 7
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  include(): Failed opening '../configuration/connect.php' for inclusion (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 7
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  include(../configuration/function_shivi.php): failed to open stream: No such file or directory in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 8
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  include(): Failed opening '../configuration/function_shivi.php' for inclusion (include_path='.:/opt/alt/php55/usr/share/pear:/opt/alt/php55/usr/share/php') in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 8
+[07-Jan-2019 05:07:59 UTC] PHP Notice:  Undefined variable: conn in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 15
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 15
+[07-Jan-2019 05:07:59 UTC] PHP Warning:  mysqli_fetch_row() expects parameter 1 to be mysqli_result, null given in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 15
+[07-Jan-2019 05:07:59 UTC] PHP Fatal error:  Call to undefined function getStatus() in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/updatestatus.php on line 25
+[07-Jan-2019 10:38:55 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:39:01 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:40:28 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:41:21 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:41:23 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:41:31 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:41:36 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:42:37 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:44:02 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 10:44:08 Asia/Calcutta] PHP Notice:  Object of class mysqli could not be converted to int in /home/dkddev/public_html/bestbargains/sukhilife-New/db_class/hr_functions.php on line 1598
+[07-Jan-2019 16:07:04 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[07-Jan-2019 16:07:04 Asia/Calcutta] PHP Notice:  Undefined index: location in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 15
+[07-Jan-2019 16:07:04 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[07-Jan-2019 16:08:55 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[07-Jan-2019 16:08:55 Asia/Calcutta] PHP Notice:  Undefined index: location in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 15
+[07-Jan-2019 16:08:55 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[07-Jan-2019 16:10:35 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[07-Jan-2019 16:10:35 Asia/Calcutta] PHP Notice:  Undefined index: location in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 15
+[07-Jan-2019 16:10:35 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[07-Jan-2019 16:15:47 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[07-Jan-2019 16:15:47 Asia/Calcutta] PHP Notice:  Undefined index: location in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 15
+[07-Jan-2019 16:15:47 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[09-Jan-2019 10:00:05 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[09-Jan-2019 10:00:05 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[14-Jan-2019 15:54:30 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[14-Jan-2019 15:54:30 Asia/Calcutta] PHP Notice:  Undefined variable: rname in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 24
+[14-Jan-2019 16:25:39 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12
+[14-Jan-2019 16:26:28 Asia/Calcutta] PHP Notice:  Undefined index: password in /home/dkddev/public_html/bestbargains/sukhilife-New/ajaxCallToPhp/register.php on line 12

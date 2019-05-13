@@ -1,0 +1,199 @@
+
+.playlist{
+  display: none;
+}
+.player {
+  height: 220px;
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+.blog_page_main .title,
+.blog_page_main .artist {
+  left: 130px;
+  position: absolute;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+.blog_page_main  .title {
+  color: #383866;
+  font-size: 20px;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  top: 23px;
+}
+.blog_page_main .artist {
+  color: #666666;
+  font-size: 12px;
+  font-family: 'Hind', sans-serif;
+  top: 40px;
+}
+.pl {
+  background: url(../img/mp3/playlist.png) no-repeat;
+  cursor: pointer;
+  height: 40px;
+  left: 330px;
+  position: absolute;
+  top: 20px;
+  width: 39px;
+}
+.pl:hover {
+  top: 21px;
+}
+.cover {
+  border-radius: 50%;
+  height: 94px;
+  left: 20px;
+  position: absolute;
+  top: 30px;
+  width: 94px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.controls {
+  cursor: pointer;
+  left: 0px;
+  position: absolute;
+  top: 65px;
+  left: 122px;
+}
+.controls .play,
+.controls .pause {
+  width: 60px;
+  height: 60px;
+  margin: 0 5px 0px 5px;
+}
+.controls .play,
+.controls .pause,
+.controls .rew,
+.controls .fwd,
+.controls .stop {
+  text-indent: -10000px;
+  border: none;
+  float: left;
+}
+.controls .rew,
+.controls .fwd,
+.controls .stop {
+  width: 50px;
+  height: 50px;
+  margin: 5px 5px 5px 5px;
+}
+.controls .play {
+  background: url(../img/mp3/play.png) no-repeat;
+}
+.controls .pause {
+  background: url(../img/mp3/pause.png) no-repeat;
+  display: none;
+}
+.controls .rew {
+  background: url(../img/mp3/rewind.png) no-repeat;
+}
+.controls .fwd {
+  background: url(../img/mp3/next.png) no-repeat;
+}
+.controls .stop {
+  background: url(../img/mp3/stop.png) no-repeat;
+}
+.hidden {
+  display: none;
+}
+.controls .visible {
+  display: block;
+}
+.volume {
+  height: 11px;
+  left: 230px;
+  position: absolute;
+  top: 142px;
+  width: 140px;
+}
+.mute .volume-btn {
+  background: url(../img/mp3/volume-off.png) no-repeat;
+}
+.volume-btn {
+  background: url(../img/mp3/volume-up.png) no-repeat;
+  height: 20px;
+  width: 20px;
+  float: left;
+  position: relative;
+  top: -4px;
+}
+.volume-adjust {
+  height: 11px;
+  position: relative;
+  width: 80%;
+  background: #fff;
+  float: right;
+}
+.volume-adjust > div > div {
+  height: 11px;
+  background: #151b48;
+}
+.progressbar {
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 1;
+  right: 6.875em; /* 110 */
+  height: 15px;
+  left: 0px;
+  position: absolute;
+  width: 80%;
+  top: 170px;
+  margin: 0px 10%;
+}
+.novolume .progressbar {
+  right: 4.375em; /* 70 */
+}
+.progressbar div {
+  width: 0%;
+  height: 10px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.bar-loaded {
+  background-color: #eeeeee;
+  z-index: 1;
+}
+.bar-played {
+  background: #48bfee;
+  z-index: 2;
+}
+.timeHolder {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  bottom: 10px;
+  position: absolute;
+  margin: 0px 5%;
+  width: 90%;
+}
+.time-current,
+.time-duration,
+.time-separator {
+  color: #666666;
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+}
+.time-current{
+      position: absolute;
+    top: -46px;
+    left: -10px;
+}
+.time-duration{
+      position: absolute;
+    right: -10px;
+    top: -46px;
+}
+.time-separator{
+  display: none;
+}
+.volume .ui-slider-handle {
+  background: url("../img/mp3/spr.html") no-repeat scroll -201px -188px
+    rgba(0, 0, 0, 0);
+  height: 13px;
+  width: 13px;
+}
