@@ -5,7 +5,7 @@ include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
    		extract($_POST);
-//print_r($_POST);
+//print_r($_POST); die;
 
  if(isset($_GET['end']))
 {
@@ -79,7 +79,7 @@ if($insquery)
 	
 	foreach($all as $qi)
 	{
-		 $answer=$resultset['ans'.$qi]; 
+		 $answer=mysqli_real_escape_string($conn,$resultset['ans'.$qi]); 
 		 if($answer=='')
 		 {
 			$answer=0; 
@@ -87,7 +87,7 @@ if($insquery)
 		 }
 		 
 				 $timetaken=$resultset['effected'.$qi]; 
-			echo "INSERT INTO `ptestattempted`(`testid`, `questionid`, `answer`,`buttonval`,`timetaken`) VALUES ('$lastid','$qi','$answer','$button','$timetaken')";
+			
  
 		//echo "INSERT INTO `ptestattempted`(`testid`, `questionid`, `answer`,`buttonval`) VALUES ('$lastid','$qi','$answer','$button')"; die;
 				$insquery1=mysqli_query($conn,"INSERT INTO `ptestattempted`(`testid`, `questionid`, `answer`,`buttonval`) VALUES ('$lastid','$qi','$answer','$button')");
@@ -182,7 +182,7 @@ $lastid=$existence;
 
 			}		
 			
-			//echo "INSERT INTO `practicetestgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$topicid','$levelid')"; die;
+		
 if($insquery)
 { 
 			if(($existence>0) && ($pgiventestdetails['button']>1))
@@ -193,7 +193,7 @@ if($insquery)
 	}
 		foreach($all as $qi)
 	{
-		 $answer=$resultset['ans'.$qi]; 
+		 $answer=mysqli_real_escape_string($conn,$resultset['ans'.$qi]); 
 		 if($answer=='')
 		 {
 			$answer=0; 

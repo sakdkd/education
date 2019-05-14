@@ -172,18 +172,20 @@ $success='0';
 	$imploded=implode(",",$all);
 			mysqli_query($conn,"BEGIN");
 			if($existence>0)
-			{
-$insquery=mysqli_query($conn,"UPDATE `testgiven` set `pdate`='$pdate',`testname`='$test_name',`button`='$button' ,`savedtime`='$savedtime'where `id`='$existence'");
+			{ 
+			
+			//"UPDATE `testgiven` set `pdate`='$pdate',`testname`='$test_name',`button`='$button' ,`savedtime`='$savedtime'where `id`='$existence'";
+$insquery=mysqli_query($conn,"UPDATE `testgiven` set `pdate`='$pdate',`button`='$button' ,`savedtime`='$savedtime'where `id`='$existence'");
 $lastid=$existence;
 
 			}
 			else
-			{
+			{ 
 				
 			$insquery=mysqli_query($conn,"INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`,`savedtime`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$subject_id','$levelids','$savedtime')");
 		$lastid=mysqli_insert_id($conn);
 
-			}
+			} 
 if($insquery)
 {
 	
@@ -196,7 +198,8 @@ if($insquery)
 	
 	foreach($all as $qi)
 	{
-		 $answer=$resultset['ans'.$qi]; 
+		 $answer=mysqli_real_escape_string($conn,$resultset['ans'.$qi]);    
+		 
 		 if($answer=='')
 		 {
 			$answer=0; 
@@ -287,16 +290,20 @@ $success='0';
 			
 	if($existence>0)
 			{ 
-$insquery=mysqli_query($conn,"UPDATE `testgiven` set `pdate`='$pdate',`testname`='$test_name',`button`='$button',`savedtime`='$savedtime' where `id`='$existence' ");
+			echo "in";
+$insquery=mysqli_query($conn,"UPDATE `testgiven` set `pdate`='$pdate',`button`='$button',`savedtime`='$savedtime' where `id`='$existence' ");
 $lastid=$existence;
 
 			}
 			else
-			{
+			{ echo "out";
 			$insquery=mysqli_query($conn,"INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`,`savedtime`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$subject_id','$levelids','$savedtime')");
 		$lastid=mysqli_insert_id($conn);
 
-			}
+			} 
+			
+			
+			
 			
 //$insquery=mysqli_query($conn,"INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`,`savedtime`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$subject_id','$levelids','$savedtime')");
 
@@ -310,7 +317,7 @@ if($existence > 0)
 	}
 		foreach($all as $qi)
 	{
-		 $answer=$resultset['ans'.$qi]; 
+		 $answer=mysqli_real_escape_string($conn,$resultset['ans'.$qi]); 
 		 				 $timetaken=$resultset['effected'.$qi]; 
 
 		 if($answer=='')
@@ -318,6 +325,7 @@ if($existence > 0)
 			$answer=0; 
 			 
 		 }
+		// echo "INSERT INTO `testattempted`(`testid`, `questionid`, `answer`,`buttonval`,`timetaken`) VALUES ('$lastid','$qi','$answer','$button','$timetaken')"; die;
 				$insquery1=mysqli_query($conn,"INSERT INTO `testattempted`(`testid`, `questionid`, `answer`,`buttonval`,`timetaken`) VALUES ('$lastid','$qi','$answer','$button','$timetaken')"); 
 
 	

@@ -143,7 +143,7 @@ else
 		<span class="ng-binding ng-scope"><i class="fa fa-check"></i>&nbsp;&nbsp; <?php echo $teststatus;?></span>
 	</div>
 	<div class="panel-body">
-		<span class="small pull-left ng-binding">Completed On:<br>10/20/18 1:00:34</span>
+		<!--<span class="small pull-left ng-binding">Completed On:<br>10/20/18 1:00:34</span>-->
 		<a class="btn btn-primary pull-right ng-view" href="<?php echo $page_link;?>">View</a>
 	</div>
 	</div>

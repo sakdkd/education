@@ -556,7 +556,7 @@ function myformsubmit(val)
  
 	document.getElementById('btnclickval').value=val;
 //window.location='form_sub.php?id='+val;  
-
+alert(document.getElementById('btnclickval').value);
 }
 
     </script>

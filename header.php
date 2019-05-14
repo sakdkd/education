@@ -67,6 +67,11 @@ if($cartcount==0)
     a.navbar-brand img {
     width: 190px;
     }
+	
+	.carts {position: absolute;
+    top: -5%;
+    right: 4%;
+	}
     </style>
      <!--  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -217,9 +222,9 @@ unattempt=parseInt(strArray[2]);
                             <?php }}?>
                         </ul>
                     </li>
-                    
-<li class="nav-item drop_menu"> <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i><span id="cart_count"><?php echo $cartcount;?></span></a>  </li>
-
+        <div style="position:relative">            
+<li class="nav-item drop_menu"> <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i><span id="cart_count" class="carts"><?php echo $cartcount;?></span></a>  </li>
+</div>
 <?php if($userid=="")
 {?>
                     

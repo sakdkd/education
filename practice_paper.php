@@ -77,7 +77,7 @@ $subb_id=$topic_details['subject_id'];
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->
- <input type="text" id="timer" value="<?php echo $timer;?>"> 
+ <input type="hidden" id="timer" value="<?php echo $timer;?>"> 
 
 <section class="main-container" style="margin-top: 100px">
 
@@ -343,8 +343,7 @@ if($user_attmpted_ques['buttonval']!=1)
           
     </div>
     </div>
-        <input name="topicid" id="" type="hidden" value="<?php echo $topic_id;?>">    
-                                 <input name="levelid" id="" type="hidden" value="<?php echo $level_id;?>"> 
+       
          
          <?php }?>
           
@@ -391,7 +390,8 @@ $q_div++;
 <?php }}?>   
 
 
-
+ <input name="topicid" id="" type="hidden" value="<?php echo $topic_id;?>">    
+                                 <input name="levelid" id="" type="hidden" value="<?php echo $level_id;?>">   
 
    </form> 
    <?php }?>

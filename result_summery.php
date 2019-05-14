@@ -280,7 +280,7 @@ unattempt=parseInt(strArray[2]);
          'chartArea': {'width': '100%', 'height': '80%'},
          'legend': {'position': 'bottom'} ,
 		// 'color':{'#008000'}  
-		  colors: ['#008000', '#CE1818', '#FDBC00', '#f3b49f', '#f6c7b6']
+		  colors: ['#008000', '#CE1818', '#FDBC00', '#f3b49f', '#fd7e14']  
  
         };
 
@@ -535,6 +535,9 @@ $test_attempt_details=GetUserCorrectAnsFromTidQid($conn,$quesid,$test_id);
 $left_radius1='';
 $left_radius2='';$left_radius3='';
 $right_radius1='';$right_radius2='';$right_radius3='';
+
+
+
 						if(($correct_val!=0) && (($unanswered_val==0) && ($incorrect_val==0)))
 						{
 							
@@ -576,6 +579,8 @@ $right_radius1='';$right_radius2='';$right_radius3='';
 		{ 
 			$left_radius1="";
 			$right_radius1="";
+			
+			
 		$left_radius2="border-top-left-radius: 10px;border-bottom-left-radius: 10px;";
 			if(($unanswered_val!=0) &&($incorrect_val==0))
 			{ 

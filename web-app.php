@@ -307,7 +307,7 @@ $button_val=$test_given_details['button'];
                                                <a href="result_summery.php?id=<?php echo base64_encode($minitestid);?>&test=<?php echo $tgid;?>" data-toggle=""> <div class="view-result"><img src="img/result.svg" width="30" alt=""></div> 
                                                        <sub>View Results</sub></a>
                                                     </div> <div class="col-md-2 text-center">
-                                                 <a onClick="return confirm('Are you sure you want to reset your test!')" href="<?php echo $page ?>?did=<?php echo base64_encode($maintestid); ?>">  <div class="reset"><img src="img/reset.png" width="35" alt=""></div></a>
+                                                 <a onclick="return confirm('Are you sure you want to reset your test!')" href="<?php echo $page ?>?did=<?php echo base64_encode($maintestid); ?>">  <div class="reset"><img src="img/reset.png" width="35" alt=""></div></a>
                                                    <sub>Reset</sub>
                                                </div>
                                                        <?php } else if($button_val==3){?>
