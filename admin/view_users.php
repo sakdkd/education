@@ -8,60 +8,7 @@ $buid=$_SESSION['buid'];
 $sid=$_GET['id'];
 $type='1';
 $buttonval=$_GET['buttonval'];
-if(isset($_POST['update'])) 
-{
-	
-	
-	extract($_POST);
-	$newsid=mysqli_real_escape_string($conn,$newhiddensid);
-$confirmfee=mysqli_real_escape_string($conn,$confirmfee);
-$confirmfeedate=mysqli_real_escape_string($conn,$confirmfeedate);
-$recurringfee=mysqli_real_escape_string($conn,$recurringfee);
-$recurringfeedate=mysqli_real_escape_string($conn,$recurringfeedate);
-$referral=mysqli_real_escape_string($conn,$referral);
 
-$contractsentdate=mysqli_real_escape_string($conn,$contractsentdate);
-$contractreceivedate=mysqli_real_escape_string($conn,$contractreceivedate);
-$feereceivedate=mysqli_real_escape_string($conn,$feereceivedate);
-$leadtimedate=mysqli_real_escape_string($conn,$leadtimedate);
-$projectassigned=mysqli_real_escape_string($conn,$projectassigned);
-
-$assigndate=mysqli_real_escape_string($conn,$assigndate);
-
-$processdate=mysqli_real_escape_string($conn,$processdate);
-
-$completiondate=mysqli_real_escape_string($conn,$completiondate);
-$notes=mysqli_real_escape_string($conn,$notes);
-
-$hiddensid=mysqli_real_escape_string($conn,$hiddensid);
-
-$careprovider=mysqli_real_escape_string($conn,$careprovider);
-	
-	$insertquery="INSERT INTO `postreply`(`confirmedfeeamt`, `confirmeddate`, `recurringfees`, `recurringfeesdate`, `referral`, `contractsent`, `contractreceived`, `feereceived`, `leadtime`, `assignedproject`, `assignedprojectdate`, `proinprocessdate`, `prcompletion`, `adminnotes`, `service_id`,`requesttype`,`careprovider`) VALUES ('$confirmfee','$confirmfeedate','$recurringfee','$recurringfeedate','$referral','$contractsentdate','$contractreceivedate','$feereceivedate','$leadtimedate','$projectassigned','$assigndate','$processdate','$completiondate','$notes','$hiddensid','1','$careprovider')";
-	
-	$runquery=mysqli_query($conn,$insertquery);
-	
-	if($runquery)
-	{
-		
-		$buttonval='1';
-
-		header('location:requests.php?id='.$newsid.'&buttonval='.$buttonval);
-		
-		
-		
-	}
- 	else
-	{
-		
-		header('location:requests.php?id='.$newsid);
-
-		
-		
-	}
-	
-	
-}
 ?>
 
 <!DOCTYPE html>

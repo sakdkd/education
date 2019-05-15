@@ -118,7 +118,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 						$timings=$resultset['timings'];	
 						$questions=$resultset['questions'];	
 						 $test_given_details=getminitest_statusfromTestId($conn,$minitestid,$userid,$subject_id);
-					//print_r($test_given_details);
+				//print_r($test_given_details);
 						
 						$testgid=$test_given_details['id'];
 	 $button_val=$test_given_details['button'];

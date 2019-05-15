@@ -82,7 +82,7 @@ if(isset($_POST['submit'])){
 	$numrs=mysqli_num_rows($query);
 	if($numrs==0)
 	{
-	$insQry=mysqli_query($conn,"INSERT INTO `minitest` (`id`, `questions`, `timings`, `status`, `view`, `pdate`, `ptime`, `postedby`, `subject_id`) VALUES (NULL,'$questions', '$timings', '1', '1', '$pdate', '$ptime', '1', '$subject');");
+	$insQry=mysqli_query($conn,"INSERT INTO `minitest` (`id`, `questions`, `timings`, `status`, `view`, `pdate`, `ptime`, `postedby`, `subject_id`) VALUES (5,'$questions', '$timings', '1', '1', '$pdate', '$ptime', '1', '$subject');");       
 
 	if($insQry){
 

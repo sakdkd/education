@@ -19,7 +19,7 @@ $userid=$_SESSION['userid'];
 $pdate=date("Y-m-d");
 $success='0';
 mysqli_query($conn,"BEGIN");
-$insertquery=mysqli_query($conn,"INSERT INTO `orders`(`userid`, `pdate`, `status`, `address`, `city`, `state`, `country`, `phone`,`postal`,`company`,`fname`,`lname`) VALUES ('$userid','$pdate','0','$streetadd','$city','$province','$country','$phone','$postal','$company','$fname','$lname')");
+$insertquery=mysqli_query($conn,"INSERT INTO `orders`(`userid`, `pdate`, `status`, `address`, `city`, `state`, `country`, `phone`,`postal`,`company`,`fname`,`lname`) VALUES ('$userid','$pdate','1','$streetadd','$city','$province','$country','$phone','$postal','$company','$fname','$lname')");
 if($insertquery)
 {
 	
@@ -64,6 +64,13 @@ if($success==1)
 {
 	
 	mysqli_query($conn,"COMMIT");
+	$ordermessage= OrderMail($conn,$order_id,$baseurl); 
+$user_details=getTableDetailsById($conn,"register",$userid);
+
+$to=$user_details['email'];
+
+$ordersubject="Order Confirmation";
+sendgridmail($to,$ordermessage,$ordersubject);  
 	$arr=array("status"=>"1");
 	
 }

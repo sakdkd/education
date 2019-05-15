@@ -97,20 +97,24 @@ if(isset($_GET['slug']))
         <div class="col-md-4 col-sm-4 pbm">
         <div class="card">
         <div class="card-body package-detail">
-           <strong><?=$packages['name'];?></strong>
-           <?php foreach ($features_list as $f_key => $f_pair)
-		   { $q_table="qfeature"; $feature_d= getTableDetailsById($conn,$q_table,$f_key);?>
-            <p><?php echo $f_pair." ".$feature_d['name'];?></p>
-            <?php }?>
-              <ul>
-               <?php foreach ($nonfeatures_list as $nfkey)
-		   { $q_table="nqfeatures"; $feature_d= getTableDetailsById($conn,$q_table,$nfkey);?> 
-                  <li><?php echo $feature_d['name'];?></li>
-                  <?php }?>
-                  
-              </ul>
-               <div class="price"><strong><?php echo $icon.$cost;?></strong></div>
-                <button type="button" class="btn btn-start" onclick="<?php echo $onclick_action;?>"><?php echo $button_text;?></button>
+          <div class="package-detail">
+                <strong><?=$packages['name'];?></strong>
+               <?php foreach ($features_list as $f_key => $f_pair)
+                          { $q_table="qfeature"; $feature_d= getTableDetailsById($conn,$q_table,$f_key);?>
+                <p><?php echo $f_pair." ".$feature_d['name'];?></p>
+                <?php }?>
+                  <ul>
+                   <?php foreach ($nonfeatures_list as $nfkey)
+                          { $q_table="nqfeatures"; $feature_d= getTableDetailsById($conn,$q_table,$nfkey);?> 
+                      <li><?php echo $feature_d['name'];?></li>
+                      <?php }?>
+                      
+                  </ul>
+           </div>
+               <div class="price-wrapper">
+                   <div class="price"><strong><?php echo $icon.$cost;?></strong></div>
+                    <button type="button" class="btn btn-start" onclick="<?php echo $onclick_action;?>"><?php echo $button_text;?></button>
+               </div>
         </div>
         </div>
         </div>

@@ -9,7 +9,10 @@ if(isset($_GET['id']))
 {
 	
 $encodedid=base64_decode($_GET['id']);
-	
+
+$_SESSION['chid']=$encodedid;
+	$chid=$_SESSION['chid'];  
+
 	
 }
 

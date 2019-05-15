@@ -398,12 +398,12 @@ $attache_level_id=minigetattachedMainLevelidfromSIdLecelId($conn,$sid,$isee_leve
 				   {?>
                    <div class="summery-detail">
                       <div class="row">
-                          <div class="col-md-12 text-center"><h2>How you did, by difficulty</h2></div>
+                          <div class="col-md-12 text-center"><h2 style="margin-bottom:50px">How you did, by difficulty</h2></div>
                       </div>
                        <div class="row">
-                           <div class="col-md-4">Easy<div id="donutchart0" style="width: 100%; "></div></div>
-                           <div class="col-md-4">Medium<div id="donutchart1" style="width: 100%; "></div></div>
-                           <div class="col-md-4">Hard<div id="donutchart2" style="width: 100%; "></div></div>
+                           <div class="col-md-4 text-center"><h3>Easy</h3><div id="donutchart0" style="width: 100%; "></div></div>
+                           <div class="col-md-4 text-center"><h3>Medium</h3><div id="donutchart1" style="width: 100%; "></div></div>
+                           <div class="col-md-4 text-center"><h3>Hard</h3><div id="donutchart2" style="width: 100%; "></div></div>
                        </div>
                        
                        <div class="row">

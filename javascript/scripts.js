@@ -2091,11 +2091,8 @@ document.getElementById('question_value').value=newval;
 		   	   $('#next_btn').prop('disabled', true);
 
 	   }
-
 	question_id=parseInt(document.getElementById('option'+newval).value);
-
 		answer_id=document.getElementById('Ans'+question_id).value;
-		//alert(answer_id);
 		if(answer_id!='')
 		{
 		document.getElementById('Qs'+question_id+answer_id).checked=true;
@@ -2147,8 +2144,6 @@ if(answer_id!='')
 }
 
 	}
-	
-	
 	oldeffected=document.getElementById('effected'+newval).value;
 		seteffected=document.getElementById('effected'+lcv).value;
 		if(seteffected=='')

@@ -6,8 +6,16 @@ include_once('db_class/hr_functions.php');
 
 $oid=2;
 
-echo $msg= OrderMail($conn,$oid,$baseurl)
-; die;
+echo $message= OrderMail($conn,$oid,$baseurl)
+; 
+
+$to="sakshi@dkd.co.in";
+
+$subject="Order Confirmation";
+//sendgridmail($to,$message,$subject);  
+
+
+die;
 
 
 ?>

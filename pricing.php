@@ -30,7 +30,14 @@ include_once('db_class/hr_functions.php');
     <!-- /.navbar -->
 <section class="top-head">
     
+<style>
+.pbm .card {
+   
+    min-height: 235px;
+}
 
+
+</style>
 
 <h1>Choose your level for package options!</h1>
 </section>

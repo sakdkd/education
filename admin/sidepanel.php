@@ -170,6 +170,7 @@
                     <li><a href="choose_subtype.php">Add Questions</a></li>
                     <li><a href="view_1.php">View Questions</a></li>
 
+<li><a href="addminitest.php">Add Mini Test</a></li>
                     <!--  <li><a href="#morisjs.html">Moris JS</a></li>
 
                       <li><a href="#echarts.html">ECharts</a></li>
@@ -182,6 +183,7 @@
                   
                   
                   <li><a href="testimonials.php"><i class="fa fa-bar-chart-o"></i> Testimonials </a>
+                  <li><a href="orders.php"><i class="fa fa-bar-chart-o"></i> Orders </a>
 
                     
 

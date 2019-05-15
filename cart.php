@@ -94,7 +94,8 @@ $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$levelid);
  $levelname=$level_details['name'];
 		 $qty=$product[2]; 
-		 
+		$qty=1;
+ 
 		 $sub= $qty* $package_details['price'];
 		 $subtotal=$subtotal+$sub;
 $totalcount++;
@@ -108,7 +109,7 @@ $totalcount++;
                                         </td>
                                         <td>$<?php echo $package_details['price'];?></td>
                                         <td>
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected"><input class="vertical-quantity form-control" type="text" value="<?php echo $qty;?>" id="P<?php echo $packageid;?>"><span class="input-group-btn-vertical"><button class="btn btn-outline bootstrap-touchspin-up fa fa-caret-up" type="button" onclick="incrementqty(1,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button><button class="btn btn-outline bootstrap-touchspin-down fa fa-caret-down" type="button" onclick="incrementqty(2,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button></span></div>
+                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected"><input class="vertical-quantity form-control" type="text" value="<?php echo $qty;?>" id="P<?php echo $packageid;?>" readonly><!--<span class="input-group-btn-vertical"><button class="btn btn-outline bootstrap-touchspin-up fa fa-caret-up" type="button" onclick="incrementqty(1,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button><button class="btn btn-outline bootstrap-touchspin-down fa fa-caret-down" type="button" onclick="incrementqty(2,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button></span>--></div>
                                         </td>
                                         <td id="sub<?php echo $packageid;?>">$<?php echo $sub;?></td>
                                          <!--<td id=""><a href="" onClick="deleteitem('<?php echo base64_encode($totalcount);?>')">Delete</a></td>-->

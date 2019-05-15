@@ -633,7 +633,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                              <div class="progress-bar" style="width: 100%;background: #999;height: 20px;display: inline-block;border-radius: 10px;">
                                            <div class="first" style="background:green; width:<?php echo $correct_width;?>%;float:left;height:20px;<?php echo $left_radius1.$right_radius1;?>"><?php echo $correct_val;?></div>
                                            <div class="second" style="background:#fd7e14; width:<?php echo $unanswered_width;?>%;float:left;height:20px;<?php echo $left_radius2.$right_radius2;?>""><?php echo $unanswered_val;?></div>
-                                           <div class="third" style="background:red; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> 
+                                           <div class="third" style="background:#dc3545; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> 
                                            
                                            </div>
                                            
@@ -736,12 +736,12 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                    </div>
                    
                    <?php }?>
-                   <?php  if($sub_details_new['promptbased']!=1)
-				   {?>
+                   <?php  if($sub_details_new['promptbased']!=1) 
+				   { if($btn_val==1){?> 
                    
                  <div id = "container" style = "width: 100%; height: 300px; margin: 0 auto">
 </div>  
-<?php }?>
+<?php } }?>
                </div>
                
            </div>

@@ -3,13 +3,14 @@ ob_start();
 session_start();
 include_once('../db_class/dbconfig.php');
 include_once('../db_class/hr_functions.php');
+	$chid=$_SESSION['chid'];  
 
 //if(isset($_POST['register']))
 //{
 	
 	extract($_POST);
 	$pdate=date("Y-m-d");
-	 $uid=$_POST['uid'];
+	 $uid=$chid;
 		 $password=$_POST['password'];
  $npassword=md5($password);
 	 $selquery=mysqli_query($conn,"select * from `register` where `id`='$uid'");
