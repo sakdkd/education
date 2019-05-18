@@ -70,8 +70,8 @@ $$setvalue='0';
 	$topicid_arr=getallAttachedIdwithSubId($conn,$subject_id,$levelchoosen);
 	
 	$topic_imploded_string=implode(",",$topicid_arr);   
-	$mainActiveques=GetActiveQuesFromTopicId($conn,$topic_imploded_string); 
-	
+	  $mainActiveques=GetActiveQuesFromTopicId($conn,$topic_imploded_string); 
+	//$mainActiveques=$question_total;
 	if($setvalue==3)
 	{
 		
@@ -179,7 +179,7 @@ else
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->
- <input type="text" id="timer" value="<?php echo $timer;?>"> 
+ <input type="hidden" id="timer" value="<?php echo $timer;?>"> 
 
 <section class="main-container" style="margin-top: 100px">
 
@@ -226,7 +226,7 @@ else
                    <ul  id="myTabs1" role="" data-tabs="" class="d-flex pagination nav nav-pills">
                    <?php 
 				   
-			 for($i=1;$i<=$mainActiveques;$i++)
+			 for($i=1;$i<=$question_total;$i++)
 				   				//   for($i=1;$i<=2;$i++)
 
 				   {
@@ -279,7 +279,7 @@ else
 			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
 			}
 			else
-			{
+			{ 
 			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			}
 			$q_div=0;
@@ -332,16 +332,17 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
                        </ul>
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
 
                                  <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">    
 
-
+  <input name="ans<?php echo $question_id;?>" id="Ans<?php echo $question_id;?>" type="hidden" value="<?php echo $user_ans1;?>">   <input name="start<?php echo $question_id;?>" id="start<?php echo $q_div;?>" type="hidden" value=""><input name="end<?php echo $question_id;?>" id="end<?php echo $q_div;?>" type="hidden" value="">
+             <input name="effected<?php echo $question_id;?>" id="effected<?php echo $q_div;?>" type="hidden" value="">     
                    </div>
                        </div>
                    </div>
@@ -358,7 +359,7 @@ if($user_attmpted_ques['buttonval']!=1)
                          <input name="question_total" id="question_total" type="hidden" value="<?php echo $question_total;?>">    
                                            <input name="savedtime" id="savedtime" type="hidden" value="">    
 
-<input name="mainActiveques" id="mainActiveques" type="text" value="<?php echo $mainActiveques;?>">   
+<input name="mainActiveques" id="mainActiveques" type="hidden" value="<?php echo $mainActiveques;?>">   
                        <input name="test_name" id="" type="hidden" value="<?php echo $test_name;?>">
                         
     <input name="subject_id" id="" type="hidden" value="<?php echo $subject_id;?>">
@@ -375,39 +376,20 @@ if($user_attmpted_ques['buttonval']!=1)
     
     
       <?php 
-			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' limit 0,$question_total");
-			$q_div=0;
-			$numrows=mysqli_num_rows($question_query);
-			if($numrows>0)
+			if($setvalue==3)
 			{
-				while($questionset=mysqli_fetch_array($question_query))
-				{
-
-			
-					
-				$question_ids=trim($questionset['id']);
-				$user_attmpted_ques1=GetMiniUserCorrectAnsFromTidQid($conn,$question_ids,$test_name);
-				if($user_attmpted_ques1['buttonval']!=1)
-				{
-				$user_ans1=$user_attmpted_ques1['answer'];
-				if($user_ans1==0)
-				{
-										$user_ans1='';
-
-					
-				}
-				}
-				else
-				{
-					$user_ans1='';
-					
-				}
-					
-			?>  
-            
-             <input name="ans<?php echo $question_ids;?>" id="Ans<?php echo $question_ids;?>" type="hidden" value="<?php echo $user_ans1;?>">   <input name="start<?php echo $question_ids;?>" id="start<?php echo $q_div;?>" type="hidden" value=""><input name="end<?php echo $question_ids;?>" id="end<?php echo $q_div;?>" type="hidden" value="">
-             <input name="effected<?php echo $question_ids;?>" id="effected<?php echo $q_div;?>" type="hidden" value="">           
-<?php }}?>   
+			//echo "y".$paused_qid_string;
+		
+			$question_querys=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
+			}
+			else
+			{
+			$question_querys=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+			}
+			$q_divs=0;
+			$numrows=mysqli_num_rows($question_querys);
+			if($numrows>0)
+			{}?>   
 
 
 

@@ -94,7 +94,7 @@ $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$levelid);
  $levelname=$level_details['name'];
 		 $qty=$product[2]; 
-		$qty=1;
+		//$qty=1;
  
 		 $sub= $qty* $package_details['price'];
 		 $subtotal=$subtotal+$sub;
@@ -109,7 +109,7 @@ $totalcount++;
                                         </td>
                                         <td>$<?php echo $package_details['price'];?></td>
                                         <td>
-                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected"><input class="vertical-quantity form-control" type="text" value="<?php echo $qty;?>" id="P<?php echo $packageid;?>" readonly><!--<span class="input-group-btn-vertical"><button class="btn btn-outline bootstrap-touchspin-up fa fa-caret-up" type="button" onclick="incrementqty(1,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button><button class="btn btn-outline bootstrap-touchspin-down fa fa-caret-down" type="button" onclick="incrementqty(2,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button></span>--></div>
+                                            <div class="input-group  bootstrap-touchspin bootstrap-touchspin-injected"><input class="vertical-quantity form-control" type="text" value="<?php echo $qty;?>" id="P<?php echo $packageid;?>" readonly><span class="input-group-btn-vertical"><button class="btn btn-outline bootstrap-touchspin-up fa fa-caret-up" type="button" onclick="incrementqty(1,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button><button class="btn btn-outline bootstrap-touchspin-down fa fa-caret-down" type="button" onclick="incrementqty(2,'<?php echo $packageid;?>','<?php echo $levelid;?>')"></button></span></div>
                                         </td>
                                         <td id="sub<?php echo $packageid;?>">$<?php echo $sub;?></td>
                                          <!--<td id=""><a href="" onClick="deleteitem('<?php echo base64_encode($totalcount);?>')">Delete</a></td>-->
@@ -192,8 +192,19 @@ $totalcount++;
   
   <?php } else {?>  <div class="gray-bg pt-50 pb-50">
         <div class="container">
-                <p>No items added in your cart</p>
-            </div>
+             <div class="row">
+              <div class="col-md-3"></div>
+               <div class="col-md-6">
+               <div class="no-cart">
+               <img src="images/cart.png">
+                <p class="item1">No items added in your cart</p>
+                <p style="margin-bottom:30px;">Looks like You haven't made your choice yet...</p>
+                <a href="#" class="c-shopping">Continue Shopping</a>
+				   </div>
+				</div>
+			<div class="col-md-3"></div>
+			</div>
+         </div>
     </div>  <?php }?>
 </section>    
     <!--get plan-->

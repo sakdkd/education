@@ -166,6 +166,22 @@ else
 
 
 }
+if($mainActiveques<=$question_total)
+{
+	
+	
+	
+	$displayques=$mainActiveques;
+	
+}
+else
+{
+	
+		$displayques=$question_total;
+
+	
+}
+//$mainActiveques=$displayques; 
 ?>
 
 
@@ -201,7 +217,11 @@ else
 
 <section class="main-container" style="margin-top: 100px">
 
-	<?php $question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+	<?php 
+	
+	
+	
+	$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			$q_div=0;
 			$numrows=mysqli_num_rows($question_query);
 			if($numrows>0)
@@ -245,7 +265,8 @@ else
                    <?php 
 				   
 				   //question_total
-			 for($i=1;$i<=$mainActiveques;$i++)
+				   //
+			 for($i=1;$i<=$question_total;$i++)
 				   				//   for($i=1;$i<=2;$i++)
 
 				   {
@@ -295,7 +316,7 @@ else
 			if($setvalue==3)
 			{
 		//	echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
-		
+	
 			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
 			}
 			else
@@ -365,7 +386,8 @@ if($user_attmpted_ques['buttonval']!=1)
              
 
                                  <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">    
-
+ <input name="ans<?php echo $question_id;?>" id="Ans<?php echo $question_id;?>" type="hidden" value="<?php echo $user_ans;?>">     <input name="start<?php echo $question_id;?>" id="start<?php echo $q_div;?>" type="hidden" value=""><input name="end<?php echo $question_id;?>" id="end<?php echo $q_div;?>" type="hidden" value="">
+             <input name="effected<?php echo $question_id;?>" id="effected<?php echo $q_div;?>" type="hidden" value="<?php echo $user_attmpted_ques['timetaken'];?>">   
 
                    </div>
                        </div>
@@ -401,7 +423,19 @@ if($user_attmpted_ques['buttonval']!=1)
     
       <?php 
 	//echo "select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' limit 0,$question_total";
-			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' limit 0,$question_total");
+			//$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' limit 0,$question_total");
+			if($setvalue==3)
+			{
+		//	echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
+		echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
+			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
+			}
+			else
+			{
+				echo "select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total";
+			
+			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+			}
 			$q_div=0;
 			$numrows=mysqli_num_rows($question_query);
 			if($numrows>0)
@@ -433,8 +467,7 @@ $q_div++;
 					
 			?>  
             
-             <input name="ans<?php echo $question_ids;?>" id="Ans<?php echo $question_ids;?>" type="hidden" value="<?php echo $user_ans1;?>">     <input name="start<?php echo $question_ids;?>" id="start<?php echo $q_div;?>" type="hidden" value=""><input name="end<?php echo $question_ids;?>" id="end<?php echo $q_div;?>" type="hidden" value="">
-             <input name="effected<?php echo $question_ids;?>" id="effected<?php echo $q_div;?>" type="hidden" value="<?php echo $user_attmpted_ques1['timetaken'];?>">                           
+                                      
 <?php }}?>   
 
 

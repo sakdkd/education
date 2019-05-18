@@ -5,6 +5,7 @@ include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];  
 
+$useraddress=getUserAddress($conn,$userid);
 //print_r($_SESSION["cart_array"]["bags"]); 
 ?>
 
@@ -60,25 +61,25 @@ $userid=$_SESSION['userid'];
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>First Name</label>
-									<input type="text" placeholder="First Name" name="fname" id="fname">
+									<input type="text" placeholder="First Name" name="fname" id="fname" value="<?php echo $useraddress['fname'];?>">
 								</div>
 							</div>
 						<div class="col-md-6">
 								<div class="form-group">
 									<label>Last Name</label>
-									<input type="text" placeholder="Last Name" name="lname" id="lname">
+									<input type="text" placeholder="Last Name" name="lname" id="lname" value="<?php echo $useraddress['lname'];?>">
 								</div>
 							</div>
                    	<div class="col-md-6">
 								<div class="form-group">
 									<label>Company</label>
-									<input type="text" placeholder="Company" name="company" id="company">
+									<input type="text" placeholder="Company" name="company" id="company" value="<?php echo $useraddress['company'];?>">
 								</div>
 							</div>
                    	<div class="col-md-6">
 								<div class="form-group">
 									<label>Street address</label>
-									<input type="text" placeholder="53 Sunset Hill Rd" name="streetadd" id="streetadd">
+									<input type="text" placeholder="53 Sunset Hill Rd" name="streetadd" id="streetadd" value="<?php echo $useraddress['address'];?>">
 								</div>
 							</div>
                             
@@ -93,7 +94,7 @@ $userid=$_SESSION['userid'];
 				$numrows=mysqli_num_rows($ds);
 				if( $numrows >0){
 				while($fetch=mysqli_fetch_array($ds)){?>
-                <option value="<?php echo $fetch['id'] ?>"><?php echo $fetch['name'] ?></option>
+                <option value="<?php echo $fetch['id'] ?>" <?php if($fetch['id']==$useraddress['country']){?> checked <?php }?>><?php echo $fetch['name'] ?></option>
 				
 				
 				<?php }}?>
@@ -120,7 +121,7 @@ $userid=$_SESSION['userid'];
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>City</label>
-									<input type="text" placeholder="Boston" name="city" id="city">
+									<input type="text" placeholder="Boston" name="city" id="city" value="<?php echo $useraddress['city'];?>" >
 								</div>
 							</div>
 							
@@ -128,13 +129,13 @@ $userid=$_SESSION['userid'];
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Postal code</label>
-									<input type="text" placeholder="02132" name="postal" id="postal">
+									<input type="text" placeholder="02132" name="postal" id="postal" value="<?php echo $useraddress['postal'];?>">
 								</div>
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
 									<label>Phone number</label>
-									<input type="text" placeholder="" name="phone" id="phone">
+									<input type="text" placeholder="" name="phone" id="phone" value="<?php echo $useraddress['phone'];?>">
 								</div>
 							</div>
 						</div>

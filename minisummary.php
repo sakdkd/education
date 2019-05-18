@@ -250,8 +250,8 @@ unattempt=parseInt(strArray[2]);
 //unattempt=3;
 
         var data = google.visualization.arrayToDataTable([
-           ['Task', 'Hours per Day'], 
-          ['Correct', correct],
+           ['Task','Hours per Day'], 
+          ['Correct',correct],
           ['incorrect',incorrect],
           ['Unanswered', unattempt], 
         ]);
@@ -414,7 +414,12 @@ $attache_level_id=minigetattachedMainLevelidfromSIdLecelId($conn,$sid,$isee_leve
                             <?php 
 							//print_r($toipc_arr); die;		
 						  foreach($toipc_arr as $t_id)
-						  {  $correct_val=0; 
+						  {  
+						  
+						  
+						  $doesnotexist=0;
+						  
+						  $correct_val=0; 
 $incorrect_val=0;
 $unanswered_val=0;  
 						  		 $topics_details=getTableDetailsById($conn,'attachedtopics',$t_id);
@@ -422,9 +427,19 @@ $topic_name=$topics_details['topics'];
 		
 $totalques=getTotalquesfromTopicId($conn,$t_id);
 $total_qs=count($totalques);
-foreach($totalques as $quesid)
-{
+$savedq=GetMiniPausedquestionIdfromTestId($conn,$test_id);
+ $totalques1=array_intersect($savedq,$totalques);
+ $total_qs=count($totalques1);
+
+
+foreach($totalques1 as $quesid)
+{  
+$attemptedques=GetMiniPausedquestionIdfromTestId($conn,$test_id);
+
+
 $test_attempt_details=GetMiniUserCorrectAnsFromTidQid($conn,$quesid,$test_id);
+
+
 			 $question_details=getTableDetailsById($conn,'questions',$quesid);
 			 			$userans=$test_attempt_details['answer'];			   
 
@@ -451,15 +466,20 @@ $test_attempt_details=GetMiniUserCorrectAnsFromTidQid($conn,$quesid,$test_id);
 			 }
 			 
 			 else
-			 {
+			 { 
 				
 			   $unanswered_val++;
 			 
 			 }
                         
                          
-                         }  
-						 
+                         } 
+
+
+
+
+
+
 						 //green-correct_val
 						 //yellow-unanswered_val
 						 //red-incorrect_val
@@ -520,6 +540,15 @@ $right_radius1='';$right_radius2='';$right_radius3='';
 									$right_radius2="border-top-right-radius: 10px;border-bottom-right-radius: 10px;";	
 
 				
+			}
+			
+			else if(($unanswered_val==0) &&($incorrect_val>0))
+			{ 
+				$left_radius3="border-top-left-radius: 10px;border-bottom-left-radius: 10px;";
+									$right_radius2="border-top-right-radius: 10px;border-bottom-right-radius: 10px;";	
+		$right_radius3="border-top-right-radius: 10px;border-bottom-right-radius: 10px;";	
+
+				
 			}   
 			else
 			{
@@ -550,9 +579,10 @@ else if(($correct_val==0) && (($unanswered_val==0)))
 
 	
 }
+
 						?>
                          
-                         
+                                      
                          
                          <div class="col-md-12">
                              <div class="meter"> 
@@ -563,10 +593,10 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                                        <div class="col-md-6" style="width:33%">
                                           <!-- <div class="yellow-bar" ></div>-->
                              <div class="progress-bar" style="width: 100%;background: #999;height: 20px;display: inline-block;border-radius: 10px;">
-                                           <div class="first" style="background:green; width:<?php echo $correct_width;?>%;float:left;height:20px;<?php echo $left_radius1.$right_radius1;?>"><?php echo $correct_val;?></div>
-                                           <div class="second" style="background:#fd7e14; width:<?php echo $unanswered_width;?>%;float:left;height:20px;<?php echo $left_radius2.$right_radius2;?>""><?php echo $unanswered_val;?></div>
-                                           <div class="third" style="background:red; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> 
-                                           
+                                         <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(1);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"> <div class="first" style="background:green; width:<?php echo $correct_width;?>%;float:left;height:20px;<?php echo $left_radius1.$right_radius1;?>"><?php echo $correct_val;?></div></a>
+                                        <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(2);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>">   <div class="second" style="background:#fd7e14; width:<?php echo $unanswered_width;?>%;float:left;height:20px;<?php echo $left_radius2.$right_radius2;?>""><?php echo $unanswered_val;?></div></a>              
+                                           <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(3);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"><div class="third" style="background:red; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> </a>
+                                                 
                                            </div>
                                            
                                        </div>
@@ -575,7 +605,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                          </div>
                          <?php 
                          
-                         }
+}
 						 
 						 ?>   
                            

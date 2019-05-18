@@ -70,15 +70,25 @@ $sub_arr=GetLevelSubjectmainidfromLevelid($conn,$levelchoosen);
 <div class="row" id="all_topic_div">
 
 <?php 
+if(isset($_GET['topicid']))
+{
+	
+	$tpic=base64_decode($_GET['topicid']);
+	$selq=mysqli_query($conn,"select * from `attachedtopics` where `id`='$tpic' and `status`='1' and `view`='1'");
 
+}
+else
+{
 $selq=mysqli_query($conn,"select * from `attachedtopics` where `attachedid` in ($imploded_sub_str) and `status`='1' and `view`='1'");
 
+
+}
 $numrows=mysqli_num_rows($selq);
 if($numrows>0)
 {
 	
 	while($resultset=mysqli_fetch_array($selq))
-	{    $topicid=$resultset['id'];
+	{  $topicid=$resultset['id']; 
 	
 	
 	$difficulty_arr=getlevelsfromquestionfromtid($conn,$topicid);

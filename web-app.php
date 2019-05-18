@@ -9,6 +9,9 @@ $tbname="orders";
 
 $order_details=orderidbyUserid($conn,$userid);
  $order_id=$order_details['id'];
+ 
+ $order_list_details=getSingleBoughtPackagefromOid($conn,$order_id);
+ 
 $package_arr=getBoughtPackagefromOid($conn,$order_id);
 
 if(isset($_GET['did'])){      
@@ -199,8 +202,8 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 							{ 
 							$setval_detail=mysqli_fetch_row($main_query);
 							
-							$setval=$setval_detail[0];
-							
+							$setvals=$setval_detail[0];
+							$setval=$order_list_details['qty']*$setvals;
 							$edupricing_details=getTableDetailsById($conn,"edu_pricing",$pack_id);
 $package_lid=$edupricing_details['level_id'];
 							for($loopval=1;$loopval<=$setval;$loopval++)

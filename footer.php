@@ -245,6 +245,8 @@
     <script src="js/main.js"></script>
 <input type="hidden" id="landing_type" value="<?php echo $landingval;?>" />
 <input type="hidden" id="trial" value="0" />
+<input type="hidden" id="showcommentboxval" value="<?php echo $showcommentboxval;?>" />
+
 
 </body>
 

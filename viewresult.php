@@ -8,26 +8,131 @@ $tbname="register";
 $user_details=getTableDetailsById($conn,$tbname,$userid);
 $levelchoosen=$user_details['sid'];
  $start_time=time();
+ 
+ $previousurl=$_SERVER['HTTP_REFERER'];
+$showcommentboxval=1;//hidden field
+if(isset($_GET['testid']))
+{
+	 $encodedtid=$_GET['testid'];
+	  $testid=base64_decode($_GET['testid']); 
+	  $encodedtype=$_GET['type'];
+	 $anstype=base64_decode($_GET['type']);  
+	 $testtype=$_GET['testtype'];
+	 $entopicid=$_GET['topic'];
+	  $topicid=base64_decode($_GET['topic']);  
+$topic_details=getTableDetailsById($conn,"attachedtopics",$givenquesdetails['topic_id']);
+		$giventestdetails=getTableDetailsById($conn,"practicetestgiven",$testid);
+	$subid=$giventestdetails['subject_id'];
+	
+		$levelid=$giventestdetails['levelid'];
+	
+			$topic_details=getTableDetailsById($conn,"attachedtopics",$topicid);
+			$subtypeid=$topic_details['subtype_id'];
+			$subtype_details=getTableDetailsById($conn,"subtype",$subtypeid);
+			$ques=getTotalquesfromTopicId($conn,$topicid);
+			 $subb_id=$topic_details['subject_id']; 
+			 			$sub_details_new=getTableDetailsById($conn,"subjects",$subb_id);
+						if($testtype=="mini")
+						{
+		$ques_arr_arr=getQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$anstype);   
+						} 
+						else
+						{ 
+							
+								$ques_arr_arr=getMAINQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$anstype);   
+	
+							
+						}
 
-if(isset($_GET['topic_id']))
+						
+						 $totalques1=array_intersect($ques_arr_arr,$ques);
+$ques_arr=$totalques1;
+
+
+if($anstype==1) 
 {
 	
-	 $topic_id=base64_decode($_GET['topic_id']);
-	 	$level_id=base64_decode($_GET['level']); 
+	foreach($ques_arr as $qids)
+	{
 		
-		 $tid=practestExistence($conn,$userid,$topic_id,$level_id);
-				$topic_details=getTableDetailsById($conn,"attachedtopics",$topic_id);
-$subb_id=$topic_details['subject_id'];
+	 if($testtype=="mini")
+						{
+					$user_attmpted_ques=GetMiniUserCorrectAnsFromTidQid($conn,$qids,$testid);
+						}
+						
+						else
+						{
+							$user_attmpted_ques=GetUserCorrectAnsFromTidQid($conn,$qids,$testid);
+							
+							
+						}
+						
+							
+					 			$ques_details_new=getTableDetailsById($conn,"questions",$qids);
 
- 			$sub_details_new=getTableDetailsById($conn,"subjects",$subb_id);
+		$correct=$ques_details_new['correct'];
+		$answer=$user_attmpted_ques['answer'];
+		
+		if($correct==$answer)
+		{
+			
+			$correct_arr[]=$qids;
+			
+			
+		}
+		
+	}
+$ques_arr=$correct_arr;
+	
+}
 
-		$question_total=noOfquestionfromtopicidandlevel($conn,$topic_id,$level_id);
+else if($anstype==3)
+
+{
+	foreach($ques_arr as $qids)
+	{
+		
+	 if($testtype=="mini")
+						{
+					$user_attmpted_ques=GetMiniUserCorrectAnsFromTidQid($conn,$qids,$testid);
+						}
+						
+						else
+						{
+							$user_attmpted_ques=GetUserCorrectAnsFromTidQid($conn,$qids,$testid);
+							
+							
+						}
+						
+							
+					 			$ques_details_new=getTableDetailsById($conn,"questions",$qids);
+
+		$correct=$ques_details_new['correct'];
+		$answer=$user_attmpted_ques['answer'];
+		
+		if(($correct!=$answer) && ($answer!=0))
+		{
+			
+			$correct_arr[]=$qids;
+			
+			
+		}
+		
+	}
+	
+$ques_arr=$correct_arr;
+	
+}
+
+
+		 $ques_string=implode(",",$ques_arr); 
+		$question_total=count($ques_arr);
 		// $question_total=1;
 		 $mainActiveques=$question_total;
 		 if($question_total>1)
 		 {
 			 
-			$next_class=""; 
+			$next_class="";  
 			 
 			 
 		 }
@@ -44,7 +149,7 @@ $subb_id=$topic_details['subject_id'];
 }
 	
 
-
+$time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$ques_string); 
 
 ?>
 
@@ -77,17 +182,19 @@ $subb_id=$topic_details['subject_id'];
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->
- <input type="hidden" id="timer" value="<?php echo $timer;?>"> 
+  
 
 <section class="main-container" style="margin-top: 100px">
 
 	<?php 
-	 $question_query=mysqli_query($conn,"select * from `questions` where `topic_id`='$topic_id'  and `difficulty`='$level_id' and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+	
+	 			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($ques_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+
 			$q_div=0;
-		$numrows=mysqli_num_rows($question_query);
+	  $numrows=mysqli_num_rows($question_query);   
 			if($numrows>0)
 			{?>
-                <form method="post" id="myForm" action="practice_action.php" name="myForm">
+                <form method="post" id="myForm" action="" name="myForm">
 
 
 
@@ -97,16 +204,15 @@ $subb_id=$topic_details['subject_id'];
             <div class="col-md-9">
                 <div class="wrapper-title">
                     <h3><?php echo $levelname;?> </h3>    
-                    <h1>SECTION : <?php echo $topic_details['topics'];?></h1>
+                    <h1><?php echo $topic_details['topics'];?></h1>
                 </div>
             </div>
            <div class="col-md-3">
                 <div class="time-wrapper">
                       
                        
-                    <div class="time-button">
-                        <button class="btn" name="pause" type="submit" onclick="myformsubmit(0)"><i class="fa fa-pause" style="font-size: 12px"></i> Pause Section</button>
-                        <button class="btn" type="submit" name="end" onclick="myformsubmit(1)" ><i class="fa fa fa-stop" style="font-size: 12px"></i> End Section</button>
+                    <div class="loop-repeat">
+                       <a href="<?php echo $previousurl;?>">Back</a>
                     </div>
                 </div>
             </div> 
@@ -166,12 +272,9 @@ $subb_id=$topic_details['subject_id'];
                 </div> </div>  
                 
              <input type="hidden" name="btnclickval" value="5" id="btnclickval">
-              <?php 
+                 <?php 
 			                      if($sub_details_new['promptbased']!=1)
  {?>
-                
-                
-                
                  <div class="tab-content">
             <?php 
 			
@@ -182,8 +285,7 @@ $subb_id=$topic_details['subject_id'];
 			//$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
 			//
 			
-		
-			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id`=$topic_id and `difficulty`='$level_id' and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($ques_string) and `status`='1' and `view`='1' order by field(`id`,$ques_string)");
 			
 			$q_div=0;
 			
@@ -196,17 +298,29 @@ $subb_id=$topic_details['subject_id'];
 					
 					++$q_div;
 					
-				 $question_id=$questionset['id'];
-					$user_attmpted_ques=GetUserPracticeCorrectAnsFromTidQid($conn,$question_id,$tid);
-if($user_attmpted_ques['buttonval']!=1)
-				{
-				$user_ans=$user_attmpted_ques['answer'];
-				}
-				else
-				{
-					$user_ans='';
 					
-				}					if($q_div==1)
+					
+				 $question_id=$questionset['id'];
+				 if($q_div==1)
+					{
+						
+						$firstqid=$question_id;
+						
+					}
+				 if($testtype=="mini")
+						{
+					$user_attmpted_ques=GetMiniUserCorrectAnsFromTidQid($conn,$question_id,$testid);
+						}
+						
+						else
+						{
+							$user_attmpted_ques=GetUserCorrectAnsFromTidQid($conn,$question_id,$testid);
+							
+							
+						}
+			$user_ans=$user_attmpted_ques['answer'];
+		
+									if($q_div==1)
 					{
 						
 					$added_class="active";	
@@ -219,10 +333,15 @@ if($user_attmpted_ques['buttonval']!=1)
 	
 						
 					}
+				if($anstype==1)
+				{
 					
 					
+					
+				}
+					   
 			?> 
-             
+           
            <div class="<?php echo $added_class;?>" id="Q<?php echo $q_div;?>"  >
                <div class="col-md-12">
                   <div class="card question-side">
@@ -237,15 +356,13 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> disabled  ><span class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option4'];?></span></li>
                        </ul>
-                                   <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              
-                                  <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">    
-                                   
+                         <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">                
 
 
                    </div>
@@ -254,23 +371,22 @@ if($user_attmpted_ques['buttonval']!=1)
                    </div>
                </div>
                
-           </div>
+           </div>    
            
            <?php } } else{?> 
            
            
            
            <?php }?>
-                         <input name="question_total" id="question_total" type="hidden" value="<?php echo $question_total;?>">    
+               <input name="question_total" id="question_total" type="hidden" value="<?php echo $question_total;?>">    
                                            <input name="savedtime" id="savedtime" type="hidden" value="">    
 
 <input name="mainActiveques" id="mainActiveques" type="hidden" value="<?php echo $mainActiveques;?>">   
-                       <input name="test_name" id="" type="hidden" value="Practice">
-                        
+                       <input name="test_name" id="" type="hidden" value="Practice">          
   
            </div>
            
-         <?php } else {?>
+           <?php } else {    ?>
          
         <div class="gray-bg pt-20 pb-50">
         <div class="container">
@@ -280,7 +396,7 @@ if($user_attmpted_ques['buttonval']!=1)
 
                    <?php 
 				   
-          	$question_query=mysqli_query($conn,"select * from `questions` where `topic_id`=$topic_id and `difficulty`='$level_id' and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
+          $question_query=mysqli_query($conn,"select * from `questions` where `id` in ($ques_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 		
 			
 			$numrows=mysqli_num_rows($question_query);
@@ -293,16 +409,10 @@ if($user_attmpted_ques['buttonval']!=1)
 					
 				 $question_id=$questionset['id'];
 					
-					$user_attmpted_ques=GetUserPracticeCorrectAnsFromTidQid($conn,$question_id,$tid);
-if($user_attmpted_ques['buttonval']!=1)
-				{
+					$user_attmpted_ques=GetUserPracticeCorrectAnsFromTidQid($conn,$question_id,$testid);
+
 				$user_ans=$user_attmpted_ques['answer'];
-				}
-				else
-				{
-					$user_ans='';
-					
-				}					if($q_div==1)
+									if($q_div==1)
 					{
 						
 					$added_class="active";	
@@ -322,7 +432,7 @@ if($user_attmpted_ques['buttonval']!=1)
              <h4>Essay</h4>
              
 
-              <textarea id="textbox<?php echo $question_id;?>"  placeholder="Use specific details and examples in your essay response."  class="essay ng-valid ng-touched ng-dirty ng-valid-parse" oninput="settextvalue('<?php echo $question_id;?>')"><?php echo $user_ans;?></textarea>
+              <textarea id="textbox<?php echo $question_id;?>"  placeholder="Use specific details and examples in your essay response."  class="essay ng-valid ng-touched ng-dirty ng-valid-parse" oninput="settextvalue('<?php echo $question_id;?>')" readonly><?php echo $user_ans;?></textarea>
  <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              
                                   <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">  
@@ -343,19 +453,62 @@ if($user_attmpted_ques['buttonval']!=1)
           
     </div>
     </div>
-       
+        <input name="topicid" id="" type="hidden" value="<?php echo $topic_id;?>">    
+                                 <input name="levelid" id="" type="hidden" value="<?php echo $level_id;?>"> 
          
          <?php }?>
-          
+         
+         <?php  
+		 if($testtype!="mini")
+						{ $givenquesdetails=getTableDetailsById($conn,"questions",$firstqid);
+
+
+$solution=$givenquesdetails['solution'];
+		 
+		 ?>
+         
+            <div class="col-md-8" id="displaysolution">
+           	<div class="sol-Box">
+           	<h4>Solution</h4>
+           	<span><p class="scope"><?php  echo stripslashes($solution);?></p></span>
+           </div>
+         </div>
+         <div class="col-md-4" id="exercisediv">
+         <a href="practice.php?topicid=<?php echo $entopicid;?>">
+         	<div class="followup">
+				<h4>Follow-Up Exercise</h4><span><?php echo $topic_details['topics'];?></span><i aria-hidden="true" class="fa fa-arrow-right"></i></div>
+		</a>
+         </div>
+		<div class="col-md-6" id="clocktimer">
+		  	<div class="tile-card icon-card">
+		  	<div class="icon-tile">
+		  	<i aria-hidden="true" class="fa fa-clock"></i>
+		  	</div>
+		  	<div class="text-tile">
+		  	<div><p>Your Time:&nbsp; <strong class="ng-binding"><?php echo $time_taken;?> sec</strong></p>
+		  	</div>
+		  	
+		  	</div>
+		  	</div>
+	   </div>
+          <div class="col-md-6">
+          	<div class="tile-card">
+          	<div class="icon-tile"><i aria-hidden="true" class="fa fa-hashtag"></i>
+          	</div>
+          	<div class="text-tile">
+          	<sup>Subtype</sup><strong class="ng-binding"><?php echo $subtype_details['name'];?></strong>
+          	</div></div>
+         </div>
+         
+         
+         <?php }?>
     </div>
     </div>
     
     
-    
+
       <?php 
-	  
-	 
-			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id`=$topic_id and `difficulty`='$level_id' and `status`='1' and `view`='1' limit 0,$question_total");
+			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($ques_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			$q_div=0;
 			$numrows=mysqli_num_rows($question_query);
 			if($numrows>0)
@@ -367,7 +520,7 @@ $q_div++;
 			
 					
 				$question_ids=trim($questionset['id']);
-				$user_attmpted_ques1=GetUserPracticeCorrectAnsFromTidQid($conn,$question_ids,$tid);
+				$user_attmpted_ques1=GetUserCorrectAnsFromTidQid($conn,$question_ids,$test_name);
 				if($user_attmpted_ques1['buttonval']!=1)
 				{
 				$user_ans1=$user_attmpted_ques1['answer'];
@@ -392,8 +545,7 @@ $q_div++;
 <?php }}?>   
 
 
- <input name="topicid" id="" type="hidden" value="<?php echo $topic_id;?>">    
-                                 <input name="levelid" id="" type="hidden" value="<?php echo $level_id;?>">   
+
 
    </form> 
    <?php }?>
@@ -599,6 +751,7 @@ $q_div++;
 
 function myformsubmit(val)
 { 
+ 
 	document.getElementById('btnclickval').value=val;
 //window.location='form_sub.php?id='+val;  
 

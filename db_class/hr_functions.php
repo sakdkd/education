@@ -203,6 +203,8 @@ catch(Exception $ex){
 		$mail->Password = $smtppassword; // SMTP password
 		$mail->Port = 587;
 		$mail->AddAddress($to);
+		$mail->addCC('cc@example.com');
+
 		$mail->Subject = $subject;
 		$mail->Body    = $msg;
 		$mail=$mail->Send();
@@ -5894,6 +5896,87 @@ function getQuesAttemptedforPrac($conn,$testgivenid)
 	
 	
 }
+
+function getQuesAttemptedforminiWithCorrectAnswer($conn,$testgivenid,$type)
+{//	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid' and `button`='0' order by `id` desc");
+
+if($type==2)
+{
+	
+	$answer="`answer`=0";
+	
+}
+else
+{
+$answer="`answer`!=0";  	     
+	    
+	
+}
+  	$ds=mysqli_query($conn,"SELECT * FROM `minitestattempted` where `testid`='$testgivenid' and $answer"); 
+	while($resultset=mysqli_fetch_array($ds))
+	{ 
+
+	$data[]=$resultset['questionid'];
+ 
+		
+	}
+		
+		
+	return $data;
+	
+	
+	
+}
+function getMAINQuesAttemptedforminiWithCorrectAnswer($conn,$testgivenid,$type)
+{
+
+if($type==2)
+{
+	
+	$answer="`answer`=0";
+	
+}
+else
+{
+$answer="`answer`!=0";  	     
+	    
+	
+}
+  	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid' and $answer"); 
+	while($resultset=mysqli_fetch_array($ds))
+	{ 
+
+	$data[]=$resultset['questionid'];
+ 
+		
+	}
+		
+		
+	return $data;
+	
+	
+	
+}
+
+function gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testgivenid,$ques_arr)
+{
+$data=0;
+  	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid' and `questionid` in ($ques_arr)"); 
+	while($resultset=mysqli_fetch_array($ds))
+	{ 
+
+	$data+=$resultset['timetaken'];
+ 
+		
+	}
+		
+		
+	return $data;
+	
+	
+	
+}
+
 function getmainLevelidfromId($conn,$lid)
 { //echo "SELECT `level_id` FROM  `levelsubjects` where `id`='$lid'"; die;
 	$ds=mysqli_query($conn,"SELECT `level_id` FROM  `levelsubjects` where `id`='$lid'"); 

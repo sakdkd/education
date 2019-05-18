@@ -68,6 +68,13 @@ function startTimer() {
  {
 submitform();
  }
+ 
+ else if(m<0)
+ {
+	//submitform();
+ 
+	 
+ }
 }
 
 function checkSecond(sec) {

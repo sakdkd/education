@@ -1379,7 +1379,7 @@ function showsubjects_1(val)
 			
         if(result.status==1)
 		 {
-alert(result);
+//alert(result);
 		$("#selectsubject").html(result);
 		  }
 		 else
@@ -2060,6 +2060,11 @@ if(answer_id!='')
 
 	}
 
+if(document.getElementById('showcommentboxval').value==1)
+{
+showcommentbox(question_id);
+
+}
 	}
 		
 function questionvisibility(type)
@@ -2094,8 +2099,11 @@ document.getElementById('question_value').value=newval;
 	question_id=parseInt(document.getElementById('option'+newval).value);
 		answer_id=document.getElementById('Ans'+question_id).value;
 		if(answer_id!='')
+		{ 
+		if(answer_id>0)
 		{
 		document.getElementById('Qs'+question_id+answer_id).checked=true;
+		}
 		}
 }
 
@@ -2219,7 +2227,11 @@ $('.tab-content').addClass('not-active');
 
 
 	
-	
+	if(document.getElementById('showcommentboxval').value==1)
+{
+showcommentbox(val);
+
+}
 	
 	
 }
@@ -2385,3 +2397,80 @@ request.done(function(msg) {
 
 
  });
+ 
+ 
+ function showcommentbox1(question_id)
+ {
+	
+	 
+ $.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/commentbox.php",
+        data: { 
+        	question_id:question_id
+			
+        },
+        success: function(result) {
+		alert();	
+        },
+        error: function(result) {
+            
+        }
+    });
+ 
+	 
+	 
+	 
+	 
+ }
+ 
+ function showcommentbox(question_id){
+	
+
+ var xmlHttpReq = false;
+
+    if (window.XMLHttpRequest)
+
+	 {
+
+        xmlHttpReq = new XMLHttpRequest();
+
+    }
+
+    else if (window.ActiveXObject)
+
+	 {
+
+        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+
+    }
+
+	
+
+	xmlHttpReq.onreadystatechange = function()
+
+      {
+
+		 if (xmlHttpReq.readyState == 4)
+
+	   {    
+
+		     response=xmlHttpReq.responseText;
+			 
+
+			 document.getElementById('displaysolution').innerHTML=response;
+ 
+			 
+			}else{
+
+
+		   }
+
+			}
+
+	 xmlHttpReq.open('GET',baseurl+'/ajaxCallToPhp/commentbox.php?question_id='+question_id, true);
+
+	 xmlHttpReq.send(null); 	
+
+}

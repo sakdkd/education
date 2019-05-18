@@ -12,7 +12,7 @@ $levelchoosen=$user_details['sid'];
 if(isset($_GET['testid']))
 {
 	$encodedtid=$_GET['testid'];
-	  $testid=base64_decode($_GET['testid']); 
+	 $testid=base64_decode($_GET['testid']); 
 		$giventestdetails=getTableDetailsById($conn,"practicetestgiven",$testid);
 	$topicid=$giventestdetails['subject_id'];
 		$levelid=$giventestdetails['levelid'];
@@ -230,10 +230,10 @@ if(isset($_GET['testid']))
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> readonly><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> readonly><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> readonly><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> readonly><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option4'];?></span></li>
                        </ul>
              
                          <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">                
