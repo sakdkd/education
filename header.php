@@ -11,6 +11,8 @@ $user_details=getTableDetailsById($conn,$tbname,$userid);
 $levelchoosen=$user_details['sid'];
 //$levelchoosen=3;        
 $trial_val=$user_details['trial'];
+$allOids=getallOrderIDfromUserID($conn,$userid);
+print_r($allOids);  
 $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$levelchoosen);
 
@@ -21,7 +23,12 @@ if($cartcount==0)
 	$cartcount='';
 	
 }
+
+
+
 ?>
+
+
     <link rel="icon" href="img/fav/favicon.png">
     <link rel="stylesheet" type="text/css" href="dist/notie.css">
 

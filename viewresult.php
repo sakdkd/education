@@ -176,6 +176,99 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
     .tab-content>div {
     display: none;
 }   
+
+.roundedOne input[type=checkbox] {
+	visibility: hidden;
+}
+
+/* ROUNDED ONE */
+.roundedOne {
+    width: 20px;
+    height: 20px;
+    background: #fcfff4;
+    background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+    /* margin: 20px auto; */
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.roundedOne label {
+	cursor: pointer;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	left: 2px;
+	top: 2px;
+/*
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,1);
+
+	background: -webkit-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -moz-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -o-linear-gradient(top, #222 0%, #45484d 100%);
+	background: -ms-linear-gradient(top, #222 0%, #45484d 100%);
+	background: linear-gradient(top, #222 0%, #45484d 100%);*/
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222', endColorstr='#45484d',GradientType=0 );
+}
+
+.roundedOne label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: #565656;
+    background: #424242;
+    background: -moz-linear-gradient(top, #00bf00 0%, #009400 100%);
+    background: -o-linear-gradient(top, #00bf00 0%, #009400 100%);
+    background: -ms-linear-gradient(top, #00bf00 0%, #009400 100%);
+    background: linear-gradient(top, #00bf00 0%, #009400 100%);
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    top: 0px;
+    left: 0px;
+    /* -webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5); */
+    -moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+    /* box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5); */
+}
+.roundedOne label:hover::after { 
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	opacity: 0.3;
+}
+ 
+.roundedOne input[type=checkbox]:checked + label:after {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
+	opacity: 1; 
+}    
+ 
+.answer-gray-bg .roundedOne label {
+    padding-left: 16px !important;
+    font-size: 14px!important;
+    color: #222 !important;
+    line-height: 14px !important;
+    width: 15px!important;
+    height: 16px!important;
+}
     </style>
 
     <title>Home</title>
@@ -356,10 +449,14 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> disabled  ><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option4'];?></span></li>
+  <div class="roundedOne">
+	<input type="checkbox" value="None" id="roundedOne" name="check" />
+	<label for="roundedOne"></label>
+</div>
+                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="checkbox" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> disabled  ><span class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="checkbox" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="checkbox" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="checkbox" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option4'];?></span></li>
                        </ul>
              
                          <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">                

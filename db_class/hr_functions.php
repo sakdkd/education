@@ -5614,6 +5614,20 @@ function orderidbyUserid($conn,$userid){
 	//$improaster=implode(",",$data);
 	return $data;
 }
+
+	function getallOrderIDfromUserID($conn,$id){
+	//echo "SELECT * FROM `seminars` where `id`='$id'";
+	$ds=mysqli_query($conn,"SELECT * FROM `orders` where `userid`='$id' and `status`='1'"); 
+	$numrows=mysqli_num_rows($ds);
+	if($numrows >0){
+		while($fetch=mysqli_fetch_array($ds)){
+		
+			 $data[]=$fetch['id'];
+		}
+	}
+	//$improaster=implode(",",$data);
+	return $data;
+}
 function getSingleBoughtPackagefromOid($conn,$id){
 	//echo "SELECT * FROM `seminars` where `id`='$id'";
 	$ds=mysqli_query($conn,"SELECT * FROM `orderlist` where `orderid`='$id'"); 

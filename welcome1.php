@@ -12,6 +12,41 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
+.top-head {
+    background: #eb735e;
+    font-size: 25px;
+    padding: 7px 16px;
+    color: #fff;
+    text-align: left;
+}
+.links-cart li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.links-cart .btn-start {
+    border-radius: 3px;
+    padding: 4px 30px;
+}
+.links-cart li {
+    text-align: left;
+}
+
+.pbm .card {
+    background: #dcdcdc;
+    border-top: 5px solid #111;
+    border-radius: 8px;
+    height: 100%;
+    min-height: auto!important;
+}
+
+.links-cart li:before {
+    content: '\f111';
+    padding-right: 14px;
+    font-family: "Font Awesome 5 Free";
+}
+</style>
 
     <title>Home</title>
     <!-- Standard Favicon -->
@@ -31,37 +66,27 @@
 <div class="gray-bg pt-50 pb-50">
         <div class="container">
             <div class="row section text-center welcome">
-         <div class="col-md-2 pbm"></div>
+         <div class="col-md-2 pbm"></div> 
         <div class="col-md-4 col-sm-6 pbm">
+        
         <div class="card">
 <!--        <h3>Primary Level</h3>-->
+  <div class="top-head">
+                            <i class="fa fa-shopping-cart"></i> Details
+         </div>
         <div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Access your online tests.</p>
-                <a href="web-app.php" class="btn btn-start">View Dashboard</a>
+        <ul class="links-cart">
+        <li><a class="btn-start" href="#">Product one</a></li>
+        <li><a class="btn-start" href="#">Product two</a></li> 
+        </ul>
+           
         </div>
         </div>
         </div>
         
-        <div class="col-md-4 col-sm-6 pbm">
-        <div class="card">
-<!--        <h3>Lower Level</h3>-->
-        <div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Access  practice papers.</p>
-                <a href="practice.php" class="btn btn-start">Paper Tests & Vocab</a>
-        </div>
-        </div>
-        </div>
         
-        <!--<div class="col-md-4 col-sm-6 pbm">
-        <div class="card">
-<!--        <h3>Middle Level</h3>-->
-        <!--<div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Watch test skills videos.</p>
-                <a href="#" class="btn btn-start">View Video Course</a>
-        </div>-->
+        
+       
         </div>
         </div>
         
@@ -88,6 +113,7 @@
                     <div class="owl-carousel" id="blog_slider_owl">
                         <div>
                             <div class="single_blog_in">
+                            
                                 <div class="card">
                                     <div class="images">
                                         <img src="img/blog1.jpg" alt=""/>
@@ -136,7 +162,7 @@
                                 </div>
                             </div><!--/.single_blog_in-->
                         </div>
-                        <div>
+                        <div> 
                             <div class="single_blog_in">
                                 <div class="card">
                                     <div class="images">
