@@ -65,7 +65,7 @@ function startTimer() {
 	document.getElementById('savedtime').value=timestring;
   setTimeout(startTimer, 1000);
  if((m==00) && (s==00))
- {
+ { alert();
 submitform();
  }
  

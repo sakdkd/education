@@ -12,24 +12,49 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+    
 
     <title>Home</title>
     <!-- Standard Favicon -->
-  <?php include_once("header.php"); 
+  <?php include_once("header.php");?>   
   
+  <style>
   
-if(($orderidcount>1) || ($n_rows>1))
-{
-	
-	$repage="dashboard.php";
+  .top-head {
+    background: #eb735e;
+    font-size: 25px;
+    padding: 7px 16px;
+    color: #fff;
+    text-align: left;
+}
+.links-cart li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.links-cart .btn-start {
+    border-radius: 3px;
+    padding: 4px 30px;
+}
+.links-cart li {
+    text-align: left;
 }
 
-else
-{
-	
-	$repage="web-app.php";
-	
-}?>   
+.pbm .card {
+    background: #dcdcdc;
+    border-top: 5px solid #111;
+    border-radius: 8px;
+    height: 100%;
+    min-height: auto!important;
+}
+
+.links-cart li:before {
+    content: '\f111';
+    padding-right: 14px;
+    font-family: "Font Awesome 5 Free";
+}
+  
+  </style>
 <section class="top-head">
     
 
@@ -45,37 +70,48 @@ else
 <div class="gray-bg pt-50 pb-50">
         <div class="container">
             <div class="row section text-center welcome">
-         <div class="col-md-2 pbm"></div>
+         <div class="col-md-2 pbm"></div> 
+         
+         <?php 
+		 $allOids=getallOrderIDfromUserID($conn,$userid);  
+		 foreach($allOids as $OrderIds)
+		 { 
+		 
+		$all_p_ids= getBoughtPackagefromOid($conn,$OrderIds) ;
+		$all_p_ids_string=implode(",",$all_p_ids);
+		
+
+		 
+?>
+
         <div class="col-md-4 col-sm-6 pbm">
+        
         <div class="card">
 <!--        <h3>Primary Level</h3>-->
+  <div class="top-head">
+                            <i class="fa fa-shopping-cart"></i> ORDERID <span>#<?php echo $OrderIds;?></span>
+         </div>
         <div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Access your online tests.</p>
-                <a href="<?php echo $repage;?>" class="btn btn-start">View Dashboard</a>
+        <ul class="links-cart">
+        <?php 
+				$selquerys=mysqli_query($conn,"select * from `edu_pricing` where `id` in ($all_p_ids_string)");
+    while($resultset=mysqli_fetch_array($selquerys))
+	{   
+	
+	
+		
+?>
+  <li><a class="btn-start" href="web-app.php" onClick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><?php echo $resultset['name'];?></a></li>
+        <?php }?>
+        </ul>
+           
         </div>
         </div>
         </div>
         
-        <div class="col-md-4 col-sm-6 pbm">
-        <div class="card">
-<!--        <h3>Lower Level</h3>-->
-        <div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Access  practice papers.</p>
-                <a href="practice.php" class="btn btn-start">Paper Tests & Vocab</a>
-        </div>
-        </div>
-        </div>
+     <?php }?>   
         
-        <!--<div class="col-md-4 col-sm-6 pbm">
-        <div class="card">
-<!--        <h3>Middle Level</h3>-->
-        <!--<div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Watch test skills videos.</p>
-                <a href="#" class="btn btn-start">View Video Course</a>
-        </div>-->
+       
         </div>
         </div>
         
@@ -102,6 +138,7 @@ else
                     <div class="owl-carousel" id="blog_slider_owl">
                         <div>
                             <div class="single_blog_in">
+                            
                                 <div class="card">
                                     <div class="images">
                                         <img src="img/blog1.jpg" alt=""/>
@@ -150,7 +187,7 @@ else
                                 </div>
                             </div><!--/.single_blog_in-->
                         </div>
-                        <div>
+                        <div> 
                             <div class="single_blog_in">
                                 <div class="card">
                                     <div class="images">

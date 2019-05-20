@@ -5782,11 +5782,13 @@ if($num=mysqli_num_rows($ds)>0)
 while($resultset=mysqli_fetch_array($ds))
 {
 	$amtid=$resultset['subject_id'];
-		  
+								$sub_details=getTableDetailsById($conn,"subjects",$amtid);
+	  
 
-	
+	if($sub_details['status']==1)
+	{
 	$resultarr[]=$amtid;
-	
+	}
 }
 }
 return $resultarr; 
@@ -5799,11 +5801,15 @@ if($num=mysqli_num_rows($ds)>0)
 while($resultset=mysqli_fetch_array($ds))
 {
 	$amtid=$resultset['id'];
-		  
+								$sub_details=getTableDetailsById($conn,"subjects",$resultset['subject_id']);
+	  
 
+	if($sub_details['status']==1)
+	{
+	
 	
 	$resultarr[]=$amtid;
-	
+	}
 }
 }
 return $resultarr; 
@@ -6139,4 +6145,13 @@ function getOrderCode($conn,$id){
 	return "BOSH".$val;
 
 }
+
+function getteststatusfromuseridandtestname($conn,$uid,$tid)
+	{
+		$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='1'"); 
+	$ds1=mysqli_num_rows($ds);
+	return $ds1;
+		
+		
+	}
 ?>  

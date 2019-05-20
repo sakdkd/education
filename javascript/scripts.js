@@ -2474,3 +2474,32 @@ request.done(function(msg) {
 	 xmlHttpReq.send(null); 	
 
 }
+
+
+function setboughtpackage(packid,oid)
+{
+	
+	
+	$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/setpackid.php",
+        data: { 
+        	packid:packid,
+			oid:oid,
+			
+        },
+        success: function(result) {},
+        error: function(result) {
+            
+        }
+    });
+	
+	
+	
+	
+	
+	
+	
+	
+}

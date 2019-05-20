@@ -7156,3 +7156,95 @@ a .followup {
     border-radius: 4px;
     box-shadow: 0 6px 6px #dbc9c9;
 }
+.top-head {
+    background: #eb735e;
+    font-size: 25px;
+    padding: 7px 16px;
+    color: #fff;
+    text-align: left;
+}
+.links-cart li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.links-cart .btn-start {
+    border-radius: 3px;
+    padding: 4px 30px;
+}
+.links-cart li {
+    text-align: left;
+}
+
+.pbm .card {
+    background: #dcdcdc;
+    border-top: 5px solid #111;
+    border-radius: 8px;
+    height: 100%;
+    min-height: auto!important;
+}
+
+.links-cart li:before {
+    content: '\f111';
+    padding-right: 14px;
+    font-family: "Font Awesome 5 Free";
+}
+.checkmark {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    padding-right: 15px;
+    cursor: pointer;
+    font-size: 18px;
+    -moz-user-select: none;
+    user-select: none;
+}
+.checkmark input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+.check1 {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color:#f1f1f1;
+    border-color: #f4782e;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 20px;
+}
+.checkmark .check1:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid;
+    border-color: #f4782e;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.checkmark input:checked ~ .check1:after {
+    display: block;
+}
+.check1:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.loop-repeat a i {
+    margin-right: 6px;
+    vertical-align: middle;
+}
+.loop-repeat a {
+    /* background: #ed4123; */
+    font-size: 20px;
+    border-radius: 3px;
+    color: #fff;
+    /* padding: 3px 12px; */
+}

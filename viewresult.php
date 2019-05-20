@@ -297,7 +297,7 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
             <div class="col-md-9">
                 <div class="wrapper-title">
                     <h3><?php echo $levelname;?> </h3>    
-                    <h1><?php echo $topic_details['topics'];?></h1>
+                    <h1><?php echo ucfirst($topic_details['topics']);?></h1>
                 </div>
             </div>
            <div class="col-md-3">
@@ -305,7 +305,7 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
                       
                        
                     <div class="loop-repeat">
-                       <a href="<?php echo $previousurl;?>">Back</a>
+                       <a href="<?php echo $previousurl;?>"><i class="fa fa-arrow-left"></i>Back</a>
                     </div>
                 </div>
             </div> 
@@ -394,6 +394,8 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
 					
 					
 				 $question_id=$questionset['id'];
+				 
+				 $correct_ans=$questionset['correct'];
 				 if($q_div==1)
 					{
 						
@@ -432,6 +434,13 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
 					
 					
 				}
+				
+				
+				
+				
+				
+				
+				
 					   
 			?> 
            
@@ -449,14 +458,35 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
+<!--
   <div class="roundedOne">
 	<input type="checkbox" value="None" id="roundedOne" name="check" />
 	<label for="roundedOne"></label>
 </div>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="checkbox" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?> disabled  ><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="checkbox" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="checkbox" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="checkbox" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?> disabled><span class="check"><?php echo $questionset['option4'];?></span></li>
+
+-->
+<?php 
+
+
+$show_query=mysqli_query($conn,"select * from `answeroption` where `status`='1'");
+
+while($result=mysqli_fetch_array($show_query))
+{
+
+$optionid=$result['id'];
+$showcolor=""; 
+
+?>
+
+                           <li>
+                           <label class="checkmark">
+                           <?php echo $questionset['option'.$optionid];?>
+                           <input name="radio1<?php echo $question_id;?>" type="checkbox" value="1" <?php if($user_ans==$optionid){ if($user_ans==$correct_ans){$showcolor="green";?>  <?php } else {$showcolor="red";?> <?php } }   if($correct_ans==$optionid){$showcolor="green";?> <?php }?> disabled ><span class="check check1" style="background-color:<?php echo $showcolor;?>"></span>
+							   </label>    
+							</li>
+                            
+                            <?php }?>
+						
                        </ul>
              
                          <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">                

@@ -180,8 +180,14 @@ background: #e65500!important;
     
     <div class="report">
     
-   <div class="lines-report"> 
-   <h3>Test Completion Date</h3> 
+   <div class="lines-report">
+    <?php 
+   $querys=mysqli_query($conn,"select * from `practicetestgiven` where `subject_id`='$topicid' and `levelid`='$levelid' and `button`='1'");
+   $numrows=mysqli_num_rows($querys); 
+    if($numrows>0)
+   {?>
+   <h3>Test Completion Date</h3>
+   <?php }?> 
    <?php 
    $querys=mysqli_query($conn,"select * from `practicetestgiven` where `subject_id`='$topicid' and `levelid`='$levelid' and `button`='1'");
    $numrows=mysqli_num_rows($querys);
@@ -193,7 +199,7 @@ background: #e65500!important;
    ?>
    
     <div class="loop-repeat">
-    	<div class="col-sm-6"><a href="#"><?php echo changeToStdDate($conn,$date);?></a> </div>
+    	<div class="col-sm-6"><a href="practice_results.php?testid=<?php echo $test_id;?>"><?php echo changeToStdDate($conn,$date);?></a> </div>
         <div class="col-sm-6"><a href="practice_results.php?testid=<?php echo $test_id;?>" style="color: #f47327;">Review Your Answers <i class="fas fa-arrow-right"></i></a> </div>
          
     </div>

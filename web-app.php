@@ -6,14 +6,26 @@ include_once('db_class/hr_functions.php');
 $page="web-app.php";
 $userid=$_SESSION['userid'];
 $tbname="orders";
+$order_id=$_SESSION['orderid'];
+$packages_id=$_SESSION['packid']; 
 
 $order_details=orderidbyUserid($conn,$userid);
- $order_id=$order_details['id'];
- 
- $order_list_details=getSingleBoughtPackagefromOid($conn,$order_id);
- 
-$package_arr=getBoughtPackagefromOid($conn,$order_id);
 
+if($order_id=="")
+
+{
+
+  $order_id=$order_details['id'];
+ $package_arr=getBoughtPackagefromOid($conn,$order_id);
+
+}
+else
+{
+	$package_arr[]=$packages_id;
+	
+	
+}
+ $order_list_details=getSingleBoughtPackagefromOid($conn,$order_id);
 if(isset($_GET['did'])){      
 
 	 $did=base64_decode($_GET['did']); 
@@ -38,6 +50,9 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 
 
 }
+
+							  
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -56,14 +71,13 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 
     <title>Home</title>
     <!-- Standard Favicon -->
- <?php include_once("dheader.php");?>  
+ <?php include_once("dheader.php");   ?>  
 
  
 <section class="main-container" style="margin-top: 50px">
 
     
      
-
 
 
 <div class="gray-bg pt-50 pb-50">
@@ -76,7 +90,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                            
                            
                                                <div class="card">
-                                               <?php if($trial_val==1){?>
+                                               <?php if($trial_val==1){ ?>
                             <div id="accordion">
                             
                             <?php 
@@ -179,12 +193,13 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                              
                            </div>
                            
-                           <?php } else {}?>
+                           <?php } else {}  ?>
                                                </div>
                                 
                                 
                                 
                                <?php 
+
 							   foreach($package_arr as $pack_id)
 							   {
 							   
@@ -196,8 +211,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                             
                             <?php 
 	$main_query=mysqli_query($conn,"select `sets` from `edu_pricingqfeatures` where `qfeatureid`='2' and `pricingid`='$pack_id'");
-						//	echo "select `sets` from `edu_pricingqfeatures` where `qfeatureid`='2' and `pricingid`='$pack_id'";      
-						 $numrows=mysqli_num_rows($main_query);
+						  $numrows=mysqli_num_rows($main_query);
 							if($numrows>0)
 							{ 
 							$setval_detail=mysqli_fetch_row($main_query);
@@ -234,9 +248,7 @@ $package_lid=$edupricing_details['level_id'];
                                  <div class="card-body">
                                  
                                 <?php
-								//echo "select * from `levelsubjects` where `view`='1' and `status`='1' and `level_id`='$package_lid'";  
 							$mini_query=mysqli_query($conn,"select * from `levelsubjects` where `view`='1' and `status`='1' and `level_id`='$package_lid'");
-						//	echo "select * from `levelsubjects` where `view`='1' and `status`='1' and `level_id`='$package_lid'" ; 
 						  $numrows=mysqli_num_rows($mini_query);
 							if($numrows>0)
 							{ while($resultset=mysqli_fetch_array($mini_query))
@@ -372,7 +384,6 @@ $button_val=$test_given_details['button'];
                                                         <ul> 
                                                         
                                                         <?php 
-														
 														$pcount=count($package_arr);
 														if($pcount>0)
 														{ 
@@ -383,9 +394,13 @@ $button_val=$test_given_details['button'];
 						  $numrows=mysqli_num_rows($main_query);
 							if($numrows>0)
 							{ 
+							
+							$level_att_ids=GetLevelSubjectmainidfromLevelid($conn,$package_lid);
+							 $levelcount=count($level_att_ids);
 							$setval_detail=mysqli_fetch_row($main_query);
 							
-							$setval=$setval_detail[0];
+							$setvals=$setval_detail[0];
+							$setval=$order_list_details['qty']*$setvals;
 							
 							$edupricing_details=getTableDetailsById($conn,"edu_pricing",$pack_id);
 $package_lid=$edupricing_details['level_id'];
@@ -396,11 +411,30 @@ $package_lid=$edupricing_details['level_id'];
 							$fetch_mini=mysqli_fetch_assoc($mini_query);  
 							//$created_id="collapse".$fetch_mini['id'];
 														$created_id="collapsenew".$loopval;
-
+ 
 							$m_id=$loopval;
-      $test_name="#".$loopval;?>
+      $test_name="#".$loopval;
+	  
+	  
+	$count_by_tid=getteststatusfromuseridandtestname($conn,$userid,$loopval);
+	  
+	  if($count_by_tid < $levelcount)
+	  {
+		  
+		$pstatus="Unfinished";  
+		  
+	  }
+	  else
+	  {
+		$pstatus="Finished";    
+		  
+		  
+	  }
+	  
+	  
+	  ?>
                                                             <li>In Progress  <?php echo $levelname." ".$test_name;?>
-                                                            Unfinished</li>
+                                                            <?php echo $pstatus;?></li>
 
                                                             
 															<?php } }}}?>

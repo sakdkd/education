@@ -6,6 +6,8 @@ error_reporting(0);
 include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
+$order_id=$_SESSION['orderid'];
+$packages_id=$_SESSION['packid']; 
 $tbname="register";
 $user_details=getTableDetailsById($conn,$tbname,$userid);
 $levelchoosen=$user_details['sid'];
@@ -22,9 +24,27 @@ if($cartcount==0)
 }
 
 $order_details=orderidbyUserid($conn,$userid);
- $order_id=$order_details['id'];
-$package_arr=getBoughtPackagefromOid($conn,$order_id);
-$count_of=0;         
+
+$count_of=0;  
+
+
+$order_details=orderidbyUserid($conn,$userid);
+
+if($order_id=="")
+
+{
+
+  $order_id=$order_details['id'];
+ $package_arr=getBoughtPackagefromOid($conn,$order_id);
+
+}
+else
+{ 
+	$package_arr[]=$packages_id;
+	
+	$package_arr=array_unique($package_arr);
+}  
+
 foreach($package_arr as $pacid)
 {
 	//echo "select * from `edu_pricingqfeatures` where `qfeatureid`='4' and `pricingid`='$pacid'";
