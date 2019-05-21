@@ -203,6 +203,7 @@ label{
 <th>Package</th>
 
 				                    <th>Date</th>
+				                    <th>Action</th>
 
 			                    </tr>
 
@@ -226,7 +227,9 @@ label{
 
 							while ($row=$ds->fetch_assoc()){
 								
-								
+								$userid=$row['userid'];
+									 $allOids=getallOrderIDfromUserID($conn,$userid);  
+	
 							$oid=$row["id"]	;
 $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
  $packid=$plandetails['planid'];
@@ -246,10 +249,11 @@ $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
 	          					<td>
 	          					  
 	          			  		  
-	          					  <?php echo $row["pdate"];?>
+	          					  <?php echo changeToStdDate($conn,$row["pdate"]);?>
 	          					  
 
           					    </td>
+	          					<td><a data-toggle="modal" data-target="#exampleModalContent<?php echo $row["id"];?>">View</a></td>
 
 							 
                   			</tr>
@@ -562,7 +566,71 @@ function checkbuttonval(val){
 </script>
 
 
+<?php
 
+  $selquery=mysqli_query($conn,"SELECT * FROM `orders` order by `id` Desc");
+while($resultset=mysqli_fetch_array($selquery))
+{
+	$OrderIds=$resultset['id'];
+    	$pdetails=getSingleBoughtPackagefromOid($conn,$resultset['id']); 
+		
+		$all_p_ids= getBoughtPackagefromOid($conn,$OrderIds) ;
+		$all_p_ids_string=implode(",",$all_p_ids); 
+		
+		  
+?>
+<div class="modal fade" id="exampleModalContent<?php echo $resultset['id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalContentLabel">ORDER ID <span><strong><?php echo getOrderCode($conn,$resultset['id'])?></strong></span></h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                            
+                                                <?php
+												$subtotal=0;
+				$selquerys=mysqli_query($conn,"select * from `edu_pricing` where `id` in ($all_p_ids_string)");
+    while($resultset=mysqli_fetch_array($selquerys))
+	{   
+	
+	$leveltable="edu_levels";
+$level_details=getTableDetailsById($conn,$leveltable,$resultset['level_id']);
+
+ $levelname_new="(".$level_details['name'].")";
+
+	$subtotal+=$resultset['price'];	
+?>
+                                                <div class="form-group">
+                                                    <label for="recipient-name" class="col-form-label" style="font-weight:bold;">Package :Name:</label>
+                                                    <label for="recipient-name" class="col-form-label"><?php echo $resultset['name'].$levelname_new;?></label>  
+                                                </div>
+                                                
+                                                
+                                                <div class="form-group">
+                                                    <label for="message-text" class="col-form-label" style="font-weight:bold;"> Price:</label>
+                                                    <label for="recipient-name" class="col-form-label">$<?php echo $resultset['price']?></label>  
+                                                </div>
+                                                <?php }?><div class="form-group">
+                                                    <label for="message-text" class="col-form-label" style="font-weight:bold;">Total Price:</label>
+                                                    <label for="recipient-name" class="col-form-label">$<?php echo $subtotal;?></label>  
+                                                </div>
+                                                
+                                                
+                                                
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <?php }?>
 </body>
 
 </html>

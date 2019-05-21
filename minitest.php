@@ -10,7 +10,17 @@ $levelchoosen=$user_details['sid'];
 if(isset($_GET['id']))
 {
 	$test_name=$_GET['test'];;
-		$mini_id=base64_decode($_GET['id']);
+		echo $mini_id=base64_decode($_GET['id']); 
+		
+		$minitids=getMINItestid($conn);
+		 $main_arr=Getmainrecordids($conn,$minitids);
+		 
+		 
+		 $sectionval=array_search($mini_id,$main_arr);
+
+$section_value=$sectionval+1;	 
+		 
+		 
 
 //$test_name1=getExistenceofTestIdWithPracticeIdLid($conn,$test_name,$mini_id,$userid);
 //if($test_name=='')
@@ -148,6 +158,17 @@ else
 
 
 }
+
+
+if($mainActiveques<$question_total)
+{
+	
+	$question_total=$mainActiveques;
+	
+	
+}
+
+
 ?>
 
 
@@ -198,7 +219,7 @@ else
             <div class="col-md-9">
                 <div class="wrapper-title">
                     <h3><?php echo $levelname;?> </h3>  
-                    <h1>SECTION 1: <?php echo $subnames;?></h1>
+                    <h1>SECTION <?php echo $section_value;?>: <?php echo $subnames;?></h1>
                 </div>
             </div>
             

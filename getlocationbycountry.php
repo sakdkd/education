@@ -6,7 +6,6 @@ $id=$_POST['id'];
 
 ?>
 <select  name="province" id="province"   onchange="setValue(this.value)" >
-      <option value="0">Select Location</option>	                
 <?php 
 $ds=mysqli_query($conn,"SELECT * FROM `location` where `countryid`='$id' and `view` ='1'");  
 	$numrows=mysqli_num_rows($ds);
@@ -15,5 +14,14 @@ $ds=mysqli_query($conn,"SELECT * FROM `location` where `countryid`='$id' and `vi
 		
 		<option value="<?php echo $fetch['id'] ?>"><?php echo $fetch['name'] ?></option>	 
 		<?php }
-	}
+	} else 
+	{?>
+		
+		
+								<option value="0">No State/Province</option>
+	
+		
+		
+		
+	<?php }
 ?>     

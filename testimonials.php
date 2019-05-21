@@ -11,10 +11,7 @@ include('db_class/hr_functions.php');
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
-<!--<![endif]-->
-
-
-<head>
+<!--<![endif]--><head>
     <meta charset="utf-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +24,10 @@ include('db_class/hr_functions.php');
     <!-- Standard Favicon -->
    <?php include_once("header.php");?>
 <section class="top-head">
-    <h1>Testimonials</h1>
+    
+
+
+<h1>Testimonials</h1>
 </section>
  
 <section class="main-container">
@@ -37,22 +37,21 @@ include('db_class/hr_functions.php');
    </div>
     <!--get plan-->
     <div class="schoools owl-carousel">
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/trinity.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/harvard.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/boston_latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/st.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/trinity.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/harvard.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/boston_latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/st.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/trinity.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/harvard.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/boston_latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/latin.png" alt=""></div>
-        <div class="school-logo"><img src="https://iseepracticetest.com/sites/all/themes/custom/test_innovators/images/st.png" alt=""></div>
+    
+    
+    <?php 
+	$selquerys=mysqli_query($conn,"select * from `schools` where `status`='1' and `view`='1' and `logo`!=''");
+ $numr=mysqli_num_rows($selquerys);
+	if($numr>0)
+	{
+		while($result=mysqli_fetch_array($selquerys))
+		{
+			
+			 $imgname=$result['logo'];
+	?>
+        <div class="school-logo"><img src="<?php echo $baseurl;?>/docs/<?php echo $imgname;?>" alt=""></div>
         
+        <?php } }?>
     </div>
     </div>
     
@@ -227,63 +226,7 @@ $numrows=mysqli_num_rows($selquery);
     <!--recent-blog-->
 
     <!--footer widget-->
-    <section class="footer_x_widger">
-        <div class="container">
-            <div class="row">
-                
-                <div class="w-100"></div>
-                <div class="col-md-3">
-                    <div class="widget widget_info">
-                        <img src="img/logo-footer.png" alt="" width="200px">
-                        <p>Lorem ipsum dolor sit amet, Lorem ipsum dolor amet sed diam nonumy eirmod tempor.</p>
-                        
-                    </div><!--/.widget_info-->
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget_links">
-                        <h3>About</h3>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> About Company</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Shop</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Service</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Features</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Case Studies</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> News &amp; Blog</a></li>
-                        </ul>
-                    </div><!--/.widget_links-->
-                </div>
-                 <div class="col-md-3">
-                    <div class="widget widget_links">
-                        <h3>About</h3>
-                         <ul>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Tips</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> SSAT</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> ACT</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> SAT</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Tutoring</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> For Schools</a></li>
-                            <li><a href="#"><i class="fas fa-angle-double-right"></i> Scholarships</a></li>
-                        </ul>
-                    </div><!--/.widget_links-->
-                </div>
-                <div class="col-md-3">
-                    <div class="widget widget_address">
-                        <h3>Connect</h3>
-                                           <div class="footer_social">
-                        <ul>
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fas fa-rss"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                                           
-                                            </div><!--/.widget_address-->
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!--footer widget-->
 
-   <?php include_once("footer.php");?>s
+   <?php include_once("footer.php");?>

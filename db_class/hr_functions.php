@@ -5754,7 +5754,40 @@ $numrows=mysqli_num_rows($ds);
 	
 }
 
+function getMINItestid($conn)
+{
+//	echo "select * from `questions` where `topic_id` in ($strings) and `status`='1' and `view`='1'";
+	
+	$ds=mysqli_query($conn,"select `id` from `minitestid` where `status`='1' and `view`='1'"); 
+$numrows=mysqli_fetch_row($ds);
+	
+	return $numrows[0];
+	
+	
+	
 
+	
+	
+}
+
+function Getmainrecordids($conn,$level){
+	//echo "SELECT  * FROM `minitest` WHERE  `level_id`='$level' and `status`='1' and `view`='1'";
+$ds=mysqli_query($conn,"SELECT  * FROM `minitest` WHERE  `level_id`='$level' and `status`='1' and `view`='1'");
+if($num=mysqli_num_rows($ds)>0)
+{
+	
+while($resultset=mysqli_fetch_array($ds))
+{
+	$amtid=$resultset['id'];
+		  
+
+	
+	$resultarr[]=$amtid;
+	
+}
+}
+return $resultarr; 
+}
 function GetMinisSubjectsidsfromLevelid($conn,$level){
 	//echo "SELECT  * FROM `minitest` WHERE  `level_id`='$level' and `status`='1' and `view`='1'";
 $ds=mysqli_query($conn,"SELECT  * FROM `minitest` WHERE  `level_id`='$level' and `status`='1' and `view`='1'");
@@ -5819,6 +5852,29 @@ function getdetailsfromUserIdandSubjectId($conn,$userid,$sid)
 {
 	
 	$ds=mysqli_query($conn,"select * from `testgiven` where `userid`='$userid' and `subject_id`='$sid' order by `id` desc limit 0,1"); 
+	
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+$resultset=mysqli_fetch_assoc($ds);
+	}
+	
+	else
+	{
+	$resultset='';	
+		
+	}
+	return $resultset;
+	
+	
+	
+}
+
+
+function getdetailsfromUserIdandSubjectIdforMinitest($conn,$userid,$sid)
+{
+	
+	$ds=mysqli_query($conn,"select * from `minitestgiven` where `userid`='$userid' and `subject_id`='$sid' order by `id` desc limit 0,1"); 
 	
 	$numrows=mysqli_num_rows($ds);
 	if($numrows>0)
@@ -6154,4 +6210,20 @@ function getteststatusfromuseridandtestname($conn,$uid,$tid)
 		
 		
 	}
+	
+	function getlastCountryID($conn)
+	{
+		
+		
+		
+	$ds=mysqli_query($conn,"SELECT `id` FROM `country` where `view`='1' and `status`='1' order by `id` desc limit 0,1"); 
+	$ds1=mysqli_fetch_row($ds);
+	return $ds1[0];	
+		
+		
+		
+		
+		
+	}
+	
 ?>  

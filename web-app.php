@@ -8,7 +8,8 @@ $userid=$_SESSION['userid'];
 $tbname="orders";
 $order_id=$_SESSION['orderid'];
 $packages_id=$_SESSION['packid']; 
-
+ $stime=$_SESSION['stime']; 
+unset($_SESSION['stime']);
 $order_details=orderidbyUserid($conn,$userid);
 
 if($order_id=="")
@@ -220,6 +221,11 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 							$setval=$order_list_details['qty']*$setvals;
 							$edupricing_details=getTableDetailsById($conn,"edu_pricing",$pack_id);
 $package_lid=$edupricing_details['level_id'];
+$leveltable="edu_levels";
+
+$level_details=getTableDetailsById($conn,$leveltable,$package_lid);  
+
+ $levelname=$level_details['name'];
 							for($loopval=1;$loopval<=$setval;$loopval++)
 							{
 							
@@ -230,6 +236,22 @@ $package_lid=$edupricing_details['level_id'];
 
 							$m_id=$loopval;
       $test_name="Practice Test #".$loopval;
+	  $level_att_ids=GetLevelSubjectmainidfromLevelid($conn,$package_lid);
+							 $levelcount=count($level_att_ids);
+	  $count_by_tids=getteststatusfromuseridandtestname($conn,$userid,$loopval);
+	  
+	  if($count_by_tids < $levelcount)
+	  {
+		  
+		$pstatus="In progress";  
+		  
+	  }
+	  else
+	  {
+		$pstatus="Finished";    
+		  
+		  
+	  }
 	  
 	 
 							?>
@@ -238,13 +260,13 @@ $package_lid=$edupricing_details['level_id'];
                                  <h5 class="mb-0">
                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapsenew<?php echo $created_id;?>" aria-expanded="true" aria-controls="collapseOne">
                                      <div class="small-title"><?php echo $levelname;?></div>
-                                     <div class="big-title"><?php echo $test_name;?> <span class="progress-status">in progress</span></div>
+                                     <div class="big-title"><?php echo $test_name;?> <span class="progress-status"><?php echo $pstatus;?></span></div>
                                      
                                    </button>
                                  </h5>
                                </div>
                            
-                               <div id="collapsenew<?php echo $created_id;?>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                               <div id="collapsenew<?php echo $created_id;?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                  <div class="card-body">
                                  
                                 <?php
@@ -375,7 +397,11 @@ $button_val=$test_given_details['button'];
                 
                 <?php 
 				if($order_id>0)
-				{?>
+				{
+					if($numrows>0)
+					{
+					
+					?>
                 <div class="col-md-4">
                    <div class="summery">
                        <h2>Your Test Prep Timeline</h2>
@@ -443,7 +469,7 @@ $package_lid=$edupricing_details['level_id'];
                    </div>
                 </div>
                 
-                <?php }?>
+                <?php }}?>
             </div>
         </div>
     </div>
@@ -594,4 +620,9 @@ $package_lid=$edupricing_details['level_id'];
           </div>
         </div>
     <!--footer widget-->
+   
  <?php include_once("footer.php");?>
+ 
+ 
+ 
+ 

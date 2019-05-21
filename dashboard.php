@@ -18,43 +18,7 @@
     <!-- Standard Favicon -->
   <?php include_once("header.php");?>   
   
-  <style>
-  
-  .top-head {
-    background: #eb735e;
-    font-size: 25px;
-    padding: 7px 16px;
-    color: #fff;
-    text-align: left;
-}
-.links-cart li {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 20px;
-}
-.links-cart .btn-start {
-    border-radius: 3px;
-    padding: 4px 30px;
-}
-.links-cart li {
-    text-align: left;
-}
-
-.pbm .card {
-    background: #dcdcdc;
-    border-top: 5px solid #111;
-    border-radius: 8px;
-    height: 100%;
-    min-height: auto!important;
-}
-
-.links-cart li:before {
-    content: '\f111';
-    padding-right: 14px;
-    font-family: "Font Awesome 5 Free";
-}
-  
-  </style>
+ 
 <section class="top-head">
     
 
@@ -86,10 +50,10 @@
 
         <div class="col-md-4 col-sm-6 pbm">
         
-        <div class="card">
+        <div class="card dashboard-card">
 <!--        <h3>Primary Level</h3>-->
   <div class="top-head">
-                            <i class="fa fa-shopping-cart"></i> ORDERID <span>#<?php echo $OrderIds;?></span>
+            <i class="fa fa-shopping-cart"></i> ORDERID <span>#<?php echo getOrderCode($conn,$OrderIds);?></span>
          </div>
         <div class="card-body">
         <ul class="links-cart">
@@ -98,10 +62,13 @@
     while($resultset=mysqli_fetch_array($selquerys))
 	{   
 	
-	
+	$leveltable="edu_levels";
+$level_details=getTableDetailsById($conn,$leveltable,$resultset['level_id']);
+
+ $levelname_new="(".$level_details['name'].")";
 		
 ?>
-  <li><a class="btn-start" href="web-app.php" onClick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><?php echo $resultset['name'];?></a></li>
+  <li><a class="btn-start" href="web-app.php" onclick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><?php echo $resultset['name'].$levelname_new;?></a></li>
         <?php }?>
         </ul>
            
@@ -113,15 +80,13 @@
         
        
         </div>
-        </div>
-        
-        
-        
+        </div>       
         </div>
         </div>
     </div>
     
-</section>    
+</section>   
+ 
     <!--get plan-->
 
     <!--recent-blog-->

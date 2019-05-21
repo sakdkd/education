@@ -90,7 +90,7 @@ $useraddress=getUserAddress($conn,$userid);
                                     <input type="hidden" name="hidId" id="hidId" value="0">
 									<select id="country" name="country">
 										<?php 
-				$ds=mysqli_query($conn,"SELECT * FROM `country` where `view`='1' order by `id` desc " ); 
+				$ds=mysqli_query($conn,"SELECT * FROM `country` where `view`='1' and `status`='1' order by `id` desc " ); 
 				$numrows=mysqli_num_rows($ds);
 				if( $numrows >0){
 				while($fetch=mysqli_fetch_array($ds)){?>
@@ -104,15 +104,28 @@ $useraddress=getUserAddress($conn,$userid);
 							</div>
                             
                             
+							
                             <div class="col-md-6">
 								<div class="form-group">
 									<label>State/Province</label>
                                     <div id="coutrydiv">
 									<select id="province" name="province">
-										<option value="">- Select -</option>
-										<option>Alabama</option>
+                                    <?php 
+									$countryid=getlastCountryID($conn);
+                               	$dsnew=mysqli_query($conn,"SELECT * FROM `location` where `view`='1' and `status`='1' and `countryid`='$countryid' order by `id` desc " ); 
+								$numrows=mysqli_num_rows($dsnew);
+									if( $numrows >0){
+				while($fetch=mysqli_fetch_array($dsnew)){?>
+
+										<option><?php echo ucfirst($fetch['name']);?></option>
+										
+										<?php }  }else {?>
 										
 										
+								<option value="0">No State/Province</option>
+
+										
+										<?php }?>
 									</select>
                                     </div>
 								</div>

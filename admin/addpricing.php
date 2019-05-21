@@ -754,7 +754,7 @@ function validate(){
 
   <tr>
 
-   <td align="left" style="width:30px"  ><input class='uniform' type="checkbox" id="check<?php echo $fetch['id']  ?>" value="<?php echo $fetch['status']  ?>" onClick="updateStatus('<?php echo $fetch['id'];  ?>','levelsubjects',4)" <?php if($fetch['status']==1){echo 'checked';} ?>></td>
+   <td align="left" style="width:30px"  ><input class='uniform' type="checkbox" id="check<?php echo $fetch['id']  ?>" value="<?php echo $fetch['status']  ?>" onClick="updateStatus('<?php echo $fetch['id'];  ?>','edu_pricing',4)" <?php if($fetch['status']==1){echo 'checked';} ?>></td>
 
         
 

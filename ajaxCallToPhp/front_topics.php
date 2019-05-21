@@ -167,7 +167,7 @@ else
 	</div>
     <?php } }} else {?>
     
-    <p>No data found</p>
+   <div class="no-data"> <p>No data found</p></div>
     <?php }?>
     
 	

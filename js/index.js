@@ -52,6 +52,8 @@ function startTimer() {
   var timeArray = presentTime.split(/[:]+/);
   var m = timeArray[0];
   var s = checkSecond((timeArray[1] - 1));
+  
+  
    var stime=m + ":" + s;
   setTimesession(stime);
   
@@ -65,9 +67,9 @@ function startTimer() {
 	document.getElementById('savedtime').value=timestring;
   setTimeout(startTimer, 1000);
  if((m==00) && (s==00))
- { alert();
+ {    
 submitform();
- }
+ }   
  
  else if(m<0)
  {

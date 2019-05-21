@@ -38,7 +38,7 @@ var baseurl="http://78.46.117.226/education";
         })
       }
 
-      function confirm () {
+      function confirms () {
         notie.confirm({
           text: 'Are you sure you want to do that?<br><b>That\'s a bold move...</b>',
           cancelCallback: function () {
@@ -2503,3 +2503,5 @@ function setboughtpackage(packid,oid)
 	
 	
 }
+
+

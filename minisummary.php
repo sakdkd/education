@@ -311,7 +311,9 @@ unattempt=parseInt(strArray[2]);
 					    
 					   ++$tab;
 					   
-					   $saved_test_details=getdetailsfromUserIdandSubjectId($conn,$userid,$sid);
+					   $saved_test_details=getdetailsfromUserIdandSubjectIdforMinitest($conn,$userid,$sid);
+					   
+					   
 					   $names=$sub_details['name'];
 					  $gtid=$saved_test_details['id'];
 				$test_given_details=getTableDetailsById($conn,"minitestgiven",$gtid);
@@ -379,10 +381,22 @@ $attache_level_id=minigetattachedMainLevelidfromSIdLecelId($conn,$sid,$isee_leve
 	
 	$urls="minisummary.php?id=$en_attache_level_id&test=$test_id";
 }
-
+if($level_id==$decodedid)
+{
+	
+	$addclass_="active";
+	
+	
+}
+else
+{
+	
+	$addclass_="";
+	
+}
 ?>
                        <div class="col-md-2">
-                           <div class="tab <?php echo $addclass;?>">
+                           <div class="tab tabing-new <?php echo $addclass_;?>">
                                <a href="<?php echo $urls;?>"><p class="small"><?php echo $viewresult;?></p>
                                    <p><?php echo $tab."" ;?> <?php echo $names;?></p></a>
                            </div>
@@ -593,9 +607,9 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                                        <div class="col-md-6" style="width:33%">
                                           <!-- <div class="yellow-bar" ></div>-->
                              <div class="progress-bar" style="width: 100%;background: #999;height: 20px;display: inline-block;border-radius: 10px;">
-                                         <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(1);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"> <div class="first" style="background:green; width:<?php echo $correct_width;?>%;float:left;height:20px;<?php echo $left_radius1.$right_radius1;?>"><?php echo $correct_val;?></div></a>
-                                        <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(2);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>">   <div class="second" style="background:#fd7e14; width:<?php echo $unanswered_width;?>%;float:left;height:20px;<?php echo $left_radius2.$right_radius2;?>""><?php echo $unanswered_val;?></div></a>              
-                                           <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(3);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"><div class="third" style="background:red; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> </a>
+                                         <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(1);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"> <?php if($correct_val>=1){?><div class="first" style="background:green; width:<?php echo $correct_width;?>%;float:left;height:20px;<?php echo $left_radius1.$right_radius1;?>"><?php echo $correct_val;?></div> <?php }?> </a>
+                                        <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(2);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>">  <?php if($unanswered_val>=1){?> <div class="second" style="background:#fd7e14; width:<?php echo $unanswered_width;?>%;float:left;height:20px;<?php echo $left_radius2.$right_radius2;?>""><?php echo $unanswered_val;?></div> <?php }?></a>              
+                                           <a href="viewresult.php?testid=<?php echo base64_encode($test_id);?>&type=<?php echo base64_encode(3);?>&testtype=mini&topic=<?php echo base64_encode($t_id);?>"><?php if($incorrect_val>=1){?><div class="third" style="background:red; width:<?php echo $incorrect_val_width;?>%;float:left;height:20px;<?php echo $left_radius3.$right_radius3;?>""><?php echo $incorrect_val;?></div> <?php }?> </a>
                                                  
                                            </div>
                                            

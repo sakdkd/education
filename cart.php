@@ -199,7 +199,7 @@ $totalcount++;
                <img src="images/cart.png">
                 <p class="item1">No items added in your cart</p>
                 <p style="margin-bottom:30px;">Looks like You haven't made your choice yet...</p>
-                <a href="#" class="c-shopping">Continue Shopping</a>
+                <a href="pricing.php" class="c-shopping">Visit our store pages here</a>
 				   </div>
 				</div>
 			<div class="col-md-3"></div>

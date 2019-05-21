@@ -181,6 +181,7 @@ else
 
 	
 }
+
 //$mainActiveques=$displayques; 
 ?>
 
@@ -266,7 +267,7 @@ else
 				   
 				   //question_total
 				   //
-			 for($i=1;$i<=$question_total;$i++)
+			 for($i=1;$i<=$displayques;$i++) 
 				   				//   for($i=1;$i<=2;$i++)
 
 				   {
@@ -427,12 +428,12 @@ if($user_attmpted_ques['buttonval']!=1)
 			if($setvalue==3)
 			{
 		//	echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
-		echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
+		
 			$question_query=mysqli_query($conn,"select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)");	
 			}
 			else
 			{
-				echo "select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total";
+				
 			
 			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			}
@@ -677,11 +678,23 @@ $q_div++;
 
 function myformsubmit(val)
 { 
- 
-	document.getElementById('btnclickval').value=val;
+    var d = new Date();
+  var ntime = d.getTime(); 
+
+ 	var lcv=document.getElementById('lastclicked').value;
+var getstart=document.getElementById('start'+lcv).value;
+effected=(parseInt(ntime)-parseInt(getstart))*0.001;
+document.getElementById('effected'+lcv).value=effected
+	document.getElementById('btnclickval').value=val;   
 //window.location='form_sub.php?id='+val;  
 
 }
 
+function setv(text)
+ {alert();
+	   confirm(text);
 
+	 
+	 
+ }
     </script>

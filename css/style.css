@@ -7176,7 +7176,7 @@ a .followup {
     text-align: left;
 }
 
-.pbm .card {
+.pbm .card.dashboard-card {
     background: #dcdcdc;
     border-top: 5px solid #111;
     border-radius: 8px;
@@ -7247,4 +7247,86 @@ a .followup {
     border-radius: 3px;
     color: #fff;
     /* padding: 3px 12px; */
+}
+
+
+
+
+/* for dashboard page design*/
+
+
+.top-head {
+    background: #eb735e;
+    font-size: 25px;
+    padding: 7px 16px;
+    color: #fff;
+    text-align: left;
+}
+.links-cart li {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.links-cart .btn-start {
+    border-radius: 3px; 
+    padding: 4px 30px;
+}
+.links-cart li {
+    text-align: left;
+}
+
+.pbm .card.dashboard-card {
+    background: #dcdcdc;
+    border-top: 5px solid #111;
+    border-radius: 8px;
+    height: 100%;
+    min-height: auto!important;
+}
+
+.links-cart li:before {
+    content: '\f111';
+    padding-right: 14px;
+    font-family: "Font Awesome 5 Free";
+}
+
+.tabing-new.active-tab
+{
+	background:#fff;
+}
+
+.active-tab a
+{
+	color:#000;
+}
+
+.no-data {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    height: 100vh;
+    vertical-align: middle;
+}
+
+.no-data p {
+    margin-top: 20%;
+}
+
+.tab.tabing-new.active:after {
+    content: "";
+    /* border-right: 10px solid #ccc; */
+    left: 9px;
+    right: 0;
+    bottom: -4px;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-right: 19px solid #f5f5f500;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    background: #000000;
+    border: 1px solid #ccc;
+    /* border-right: none; */
+    border-bottom: none;
+    transform: rotate(45deg);
+    border: none;
 }

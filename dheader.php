@@ -196,7 +196,7 @@ unattempt=parseInt(strArray[2]);
                     <li class="nav-item drop_menu"> <a class="nav-link" href="practice.php">Practice Excercise</a></li>
                     <?php }?>
                     
-<li class="nav-item drop_menu"> <a class="nav-link" href=""><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
+<li class="nav-item drop_menu"> <a class="nav-link" ><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
                         <ul>
                                         <li class=" drop_menu"> <a class="nav-link" href="#"><?php echo strtolower($user_details['email']);?></a>
                        

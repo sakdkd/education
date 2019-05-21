@@ -11,8 +11,29 @@ $user_details=getTableDetailsById($conn,$tbname,$userid);
 $levelchoosen=$user_details['sid'];
 //$levelchoosen=3;        
 $trial_val=$user_details['trial'];
-$allOids=getallOrderIDfromUserID($conn,$userid);
-print_r($allOids);  
+$allOids=getallOrderIDfromUserID($conn,$userid);   
+
+foreach($allOids as $newoid)
+{
+	
+	$query=mysqli_query($conn,"select `id` from `orderlist` where `orderid`='$newoid'");
+	$n_rows=mysqli_num_rows($query);
+}
+
+
+$orderidcount=count($allOids);  
+if(($orderidcount>1) || ($n_rows>1))
+{
+	
+	$rpage="dashboard.php";
+}
+
+else
+{
+	
+	$rpage="welcome.php";
+	
+}
 $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$levelchoosen);
 
@@ -239,9 +260,9 @@ unattempt=parseInt(strArray[2]);
                        <a class="nav-link btn" href="#" data-toggle="modal" data-target="#exampleModalLongs">Log in</a>
                     </li>
                     <?php } else{?>
-                    <li class="nav-item drop_menu"> <a class="nav-link" href=""><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
+                    <li class="nav-item drop_menu"> <a class="nav-link"><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
                         <ul>
-                        <li><a href="welcome.php">Dashboard</a></li>
+                        <li><a href="<?php echo $rpage;?>">Dashboard</a></li>                              
                         <li><a href="logout.php">Log out</a></li>
 
                         </ul>
