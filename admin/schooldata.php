@@ -274,9 +274,8 @@ description=document.getElementById('description').value;
                   <div class="x_content">
 
                     
-                     <?php if( isset($_GET['eid']) && ($_GET['eid']!='')){}else{?>
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data" id="schooldata"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -317,7 +316,7 @@ description=document.getElementById('description').value;
                 </select></div></td>
 
                 <td width="45%"><span style="display:none;" id="loader"><img src="../images/preloading.gif"></span></td>
-
+<input type="hidden" name="hidId" id="hidId" value="0">
             </tr>
           
 
@@ -332,13 +331,13 @@ description=document.getElementById('description').value;
 
   
 
-  <tr>
+  <!--<tr>
 
     <td>&nbsp;</td>
 
-    <td colspan="2"><input type="button" name="submit"  id="submit"  value="Proceed To Add" class="btn btn-success"> <input type="hidden" name="hidId" id="hidId" value="0"></td>
+    <td colspan="2"><input type="button" name="submit"  id="submit"  value="Proceed To Add" class="btn btn-success"> </td>
 
-  </tr>
+  </tr>-->
 
 </table>
 
@@ -348,7 +347,6 @@ description=document.getElementById('description').value;
 
                      
 
-                     <?php }?>
 
                      
 
@@ -404,12 +402,21 @@ description=document.getElementById('description').value;
 	
 	function setValue(val){
 		$('#hidId').val(val)
+		
+	var hidId=$('#hidId').val();
+if(hidId>0)
+{
+window.location.href='manageschooldata.php?id='+hidId
+}	
 	}
 $(document).ready(function(){
 
 $('#submit').click( function(){
 var hidId=$('#hidId').val();
+if(hidId<=0)
+{
 window.location.href='manageschooldata.php?id='+hidId
+}
 
 })
 

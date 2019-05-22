@@ -398,7 +398,7 @@ function validate(){
 
 <?php if(isset($_GET['msg'])){?>	
 
-	<div class='btn-<?php echo $className ?>' style="text-align:center;padding:5px;"><?php echo $msgText ?> <span style="float:right;cursor:pointer;font-weight:bold;" onClick="window.location.href='<?php echo $page; ?>&id=<?php echo $countryId ?>'"> X </span></div>
+	<div class='btn-<?php echo $className ?>' style="text-align:center;padding:5px;"><?php echo $msgText ?> <span style="float:right;cursor:pointer;font-weight:bold;" onClick="window.location.href='<?php echo $page; ?>&id=<?php echo $att_topic_id ?>'"> X </span></div>
 
 <?php }?>
 
@@ -489,7 +489,7 @@ function validate(){
 				$numrows=mysqli_num_rows($ds);
 				if( $numrows >0){
 					
-					echo $correct=$tb_questions['correct'];
+					 $correct=$tb_questions['correct'];
 				while($fetch=mysqli_fetch_array($ds)){
 				?>
                <div style="float:left;width:150px;padding:5px;border:solid 1px #CCCCCC;margin:5px;text-align:left;"><input <?php if(($fetch['id']==$correct)){ ?> checked <?php }?> type="radio" name="correctans" value="<?php echo $fetch['id'] ?>">&nbsp; &nbsp; <?php echo $fetch['name'] ?></div>
@@ -581,7 +581,7 @@ $date=$fetch['pdate'];
 		    <tr>
 
                 <td><?php echo $i; ?></td>
-                <td><a href="view_question.php?id=<?php echo $decid;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
+                <td><a href="view_question.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
                  <th width="36%"><?php echo  changeDateToSlash($conn,$date); ?></th>
                      <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="<?php echo $page ?>?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
                        

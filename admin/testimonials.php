@@ -213,6 +213,7 @@ if(isset($_GET['msg'])){
 
 
    
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 
   
@@ -449,7 +450,9 @@ function validate(){
 
                      <div>
 
-                     <table width="100%" border="0" class="table table-bordered table">
+                     <table class="table table-responsive table-bordered" id="ls-editable-table">
+
+  				            <thead class="thead-dark text-center">
 
   
 
@@ -467,7 +470,7 @@ function validate(){
              <th width="10%" style="text-align:center;">Approval</th>
 
   </tr>
-
+</thead>
   <?php
 
   //echo "SELECT * FROM $table where `projid`='$buid' and `whichcontent`='2' order by id asc ";

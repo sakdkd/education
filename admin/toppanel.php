@@ -1,3 +1,6 @@
+
+
+
 <?php 
 
  error_reporting(0); 
@@ -142,3 +145,90 @@
           </div>
 
         </div>
+        <style>
+
+			  table.dataTable thead th
+
+			  	{
+
+				    padding: 10px 2px;
+
+				    border-bottom: 1px solid #111;
+
+				}
+
+				table.dataTable tbody th, table.dataTable tbody td
+
+				 {
+
+			    	padding: 3px 6px;
+
+			    	vertical-align: text-top;
+
+				}
+
+				table.dataTable thead th, table.dataTable thead td 
+
+				{
+
+			    padding: 10px 10px;
+
+			    border-bottom: 1px solid #111;
+
+			    color: white;
+
+				}
+
+				table.dataTable thead .sorting 
+
+				{
+
+			    background-image: none;
+
+				}
+
+				table.dataTable thead .sorting_asc
+
+				 {
+
+			    background-image: none;
+
+				}
+
+				.bg-white {
+
+			    background-color: #d2f7cb!important;
+
+				}
+
+				.table-bordered td, .table-bordered th {
+
+			    border: 1px solid #c1c1c1;
+
+				}
+
+				.thead-dark
+
+				{
+
+					background-color: #7b7777;
+
+				}
+
+				.table-bordered>tbody>tr>td
+
+				{
+
+					    color: black;
+
+				}
+
+label{
+	
+	    font-family: calibri;
+    font-weight: normal;
+    font-size: larger;
+    color: #337ab7;
+}
+
+			</style>

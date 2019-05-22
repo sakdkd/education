@@ -12,8 +12,30 @@ include_once('sendgrid-php/vendor/autoload.php'); // If you're using Composer (r
  
 } 
 
+function getCountryIdBylocationId($conn,$did){
+	$ds=mysqli_query($conn,"SELECT `countryid` FROM `location` where `id`='$did'"); 
+	$ds1=mysqli_fetch_assoc($ds);
+	return $ds1['countryid'];
+}
 
 
+function getlocationNameById($conn,$did){
+	$ds=mysqli_query($conn,"SELECT `name` FROM `location` where `id`='$did'"); 
+	$ds1=mysqli_fetch_assoc($ds);
+	return $ds1['name'];
+}
+
+function getcountrydetails($conn,$did){
+	$ds=mysqli_query($conn,"SELECT * FROM `country` where `id`='$did'"); 
+	$ds1=mysqli_fetch_assoc($ds);
+	return $ds1;
+}
+
+function getlocationdetails($conn,$did){
+	$ds=mysqli_query($conn,"SELECT * FROM `location` where `id`='$did'"); 
+	$ds1=mysqli_fetch_assoc($ds);
+	return $ds1;
+}
 function getcountryNameById($conn,$did){
 	$ds=mysqli_query($conn,"SELECT `name` FROM `country` where `id`='$did'"); 
 	$ds1=mysqli_fetch_assoc($ds);

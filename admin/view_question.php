@@ -17,17 +17,16 @@ $title="Question Management";
 $page="addquestions.php";
 $button='0';
 
-$previousurl= $_SERVER['HTTP_REFERER'];
 //$colname='e_brochure_file';
 $previousurl="#";
 
-if(isset($_GET['id']))
+if(isset($_GET['qid']))
 {
+	$att_topicid=$_GET['id'];;
 	
-	
-		$enquestion_id=$_GET['id'];;
+		$enquestion_id=$_GET['qid'];;
 
-		$question_id=base64_decode($_GET['id']);
+		$question_id=base64_decode($_GET['qid']);
 		
 		$tbname="questions";
 		$colnames="topic_id";
@@ -57,6 +56,7 @@ $isprompt=$subject_tb['promptbased'];
 
 }
 
+$previousurl= "addquestions.php?id=$att_topicid";
 
 
 if(isset($_POST['update'])){
@@ -496,19 +496,19 @@ function validate(){
                 
                 <tr>
 
-                <td><label  style="color:#069;font-weight:bold;">option 2</label></td>
+                <td><label  style="color:#069;font-weight:bold;">Option 2</label></td>
 
                 <td colspan="3"><?php echo stripslashes($tb_questions['option2']) ?></td>
                 </tr>
                 <tr>
 
-                <td><label  style="color:#069;font-weight:bold;">option 3</label></td>
+                <td><label  style="color:#069;font-weight:bold;">Option 3</label></td>
 
                 <td colspan="3"><?php echo stripslashes($tb_questions['option3']) ?></td>
                 </tr>
                 <tr>
 
-                <td><label  style="color:#069;font-weight:bold;">option 4</label></td>
+                <td><label  style="color:#069;font-weight:bold;">Option 4</label></td>
 
                 <td colspan="3"><?php echo stripslashes($tb_questions['option4']) ?></td>
                 </tr> 

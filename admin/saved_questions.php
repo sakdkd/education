@@ -469,7 +469,7 @@ $date=$fetch['pdate'];
 		    <tr>
 
                 <td><?php echo $i; ?></td>
-                <td><a href="view_question.php?id=<?php echo $decid;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
+                <td><a href="view_question.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
                  <th width="36%"><?php echo  changeDateToSlash($conn,$date); ?></th>
                      <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="saved_questions.php?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
                        

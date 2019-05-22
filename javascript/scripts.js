@@ -273,8 +273,10 @@ return this.optional(element) || /^([a-zA-Z0-9\s_\\.\-:])+(.png|.jpeg|.jpg)$/i.t
 return this.optional(element) || /^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$/i.test(value);
 }, "Enter valid passport number");
 
-
-
+	jQuery.validator.addMethod("decimal", function(value, element) 
+{
+return this.optional(element) || /^[0-9]\d*(\.\d+)?$/i.test(value);
+}, "Enter price");
 jQuery.validator.addMethod('ckrequired', function (value, element, params) { 
 var idname = jQuery(element).attr('id'); 
 var messageLength =  jQuery.trim ( CKEDITOR.instances['testimonial'].getData() ); 
@@ -289,10 +291,10 @@ $("#question_forms").validate({
                
 				difficulty:{
 				required:true,       
-                },
+                }, 
 				questions:{
                          required: function(textarea) 
-                        {   CKEDITOR.instances.q1.updateElement(); // update textarea
+                        {  CKEDITOR.instances.questions.updateElement(); // update textarea
           var editorcontent = textarea.value.replace(/<[^>]*>/gi, ''); // strip tags
 		 
 		  
@@ -386,8 +388,167 @@ $(".topic_form").validate({
 
 	
 
- 
+$("#country_form").validate({
 
+                rules: {
+               
+				name:{
+				required:true,       
+				addresspat:true,
+                },
+					
+				   
+				},
+			 
+				
+				
+			
+			
+	})
+	
+ 
+ 
+ $("#location_form").validate({
+
+                rules: {
+               
+				name:{
+				required:true,       
+				addresspat:true,
+                },
+					
+				   
+				},
+			 
+				
+				
+			
+			
+	})
+	
+	 $("#subject_form").validate({
+
+                rules: {
+               
+				name:{
+				required:true,       
+				addresspat:true,
+                },
+					
+				   
+				},
+			 
+				
+				
+			
+			
+	})
+	 $("#schooldata").validate({
+
+                rules: {
+               
+				continent:{
+				required:true,       
+                },
+					
+				country:{
+				required:true,       
+                },   
+				},
+			 
+				
+				
+			
+			
+	})
+	 $("#subandtime").validate({
+
+                rules: {
+               
+				subject:{
+				required:true,       
+                },
+					
+				timings:{
+				number:true,       
+                },  
+				questions :{
+				number:true,       
+                },  
+				},
+			 
+				
+				
+			
+			
+	})
+	
+	
+		 $("#viewl_form").validate({
+
+                rules: {
+               
+				level:{
+				required:true,       
+                },
+					
+				  
+				},
+			 
+				
+				
+			
+			
+	})
+	
+	
+	 $("#addpricing_form").validate({
+
+                rules: {
+               
+				name:{
+				required:true,
+				addresspat:true,       
+                },
+				price:{
+				required:true,
+				decimal:true,       
+                },	
+				  
+				},
+			 
+				
+				
+			
+			
+	})
+	
+	 $("#nqform").validate({
+
+                rules: {
+               
+				name:{
+				required:true,       
+				addresspat:true,
+                },
+					
+				   
+				},
+			 
+		})
+$("#qfeatures").validate({
+
+                rules: {
+               
+				name:{
+				required:true,       
+				addresspat:true,
+                },
+					
+				   
+				},
+			 
+		})
 $("#toform").validate({
 
                 rules: {

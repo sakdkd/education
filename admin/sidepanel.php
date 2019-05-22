@@ -4,7 +4,7 @@
    $key=$_SESSION['key'];
    ?>
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet">

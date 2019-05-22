@@ -363,7 +363,7 @@ description=document.getElementById('description').value;
 
                      
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post"   enctype="multipart/form-data" id="location_form"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -417,7 +417,7 @@ description=document.getElementById('description').value;
 
                      <?php }else{?>
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post"   enctype="multipart/form-data"  id="location_form"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -475,8 +475,10 @@ description=document.getElementById('description').value;
 
                      <div>
 
-                     <table width="100%" border="0" class="table table-bordered table">
-
+                    
+                  		<table class="table table-responsive table-bordered" id="ls-editable-table">
+  
+				            <thead class="thead-dark text-center">
   
 
   <tr>
@@ -492,7 +494,7 @@ description=document.getElementById('description').value;
              <th width="10%" style="text-align:center;">Approval</th>
 
   </tr>
-
+</thead>
   <?php
 
   //echo "SELECT * FROM $table where `projid`='$buid' and `whichcontent`='2' order by id asc ";
@@ -544,7 +546,7 @@ description=document.getElementById('description').value;
 
   <tr>
 
-   <td align="left" style="width:30px"  ><input class='uniform' type="checkbox" id="check<?php echo $fetch['id']  ?>" value="<?php echo $fetch['status']  ?>" onClick="updateStatus('<?php echo $fetch['id'];  ?>','testimonial',4)" <?php if($fetch['status']==1){echo 'checked';} ?>></td>
+   <td align="left" style="width:30px"  ><input class='uniform' type="checkbox" id="check<?php echo $fetch['id']  ?>" value="<?php echo $fetch['status']  ?>" onClick="updateStatus('<?php echo $fetch['id'];  ?>','location',3)" <?php if($fetch['status']==1){echo 'checked';} ?>></td>
 
         
 

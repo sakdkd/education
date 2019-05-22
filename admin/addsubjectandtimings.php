@@ -368,16 +368,16 @@ function validate(){
 
                      
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post"  enctype="multipart/form-data" id="subandtime"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
     
 
               <tr>
-              <td><label style="color:#069;font-weight:bold;">Location*</label></td>
+              <td><label style="color:#069;font-weight:bold;">Attach Subject*</label></td>
               <td colspan="3"><select  name="subject" id="subject" class="form-control"  required >
-                <option value="0">Select Location</option>
+                <option value="">Select Subject</option>
                 
                 <?php 
 				$ds=mysqli_query($conn,"SELECT * FROM `subjects` where `view`='1' order by `id` desc " ); 
@@ -423,7 +423,7 @@ function validate(){
 
                      <?php }else{?>
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post" enctype="multipart/form-data"  id="subandtime"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -432,7 +432,7 @@ function validate(){
             <tr>
               <td><label style="color:#069;font-weight:bold;">Attach Subject*</label></td>
               <td colspan="3"><select  name="subject" id="subject" class="form-control"  required >
-                <option value="0">Select Subject</option>
+                <option value="">Select Subject</option>
                 
                 <?php 
 				$ds=mysqli_query($conn,"SELECT * FROM `subjects` where `view`='1' order by `id` desc " ); 
@@ -482,9 +482,9 @@ function validate(){
 
                      <div>
 
-                     <table width="100%" border="0" class="table table-bordered table">
+                   <table class="table table-responsive table-bordered" id="ls-editable-table">
 
-  
+  				            <thead class="thead-dark text-center">
 
   <tr>
 
@@ -497,7 +497,7 @@ function validate(){
              <th width="16%" style="text-align:center;">Approval</th>
 
   </tr>
-
+</thead>
   <?php
 
   //echo "SELECT * FROM $table where `projid`='$buid' and `whichcontent`='2' order by id asc ";

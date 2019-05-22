@@ -263,7 +263,6 @@ if(isset($_GET['msg'])){
 
 
 
-   
 
     <style>
 
@@ -801,11 +800,14 @@ function validate(){
 
                      
 
-                     <div>
+                     <div class="x_content">
 
-                     <table width="100%" border="0" class="table table-bordered table">
 
+
+
+                  		<table class="table table-responsive table-bordered" id="ls-editable-table">
   
+				            <thead class="thead-dark text-center">
 
   <tr>
 
@@ -819,6 +821,7 @@ function validate(){
              <th width="12%" style="text-align:center;">Approval</th>
 
   </tr>
+				            </thead>
 
   <?php
 
@@ -925,35 +928,23 @@ function validate(){
 
   </table>
 
- 					 </div>
-
-                   
-
-                     
-
-
-					 
-
-                     
-
-					
-
-                    
-
-                    
-
-
                   </div>
 
-                </div>
+              	</div>
 
-              </div>
+          		</div>
 
-            </div>
+      		</div>
 
-          </div>
+      	</div>
 
-        </div>
+      </div>
+
+                        
+
+     	<!-- end container result -->
+
+                
 
         <!-- /page content -->
 
@@ -969,51 +960,43 @@ function validate(){
 
     </div>
 
-    <script>
 
-	function checkType(val){
 
-		//alert(val)
+   <!-- javascript -->
 
-		if(val==3){
 
-			 $('#textonly').show('slow')	
 
-			//CKEDITOR.replace( 'answers' );
+ <!--   <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 
-			//alert('das')
 
-			 $('#imgonly').hide()	
-
-			 document.getElementById('cont').innerHTML=''
-
-			 
-
-			 $('#label').html('Update Content')	 
-
-		}else{
-
-			 $('#textonly').hide()
-
-			 $('#imgonly').show('slow')	
-
-			  $('#label').html('Browse (Image/PDF version only)') 	 
-
-		}
-
-	}
-
-	</script>
-
- <script>
-
-			CKEDITOR.replace( 'answers' );
-
-		</script>
-
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
+-->
    
 
-  </body>
+
+
+
+   <!-- end javascript -->
+
+<script>
+function checkbuttonval(val){
+	if(val=='1')
+	{
+		
+	alert("Your reply has been submitted successfully");	
+		
+		
+	}
+	
+	
+	
+	
+}
+
+</script>
+
+
+
+</body>
 
 </html>
-

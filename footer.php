@@ -1,5 +1,5 @@
-   <section class="footer_x_widger">
-        <div class="container">
+   <section class="footer_x_widger" style="display:none;">
+        <div class="container" >
             <div class="row">
                 
                 <div class="w-100"></div>
