@@ -7330,3 +7330,7 @@ a .followup {
     transform: rotate(45deg);
     border: none;
 }
+
+.main-container {
+    min-height: 670px;
+}
