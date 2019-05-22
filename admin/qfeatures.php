@@ -336,7 +336,7 @@ function validate(){
 
                      
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post" enctype="multipart/form-data" id="qfeatures"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -390,7 +390,7 @@ function validate(){
 
                      <?php }else{?>
 
-                     <form action=""  method="Post"  onSubmit="return validate()" enctype="multipart/form-data"> 
+                     <form action=""  method="Post"  enctype="multipart/form-data" id="qfeatures"> 
 
                      <table width="100%" border="0" class="table table-striped table-bordered">
 
@@ -437,10 +437,10 @@ function validate(){
                      
 
                      <div>
+<table class="table table-responsive table-bordered" id="ls-editable-table">
 
-                     <table width="100%" border="0" class="table table-bordered table">
+  				            <thead class="thead-dark text-center">
 
-  
 
   <tr>
 
@@ -455,7 +455,7 @@ function validate(){
              <th width="10%" style="text-align:center;">Approval</th>
 
   </tr>
-
+</thead>
   <?php
 
   //echo "SELECT * FROM $table where `projid`='$buid' and `whichcontent`='2' order by id asc ";

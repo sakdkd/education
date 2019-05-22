@@ -55,94 +55,20 @@ $buttonval=$_GET['buttonval'];
 
        <!-- style css -->
 
-       	    <style>
-
-			  table.dataTable thead th
-
-			  	{
-
-				    padding: 10px 2px;
-
-				    border-bottom: 1px solid #111;
-
-				}
-
-				table.dataTable tbody th, table.dataTable tbody td
-
-				 {
-
-			    	padding: 3px 6px;
-
-			    	vertical-align: text-top;
-
-				}
-
-				table.dataTable thead th, table.dataTable thead td 
-
-				{
-
-			    padding: 10px 10px;
-
-			    border-bottom: 1px solid #111;
-
-			    color: white;
-
-				}
-
-				table.dataTable thead .sorting 
-
-				{
-
-			    background-image: none;
-
-				}
-
-				table.dataTable thead .sorting_asc
-
-				 {
-
-			    background-image: none;
-
-				}
-
-				.bg-white {
-
-			    background-color: #d2f7cb!important;
-
-				}
-
-				.table-bordered td, .table-bordered th {
-
-			    border: 1px solid #c1c1c1;
-
-				}
-
-				.thead-dark
-
-				{
-
-					background-color: #635f5f;
-
-				}
-
-				.table-bordered>tbody>tr>td
-
-				{
-
-					    color: black;
-
-				}
-
-label{
-	
-	    font-family: calibri;
-    font-weight: normal;
-    font-size: larger;
-    color: #337ab7;
+       	    
+ <style>
+@media (min-width: 576px)
+.modal-dialog {
+    max-width: 57%;
+    margin: 1.75rem auto;
 }
-
-			</style>
- 
+table.pro-table {
+    margin: 10px;
+}
+.pro-table td {
+    padding: 5px 11px;
+}
+</style>
 
 <input type="hidden" id="buttonval" name="buttonval" value="<?php echo $buttonval;?>">
 
@@ -203,7 +129,7 @@ label{
 <th>Package</th>
 
 				                    <th>Date</th>
-				                    <th>Action</th>
+				                    <th>View Details</th>
 
 			                    </tr>
 
@@ -242,7 +168,7 @@ $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
 							<tr>
 
 			                    <td><?php echo getOrderCode($conn,$oid);?></td>
-		                      <td><?php echo $row["fname"]." ".$row["lname"];?></td>
+		                      <td><?php echo ucfirst($row["fname"])." ".ucfirst($row["lname"]);?></td>
 		                      <td><?php echo $packname;?></td>
 
 
@@ -253,7 +179,7 @@ $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
 	          					  
 
           					    </td>
-	          					<td><a data-toggle="modal" data-target="#exampleModalContent<?php echo $row["id"];?>">View</a></td>
+	          					<td><a data-toggle="modal" data-target="#exampleModalContent<?php echo $row["id"];?>"><button name="view" class="btn btn-success">View</button></a></td>
 
 							 
                   			</tr>
@@ -319,229 +245,10 @@ $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
 
  <!--   <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"></script>
 -->
-   <script>
-
-         $(document).ready(function() {
-
-               $('#ls-editable-table').DataTable({
-
-               	"aLengthMenu": [[25, 50, 75, -1], [25, 50, 75, "All"]],
-
-        		"iDisplayLength": 25,
-
-            "createdRow": function( row, data, dataIndex ) {
-
-            	switch(data[8])
-
-            	{
-
-            		case "Avaliable":
-
-            		$(row).css( "background-color", "#fff" );
-
-            		// $(row).find('td:eq(1)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		// $(row).find('td:eq(2)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		// $(row).find('td:eq(3)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		// $(row).find('td:eq(4)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		// $(row).find('td:eq(5)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		// $(row).find('td:eq(6)').css( "background-color", "rgb(230, 230, 230)" );
-
-            		break;
-
-            		case "Hold":
-
-            		$(row).find('td:eq(0)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(1)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(2)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(3)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(4)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(5)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(6)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(7)').css( "background-color", "#ecec3bd4" );
-
-            		$(row).find('td:eq(8)').css( "background-color", "#ecec3bd4" );
-
-            		break;
-
-            		case "Sold":
-
-            		$(row).find('td:eq(0)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(1)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(2)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(3)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(4)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(5)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(6)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(7)').css( "background-color", "#e08a8a" );
-
-            		$(row).find('td:eq(8)').css( "background-color", "#e08a8a" );
-
-
-
-            		break;
-
-
-
-            	}
-
-            },
-
-        });
-
-
-
-
-
-              
-
-
-
-        });
-
-
-
-		function UpdateAva(id,val)
-
-		{
-
-			var keyid= id;
-
-			var status=val;
-
-			if(confirm("Are you sure you want Change Status Avaliable"))
-
-              	{
-
-              		$.ajax({
-
-				    type: "POST",
-
-				    url: 'ajax/update_suncity_inv.php',
-
-				    data: {keyid:keyid,keystatus:status},
-
-				    success: function(data){
-
-				       alert('You successfully Updated');
-
-				       location.reload(true);
-
-				    }
-
-			 		});
-
-              	}
-
-			
-
-		}
-
-		function UpdateHold(id,val)
-
-		{
-
-			var keyid= id;
-
-			var status=val;
-
-			if(confirm("Are you sure you want Change Status Hold"))
-
-
-              	{
-
-              		$.ajax({
-
-				    type: "POST",
-
-				    url: 'ajax/update_suncity_inv.php',
-
-				    data: {holdid:keyid,holdstatus:status},
-
-				    success: function(data){
-
-				       alert('You successfully Updated');
-
-				       location.reload(true);
-
-				    }
-
-			 		});
-
-              	}
-
-			
-
-		}
-
-		function UpdateSold(id,val)
-
-		{
-
-			var keyid= id;
-
-			var status=val;
-
-			if(confirm("Are you sure you want Change Status Sold"))
-
-              	{
-
-              		$.ajax({
-
-				    type: "POST",
-
-				    url: 'ajax/update_suncity_inv.php',
-
-				    data: {soldid:keyid,soldstatus:status},
-
-				    success: function(data){
-
-				       alert('You successfully Updated');
-
-				       location.reload(true);
-
-				    }
-
-			 		});
-
-              	}
-
-			
-
-		}
-
-		
-function showpopup(v_al)
-{
-	
-document.getElementById('hiddensid').value=v_al;
-	
-	$('#myModal').modal('show');
-}
-
-     </script>
+   
 
 
 
@@ -577,13 +284,15 @@ while($resultset=mysqli_fetch_array($selquery))
 		$all_p_ids= getBoughtPackagefromOid($conn,$OrderIds) ;
 		$all_p_ids_string=implode(",",$all_p_ids); 
 		
-		  
+		$fname= ucfirst($resultset['fname']);
+				$lname= ucfirst($resultset['lname']);  
+ 
 ?>
 <div class="modal fade" id="exampleModalContent<?php echo $resultset['id'];?>" tabindex="-1" role="dialog" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalContentLabel">ORDER ID <span><strong><?php echo getOrderCode($conn,$resultset['id'])?></strong></span></h5>
+                                            <h5 class="modal-title" id="exampleModalContentLabel">Orderid- #<strong><?php echo getOrderCode($conn,$OrderIds)?></strong></h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -591,43 +300,76 @@ while($resultset=mysqli_fetch_array($selquery))
                                         <div class="modal-body">
                                             <form>
                                             
-                                                <?php
-												$subtotal=0;
-				$selquerys=mysqli_query($conn,"select * from `edu_pricing` where `id` in ($all_p_ids_string)");
-    while($resultset=mysqli_fetch_array($selquerys))
-	{   
+                                            
+                                            
+                                         <p><strong>Name:</strong><?php echo $fname?> <?php echo $lname?></p> 
+                                                  
+                                            
+                                                
+                                         
+                                                
+                                                
+                                              <div class="form-group">
+                                              <div class="table-responsive">
+                                              <table class="pro-table" border="1px">
+                                              <thead>
+                                              <tr>
+                                              <td>S no</td>
+                                              
+                                              <td>Package name</td>
+                                              
+                                              <td>Quantity</td>
+                                              <td>Single Price</td>
+                                              
+                                              
+                                              </tr>
+                                              </thead>
+                                           <?php  $subtotal=0;  $sqlQry=mysqli_query($conn,"select * from `orderlist` where `orderid`='$OrderIds'");
+	$i=0;
+	$numrows=mysqli_num_rows($sqlQry);
+	if($numrows>0){
+	while($fetch=mysqli_fetch_array($sqlQry)){
+	$i++;
 	
-	$leveltable="edu_levels";
-$level_details=getTableDetailsById($conn,$leveltable,$resultset['level_id']);
-
- $levelname_new="(".$level_details['name'].")";
-
-	$subtotal+=$resultset['price'];	
-?>
-                                                <div class="form-group">
-                                                    <label for="recipient-name" class="col-form-label" style="font-weight:bold;">Package :Name:</label>
-                                                    <label for="recipient-name" class="col-form-label"><?php echo $resultset['name'].$levelname_new;?></label>  
+						
+							$planid=$fetch['planid'];
+							
+							$leveltables="edu_pricing";
+$level_details=getTableDetailsById($conn,$leveltables,$planid);
+$leveltable="edu_levels";
+$levels_details=getTableDetailsById($conn,$leveltable,$level_details['level_id']);
+ $levelname_new=$level_details['name']."(".$levels_details['name'].")";
+ $price=$level_details['price'];
+ $nprice=$price*$fetch['qty'];
+	$subtotal+=	$nprice;							?>
+                                             <tr>
+                                             
+                                             <td><?php echo $i?></td>
+                                             
+                                             <td> <?php echo $levelname_new?></td>
+                                              <td> <?php echo $fetch['qty']?></td>
+                                              
+                                              <td> $<?php echo $price?></td> 
+                                              
+                                                    </tr>
+                                                    
+                                                   
+                                              <?php }}?>
+                                              <tr>
+                                              <td>Subtotal </td> <td colspan="3">$<?php echo $subtotal;?></td>
+                                              </tr>
+                                              <tr>
+                                              <td>Grand total </td> <td colspan="3">$<?php echo $subtotal?></td>
+                                              </tr>
+                                              </table>
                                                 </div>
-                                                
-                                                
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label" style="font-weight:bold;"> Price:</label>
-                                                    <label for="recipient-name" class="col-form-label">$<?php echo $resultset['price']?></label>  
-                                                </div>
-                                                <?php }?><div class="form-group">
-                                                    <label for="message-text" class="col-form-label" style="font-weight:bold;">Total Price:</label>
-                                                    <label for="recipient-name" class="col-form-label">$<?php echo $subtotal;?></label>  
-                                                </div>
-                                                
-                                                
-                                                
+                                              </div>
                                             </form>
+
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        </div>
-                                    </div>
+                             
                                 </div>
+                            </div>
                             </div>
                             
                             <?php }?>

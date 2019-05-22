@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
    <?php
    $companyName=getAdminNameById($conn,$_SESSION['buid']);
    
