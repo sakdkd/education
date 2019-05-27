@@ -8,7 +8,7 @@ checkIntrusion($buid,$builderbaseurl);
 
 $title="Quantitative Features Management";
 
-$page="qfeature.php";
+$page="qfeatures.php";
 
 //$colname='e_brochure_file';
 
