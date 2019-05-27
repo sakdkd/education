@@ -10,7 +10,7 @@ $levelchoosen=$user_details['sid'];
 if(isset($_GET['id']))
 {
 	$test_name=$_GET['test'];;
-		echo $mini_id=base64_decode($_GET['id']); 
+		 $mini_id=base64_decode($_GET['id']);   
 		
 		$minitids=getMINItestid($conn);
 		 $main_arr=Getmainrecordids($conn,$minitids);
@@ -33,9 +33,8 @@ $section_value=$sectionval+1;
 	$giventestdetails=getTableDetailsById($conn,"minitestgiven",$test_name);
 
 
-	//print_r($giventestdetails);  die;
 if($giventestdetails!='')
-{
+{ 
 	$setvalue='3';
 	$paused_qid=GetMiniPausedquestionIdfromTestId($conn,$test_name);
 		$paused_qid_string=implode(",",$paused_qid);
@@ -43,8 +42,8 @@ if($giventestdetails!='')
 }
 
 else
-{
-$$setvalue='0';	
+{ 
+$setvalue='0';	
 	
 }
 		$testtype=$_GET['testtype'];
@@ -60,7 +59,7 @@ $$setvalue='0';
 	
 			
 		}
-	$mini_id=base64_decode($_GET['id']);
+	 $mini_id=base64_decode($_GET['id']);
 	$levelids=$mini_id;
 	$mini_details=getTableDetailsById($conn,$tbname,$mini_id);
  $subject_id=$mini_details['subject_id']; 
@@ -77,11 +76,24 @@ $$setvalue='0';
 	{
 	 	$timer=$mini_details['timings']; 
 	}
-	$topicid_arr=getallAttachedIdwithSubId($conn,$subject_id,$levelchoosen);
-	
+	$topicid_arr=getallAttachedIdwithSubIdMiniId($conn,$subject_id,$levelchoosen);
+		//print_r($topicid_arr);  die;
+
 	$topic_imploded_string=implode(",",$topicid_arr);   
-	  $mainActiveques=GetActiveQuesFromTopicId($conn,$topic_imploded_string); 
+	$mainActiveques=GetActiveQuesFromTopicId($conn,$topic_imploded_string); 
 	//$mainActiveques=$question_total;
+	
+	if($question_total>$mainActiveques)
+	{
+		$mainActiveques=$mainActiveques;
+		
+	}
+	else
+	{
+		
+	$mainActiveques=$question_total;	
+		
+	}
 	if($setvalue==3)
 	{
 		
@@ -291,7 +303,6 @@ if($mainActiveques<$question_total)
                 
                  <div class="tab-content">
             <?php 
-			
 			
 			if($setvalue==3)
 			{

@@ -5272,6 +5272,13 @@ function getTableDetailsById($conn,$table,$id){
 	return $ds1;
  
 }
+function getTableDetailsByIdwithstatus($conn,$table,$id){
+	//echo "SELECT * FROM $table where `id`='$id'";
+	$ds=mysqli_query($conn,"SELECT * FROM $table where `id`='$id' and `status`='1'and `view`='1'"); 
+	$ds1=mysqli_fetch_assoc($ds);
+	return $ds1;
+ 
+}
 
 function getUserAddress($conn,$id){
 	//echo "SELECT * FROM $table where `id`='$id'";
@@ -5393,7 +5400,6 @@ function getallAttachedIdwithSubId($conn,$cid,$level){
 while($resultset=mysqli_fetch_array($ds2))
 { 
 	$amtid=$resultset['attachedid'];
-//	echo "SELECT  * FROM `levelsubjects` WHERE  `id`='$amtid' and `level_id`='$level' and `status`='1' and `view`='1'";   
 		 $ds=mysqli_query($conn,"SELECT  * FROM `levelsubjects` WHERE  `id`='$amtid' and `level_id`='$level' and `status`='1' and `view`='1'"); 
 if($num=mysqli_num_rows($ds)>0)
 {
@@ -5405,6 +5411,23 @@ if($num=mysqli_num_rows($ds)>0)
 }
 return $resultarr; 
 }
+
+function getallAttachedIdwithSubIdMiniId($conn,$cid,$level){
+	//echo "SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'";
+	 $ds2=mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'"); 
+
+while($resultset=mysqli_fetch_array($ds2))
+{ 
+	 
+	
+	
+	$resultarr[]=$resultset['id'];
+	
+
+}
+return $resultarr; 
+}
+
 function getattachedtopiccount($conn,$cid){
 	 $ds2=mysqli_num_rows(mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE  `subtype_id`='$cid' and `view`='1'"));
 		 return $ds2;
@@ -6144,7 +6167,16 @@ function getMiniExistenceofTestIdWithPracticeIdLid($conn,$test_name,$levelids,$u
 	
 	
 }
-
+function getMinitestprogress($conn,$levelids,$userid)
+{      
+	  
+		$ds=mysqli_query($conn,"SELECT * FROM  `minitestgiven` where `testname`='$levelids' and `userid`='$userid'"); 
+	$ds1=mysqli_num_rows($ds);
+	return $ds1;
+	
+	
+	
+}
 function getlevelsfromquestionfromtid($conn,$tid,$level){
 	//echo"SELECT  * FROM `questions` WHERE  `topic_id`='$tid' and `status`='1' and `view`='1'";
 $ds=mysqli_query($conn,"SELECT  * FROM `questions` WHERE  `topic_id`='$tid' and `status`='1' and `view`='1'");

@@ -104,7 +104,20 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 							
 							$m_id=$fetch_mini['id'];
       $test_name=$fetch_mini['name'];
-	  
+	  $levelcount= count(Getmainrecordids($conn,$m_id));
+	 $count_by_tid=getMinitestprogress($conn,$m_id,$userid);
+	  if($count_by_tid < $levelcount)
+	  {
+		  
+		$pstatus="Unfinished";  
+		  
+	  }
+	  else
+	  {
+		$pstatus="Finished";    
+		  
+		  
+	  }
 	 
 							?>
                              <div class="card">
@@ -112,7 +125,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                                  <h5 class="mb-0">
                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?php echo $created_id;?>" aria-expanded="true" aria-controls="collapseOne">
                                      <div class="small-title"><?php echo $levelname;?></div>
-                                     <div class="big-title"><?php echo $test_name;?> <span class="progress-status">in progress</span></div>
+                                     <div class="big-title"><?php echo $test_name;?> <span class="progress-status"><?php echo $pstatus;?></span></div>
                                      
                                    </button>
                                  </h5>
@@ -141,6 +154,10 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 						$testgid=$test_given_details['id'];
 	 $button_val=$test_given_details['button'];
 	  $maintid=$test_given_details['id'];
+	  
+	
+	  
+	  
 							?> 
                                    <div class="rdx complete">
                                        <div class="row align-items-center">

@@ -100,12 +100,12 @@ if(isset($_GET['slug']))
           <div class="package-detail">
                 <strong><?=$packages['name'];?></strong>
                <?php foreach ($features_list as $f_key => $f_pair)
-                          { $q_table="qfeature"; $feature_d= getTableDetailsById($conn,$q_table,$f_key);?>
+                          { $q_table="qfeature"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$f_key);?>
                 <p><?php echo $f_pair." ".$feature_d['name'];?></p>
                 <?php }?>
                   <ul>
                    <?php foreach ($nonfeatures_list as $nfkey)
-                          { $q_table="nqfeatures"; $feature_d= getTableDetailsById($conn,$q_table,$nfkey);?> 
+                          { $q_table="nqfeatures"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$nfkey);?> 
                       <li><?php echo $feature_d['name'];?></li>
                       <?php }?>
                       

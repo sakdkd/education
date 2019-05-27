@@ -129,6 +129,7 @@ table.pro-table {
 <th>Package</th>
 
 				                    <th>Date</th>
+				                    <th>Status</th>
 				                    <th>View Details</th>
 
 			                    </tr>
@@ -160,6 +161,20 @@ table.pro-table {
 $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
  $packid=$plandetails['planid'];
  $edupricing_details=getTableDetailsById($conn,"edu_pricing",$packid);
+ 
+ if($row['status']==1)
+ {
+	 
+	$ostatus="Successful"; 
+	 
+	 
+ }
+ else
+ {
+	 
+	$ostatus="Unsuccessful";  
+	 
+ }
 									
 									$edulevel_details=getTableDetailsById($conn,"edu_levels",$edupricing_details['level_id']);
 								$packname=$edupricing_details['name']." (".$edulevel_details['name'].")";  	
@@ -179,6 +194,7 @@ $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
 	          					  
 
           					    </td>
+	          					<td><?php echo $ostatus;?></td>
 	          					<td><a data-toggle="modal" data-target="#exampleModalContent<?php echo $row["id"];?>"><button name="view" class="btn btn-success">View</button></a></td>
 
 							 

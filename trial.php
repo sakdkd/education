@@ -18,7 +18,6 @@ $landingval='0';
 	
 	
 }
-echo $landingval; 
 ?>
 
 
