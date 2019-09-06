@@ -41,7 +41,7 @@ $level_details=getTableDetailsById($conn,$leveltable,$levelchoosen);
   $cartcount=count($_SESSION["cart_array"]["bags"]);
 if($cartcount==0)
 {
-	$cartcount='';
+	$cartcount='0';
 	
 }
 
@@ -96,10 +96,10 @@ if($cartcount==0)
     width: 190px;
     }
 	
-	.carts {position: absolute;
+/*	.carts {position: absolute;
     top: -5%;
     right: 4%;
-	}
+	}*/
     </style>
      <!--  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -208,7 +208,7 @@ unattempt=parseInt(strArray[2]);
         <div class="container">
             <div class="navbar-translate">
                 <a class="navbar-brand" href="<?php echo $baseurl;?>">
-                    <img src="img/logo.png" alt="logo" class="logo-default">
+                    <img src="<?php echo $baseurl;?>/img/logo.png" alt="logo" class="logo-default">  
                 </a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -222,7 +222,7 @@ unattempt=parseInt(strArray[2]);
               
                 <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item drop_menu"> <a class="nav-link active" href="<?php echo $baseurl;?>">Home</a>
+                    <li class="nav-item drop_menu"> <a class="nav-link active" href="index.php">Home</a>
                        
                     </li>
                     

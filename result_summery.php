@@ -746,13 +746,17 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                    
                    <div class="summery-detail">
                       <div class="row">
-                          <div class="col-md-12 text-center"><h2>Get Started</h2></div>
+                          <div class="col-md-4 col-sm-offset-4 text-center">
+                       <div class="box-start">   
+                          <h2>Get Started</h2>
+                          
+                          
+                          <a href="web-app.php?id=<?php echo $att_lid;?>&test=<?php echo $test_id;?>&testtype=practice"><button class="btn btn-success"> Start</button></a></div>
+                          </div>
                           
                       </div>
                        
-                        <div class="row">
-                          <div class="col-md-12 text-center"><a href="web-app.php?id=<?php echo $att_lid;?>&test=<?php echo $test_id;?>&testtype=practice"><button class="btn btn-success"> Start</button></a></div>
-                      </div>
+                    
                        
                        
                    </div>
@@ -761,14 +765,16 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                    
                    <div class="summery-detail">
                       <div class="row">
-                          <div class="col-md-12 text-center"><h2>Get Started</h2></div>
-                          
+                       <div class="col-md-4 col-sm-offset-4 text-center">
+                       <div class="box-start">
+                        <h2>Get Started</h2>
+                        
+                        <a href="web-app.php?id=<?php echo $att_lid;?>&test=<?php echo $gtid;?>&testtype=practice"><button class="btn btn-success"> Continue</button></a>
+                        </div>
+                          </div>
                       </div>
                        
-                        <div class="row">
-                          <div class="col-md-12 text-center"><a href="web-app.php?id=<?php echo $att_lid;?>&test=<?php echo $gtid;?>&testtype=practice"><button class="btn btn-success"> Continue</button></a></div>
-                      </div>
-                       
+ 
                        
                    </div>
                    

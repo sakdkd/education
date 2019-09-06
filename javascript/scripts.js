@@ -2051,7 +2051,17 @@ function submitform()
             url: 'checkoutprocess.php',
             data: $('form').serialize(),
             success: function (result) {
-window.location.href='thankyou.php';        
+				var oid=result.status;
+				if(result.status!=0)
+				{
+window.location.href='thankyou.php?oid='+oid;  
+				}
+				else
+				{
+					
+				alert("Some issue has occurred");s	
+					
+				}
     } 
           });
 

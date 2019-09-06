@@ -138,7 +138,7 @@ background: #e65500!important;
 }
 .loop-repeat a:hover {
     color: #f47327;
-}
+} 
 
 	</style>
  <!---<?php include_once("dheader.php");?>  -->
@@ -216,126 +216,7 @@ background: #e65500!important;
    </div>	
 </section>    <!--get plan-->
 
-    <!--recent-blog-->
-    <section class="blog_sec" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title text-center">
-                        <h3>Our Latest News</h3>
-                    </div><!--/.title-->
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                    <div class="owl-carousel" id="blog_slider_owl">
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog1.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog3.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
 
-                    </div><!--/.blog_slider_owl-->
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section>
-    <!--recent-blog-->
 <div class="modal fade" id="startexam" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">

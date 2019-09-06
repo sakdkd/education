@@ -221,16 +221,25 @@ else
 	<?php 
 	
 	
-	
+	//echo "select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total";
 	$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			$q_div=0;
 			$numrows=mysqli_num_rows($question_query);
 			if($numrows>0)
 			{?>
                 <form method="post" id="myForm" action="form_sub.php?id=3" name="myForm">
+      				<input type="hidden" id="lastclicked" name="lastclicked" value="1">   
+      				<input type="hidden" id="pastclickedval" name="pastclickedval" value="1">   
 
+     
+	 
+	        
+    
+<div class="gray-bg pt-20 pb-50">
+<div class="container">
 
-
+    
+<div class="wraper-box que-paper-a">
 <div class="upper-box-wrapper">
     <div class="container">
         <div class="row align-items-center">
@@ -244,9 +253,9 @@ else
             <div class="col-md-3">
                 <div class="time-wrapper">
                     <div class="time-bar">
-                        <div class="time-title">TIME REMAINING</div>
-                        <div class="time"><span id="timerss"><?php echo $stime;?></span></div>     
-                    </div>
+                        <div class="time-title"><img class="watch-time" src="images/time.gif">"TIME REMAINING</div>
+                      <div class="time"><span id="timerss"><?php echo $stime;?></span></div>   
+                    </div> 
                        
                     <div class="time-button">
                         <button class="btn" name="pause" type="submit" onclick="myformsubmit(0)"><i class="fa fa-pause" style="font-size: 12px"></i> Pause Section</button>
@@ -256,10 +265,13 @@ else
             </div>
         </div>   
     </div>
-</div>    
+</div>
            
-           <div class="container">
-               <div class="pages">
+        <div class="">
+        
+    
+           
+           <div class="pages">
 <!--                              <ul  id="myTabs" role="tablist" data-tabs="tabs" class="d-flex pagination nav nav-pills">
 -->
                    <ul  id="myTabs1" role="" data-tabs="" class="d-flex pagination nav nav-pills">
@@ -291,17 +303,9 @@ else
                        <?php }?>
                    </ul>
                </div>
-           </div>
-      				<input type="hidden" id="lastclicked" name="lastclicked" value="1">   
-      				<input type="hidden" id="pastclickedval" name="pastclickedval" value="1">   
-
-     
-	 
-	        
-    
-<div class="gray-bg pt-20 pb-50">
-        <div class="container">
-            <div class="container"><div class="next-prev-question d-flex justify-content-end">
+            <div class="">
+            
+            <div class="next-prev-question d-flex justify-content-end">
                     <button class="btn btn-default" onclick="questionvisibility(1)" type="button" disabled id="prev_btn">Prev. Question</button>
                     <button type="button" class="btn btn-success" onclick="questionvisibility(2)" id="next_btn">Next Question</button>
                                         
@@ -313,7 +317,6 @@ else
                 
                  <div class="tab-content">
             <?php 
-			
 			if($setvalue==3)
 			{
 		//	echo "select * from `questions` where `id` in ($paused_qid_string) and `status`='1' and `view`='1' order by field(`id`,$paused_qid_string)";
@@ -378,10 +381,10 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li ><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>></span><span for="Qs<?php echo $question_id;?>1" class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>> </span> <span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>> </span><span class="check"><?php echo $questionset['option4'];?></span></li>
                        </ul>
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              
@@ -419,7 +422,8 @@ if($user_attmpted_ques['buttonval']!=1)
           
     </div>
     </div>
-    
+    </div>
+ </div>    
     
     
       <?php 

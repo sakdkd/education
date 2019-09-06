@@ -12,12 +12,25 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
+<style>
+section.top-head {
+    width: 100%;
+    padding: 50px 0;
+    background: #f47327!important;
+    margin-top: 0px!important;
+	    margin-bottom: 20px;
+}
 
+.card-body.home-well {
+    background: whitesmoke;
+}
+</style>
     <title>Home</title>
     <!-- Standard Favicon -->
   <?php include_once("header.php"); 
   
-  
+  checkIntrusion($userid,$baseurl);
+
 if(($orderidcount>1) || ($n_rows>1))
 {
 	
@@ -30,37 +43,38 @@ else
 	$repage="web-app.php";
 	
 }?>   
-<section class="top-head">
-    
-
-
-<h1>Welcome!
-</h1>
-</section>
  
-<section class="main-container">
+<div class="main-container" style="margin-top:50px">
 
     
     
 <div class="gray-bg pt-50 pb-50">
         <div class="container">
-            <div class="row section text-center welcome">
+        <div class="wraper-box">
+        <section class="top-head">
+    
+
+
+<h1>Welcome! </h1>
+</section>
+        
+ <div class="row section text-center welcome">
          <div class="col-md-2 pbm"></div>
-        <div class="col-md-4 col-sm-6 pbm">
+        <div class="col-md-4 col-sm-6">
         <div class="card">
 <!--        <h3>Primary Level</h3>-->
-        <div class="card-body">
+        <div class="card-body home-well">
         <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
             <p>Access your online tests.</p>
                 <a href="<?php echo $repage;?>" class="btn btn-start">View Dashboard</a>
         </div>
         </div>
-        </div>
+        </div> 
         
-        <div class="col-md-4 col-sm-6 pbm">
+        <div class="col-md-4 col-sm-6">
         <div class="card">
 <!--        <h3>Lower Level</h3>-->
-        <div class="card-body">
+        <div class="card-body home-well">
         <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
             <p>Access  practice papers.</p>
                 <a href="practice.php" class="btn btn-start">Paper Tests & Vocab</a>
@@ -68,15 +82,9 @@ else
         </div>
         </div>
         
-        <!--<div class="col-md-4 col-sm-6 pbm">
-        <div class="card">
-<!--        <h3>Middle Level</h3>-->
-        <!--<div class="card-body">
-        <h2 class="icon"><i class="fa fa-desktop"></i> </h2>
-            <p>Watch test skills videos.</p>
-                <a href="#" class="btn btn-start">View Video Course</a>
-        </div>-->
         </div>
+        
+        <img src="images/call-to-action.png" class="call-to">
         </div>
         
         
@@ -85,129 +93,10 @@ else
         </div>
     </div>
     
-</section>    
+</div>    
     <!--get plan-->
 
-    <!--recent-blog-->
-    <section class="blog_sec" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title text-center">
-                        <h3>Our Latest News</h3>
-                    </div><!--/.title-->
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                    <div class="owl-carousel" id="blog_slider_owl">
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog1.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog3.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-
-                    </div><!--/.blog_slider_owl-->
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section>
-    <!--recent-blog-->
+ 
 
     <!--footer widget-->
 <?php include_once("footer.php");?>

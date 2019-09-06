@@ -70,7 +70,10 @@ $subb_id=$topic_details['subject_id'];
     <style>
     .tab-content>div {
     display: none;
-}   
+}  
+ul#myTabs1 { 
+    margin: 0;
+} 
     </style>
 
     <title>Home</title>
@@ -88,11 +91,18 @@ $subb_id=$topic_details['subject_id'];
 			if($numrows>0)
 			{?>
                 <form method="post" id="myForm" action="practice_action.php" name="myForm">
+      				<input type="hidden" id="lastclicked" name="lastclicked" value="1">   
+      				<input type="hidden" id="pastclickedval" name="pastclickedval" value="1">   
 
-
-
-<div class="upper-box-wrapper">
-    <div class="container">
+     
+	 
+	        
+    
+<div class="gray-bg pt-20 pb-50">
+        <div class="container">
+            <div class="wraper-box">
+            
+               <div class="upper-box-wrapper">
         <div class="row align-items-center">
             <div class="col-md-9">
                 <div class="wrapper-title">
@@ -112,13 +122,10 @@ $subb_id=$topic_details['subject_id'];
             </div> 
             
         </div>   
-    </div>
-</div>    
+</div>
            
-           <div class="container">
                <div class="pages">
-<!--                              <ul  id="myTabs" role="tablist" data-tabs="tabs" class="d-flex pagination nav nav-pills">
--->
+
                    <ul  id="myTabs1" role="" data-tabs="" class="d-flex pagination nav nav-pills">
                    <?php 
 				   
@@ -147,23 +154,14 @@ $subb_id=$topic_details['subject_id'];
                        <?php }?>
                    </ul>
                </div>
-           </div>
-      				<input type="hidden" id="lastclicked" name="lastclicked" value="1">   
-      				<input type="hidden" id="pastclickedval" name="pastclickedval" value="1">   
-
-     
-	 
-	        
-    
-<div class="gray-bg pt-20 pb-50">
-        <div class="container">
-            <div class="container"><div class="next-prev-question d-flex justify-content-end">
+            
+            <div class="next-prev-question d-flex justify-content-end">
                     <button class="btn btn-default" onclick="pracquestionvisibility(1)" type="button" disabled id="prev_btn">Prev. Question</button>
                     <button type="button" class="btn btn-success" onclick="pracquestionvisibility(2)" id="next_btn" <?php echo $next_class;?>>Next Question</button>
                                         
 
                     <input type="hidden" name="question_value" id="question_value" value="1">
-                </div> </div>  
+                </div> 
                 
              <input type="hidden" name="btnclickval" value="5" id="btnclickval">
               <?php 
@@ -237,11 +235,11 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
-                       </ul>
+                           <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option1'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option2'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option3'];?></span></li>
+                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option4'];?></span></li>
+                       </ul> 
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              
                                   <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">    
@@ -402,126 +400,6 @@ $q_div++;
 
     <!--get plan-->
 
-    <!--recent-blog-->
-    <section class="blog_sec" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title text-center">
-                        <h3>Our Latest News</h3>
-                    </div><!--/.title-->
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                    <div class="owl-carousel" id="blog_slider_owl">
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog1.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog3.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-
-                    </div><!--/.blog_slider_owl-->
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section>
-    <!--recent-blog-->
 <div class="modal fade" id="startexam" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">

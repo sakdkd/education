@@ -70,8 +70,11 @@ $user_details=getTableDetailsById($conn,"register",$userid);
 $to=$user_details['email'];
 
 $ordersubject="Order Confirmation";
-sendgridmail($to,$ordermessage,$ordersubject);  
-	$arr=array("status"=>"1");
+sendgridmail($to,$ordermessage,$ordersubject); 
+
+  $orderID=base64_encode(getOrderCode($conn,$order_id));
+ 
+	$arr=array("status"=>$orderID);
 	
 }
 

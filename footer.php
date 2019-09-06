@@ -247,6 +247,27 @@
 <input type="hidden" id="trial" value="0" />
 <input type="hidden" id="showcommentboxval" value="<?php echo $showcommentboxval;?>" />
 
+<script>
+ var loc= '<?php echo basename($_SERVER['PHP_SELF']) ?>'
+ 
+ $(function(){
+   $(".navbar-nav  li ").each(function(){
+$(this).find('a').removeClass('active')
+
+        var a_href = $(this).find('a').attr('href');
+
+    if(  (a_href==loc)  ){
+
+ $(this).find("a:first").addClass('active');
+ 
+}
+
+   });
+
+
+});
+ </script>
+
 
 </body>
 

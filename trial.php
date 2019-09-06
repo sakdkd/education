@@ -49,9 +49,9 @@ $landingval='0';
 </section>
  
 <section class="main-container">
-<div class="gray-bg pt-50 pb-50">   
+<div class="gray-bg pt-20 pb-50">   
         <div class="container">
-            <div class="row section text-center">
+            <div class="wraper-box"><div class="row section text-center">
         <?php
 						$selq=mysqli_query($conn,"select * from `edu_levels` where `status`='1' and `view`='1' limit 1,6");
 			$numro=mysqli_num_rows($selq);
@@ -60,7 +60,7 @@ $landingval='0';
 						{ $levelids=$resultss['id'];
 						?>
         <div class="col-md-3 col-sm-6 pbm">
-        <div class="card">
+        <div class="card trial-card">
         <h3><?=$resultss['name'];?></h3>
         <div class="card-body">
             <p><?=$resultss['description'];?></p>
@@ -71,7 +71,7 @@ $landingval='0';
         
        <?php }}?>
         
-        </div>
+        </div></div>
         </div>
     </div>
     

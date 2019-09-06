@@ -42,27 +42,29 @@ if(isset($_GET['slug']))
 </section>
  
 <section class="main-container">
-   <div class="get_plan_sec">
-  <div class="container">
+   
+    
+    
+<div class="gray-bg pt-50 pb-50">
+        <div class="container">
+         <div class="wraper-box">
+        <div class="get_plan_sec new-price">
         <div class="upper-line">
            
            <p><?=$level_details['description'];?></p>
-       </div>
+
    </div>
     <!--get plan-->
     
 
 
     </div>
-    
-    
-<div class="gray-bg pt-50 pb-50">
-        <div class="container">
+        
             <div class="row section text-center">
         
-        <div class="offset-2">
+        <!--<div class="offset-2">
         
-        </div>
+        </div>-->
         
       <?php 
 	 $selectquery=mysqli_query($conn,"select * from `edu_pricing` where `level_id`='$level_id' and `status`='1' and `view`='1'");
@@ -89,15 +91,16 @@ if(isset($_GET['slug']))
 				  $icon="";
 				  $onclick_action="redirection_page()";
 				  $button_text="Try Now";
-				  
+				   
 			  }
 			  
 	  ?>  
         
         <div class="col-md-4 col-sm-4 pbm">
-        <div class="card">
+        <div class="card price-table-data">
         <div class="card-body package-detail">
           <div class="package-detail">
+          <img class="fees-icon" src="images/fees.png"> 
                 <strong><?=$packages['name'];?></strong>
                <?php foreach ($features_list as $f_key => $f_pair)
                           { $q_table="qfeature"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$f_key);?>
@@ -137,136 +140,14 @@ if(isset($_GET['slug']))
         
         
         </div>
+        
+        </div>
         </div>
     </div>
     
 </section>    
     <!--get plan-->
 
-    <!--recent-blog-->
-    <section class="blog_sec" style="display: none">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title text-center">
-                        <h3>Our Latest News</h3>
-                    </div><!--/.title-->
-                </div>
-                <div class="w-100"></div>
-                <div class="col-md-12">
-                    <div class="owl-carousel" id="blog_slider_owl">
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog1.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog3.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">We design platform for all global customers</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-                        <div>
-                            <div class="single_blog_in">
-                                <div class="card">
-                                    <div class="images">
-                                        <img src="img/blog2.jpg" alt=""/>
-                                        <div class="dates">
-                                            <p>Sep 2018</p>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <h2><a href="#">Far far away,behind the word mountains, far from</a></h2>
-                                        <p>Lorem ipsum dolor sit amet,sed diam nonumy eirmod tempor invidunt ut labore.</p>
-                                        <ul>
-                                            <li>
-                                                <p><img src="img/client2.jpg" alt=""/>by <a href="#">Tonmoy Khan</a></p>
-                                            </li>
-                                            <li><a href="#"><i class="fas fa-bell"></i> 15</a></li>
-                                            <li>
-                                                <a href="#"><i class="fas fa-comment-alt"></i> 30</a>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-                            </div><!--/.single_blog_in-->
-                        </div>
-
-                    </div><!--/.blog_slider_owl-->
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section>
-    <!--recent-blog-->
- 
-    <!--footer widget-->
-    
-    <!--footer widget-->
 
     <!--footer-->
   <?php include_once("footer.php");?>

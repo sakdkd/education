@@ -1,0 +1,27 @@
+Options +FollowSymLinks
+RewriteEngine on
+
+RewriteCond %{HTTPS} off
+
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+
+RewriteRule    ^testimonials$    testimonials.php    [NC,L]    # Handle product requests
+
+RewriteRule    ^([a-zA-Z0-9=]+)/([a-zA-Z0-9=]+)/([a-zA-Z]+)$    /builder/index.php?cat=$1&subcat=$2&msg=$3    [NC,L]    # Handle product requests
+
+RewriteRule    ^([a-zA-Z0-9]+)/([a-zA-Z0-9]+)$    /builder/index.php?cat=$1&subcat=$2    [NC,L]    # Handle product requests
+
+RewriteRule    ^([a-zA-Z0-9=]+)-([a-zA-Z0-9=]+)-forgotpassword$    /builder/forgot.php?cat=$1&subcat=$2    [NC,L]    # Handle product requests
+
+AuthType Basic
+AuthName "restricted area"
+AuthUserFile /var/www/html/builder/.htpasswd
+<Files "index.php">
+  Require valid-user
+</Files>
+php_value memory_limit 100M
+php_value post_max_size 150M
+php_value upload_max_filesize 150M
+
+
+

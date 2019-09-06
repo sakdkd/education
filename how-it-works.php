@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
+
 <html lang="en" class="no-js">
-<!--<![endif]-->
-
-
-<head>
+<!--<![endif]--><head>
     <meta charset="utf-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +15,10 @@
  <?php include_once("header.php");?>
     <!-- /.navbar -->
 <section class="top-head">
-    <h1>How it works</h1>
+    
+
+
+<h1>How it works</h1>
 </section>
  
 <section class="main-container">

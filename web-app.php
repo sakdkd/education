@@ -77,13 +77,10 @@ $tab_details=getTableDetailsById($conn,$table,$id);
  
 <section class="main-container" style="margin-top: 50px">
 
-    
-     
-
-
+ 
 <div class="gray-bg pt-50 pb-50">
         <div class="container">
-            <div class="row">
+            <div class="wraper-box"><div class="row">
                 <div class="col-md-8">
                        <div class="section-left">
                            <h2>Your Tests</h2>
@@ -412,7 +409,7 @@ $button_val=$test_given_details['button'];
                        </div>     
                 </div>
                 
-                <?php 
+                  <?php 
 				if($order_id>0)
 				{
 					if($numrows>0)
@@ -486,8 +483,23 @@ $package_lid=$edupricing_details['level_id'];
                    </div>
                 </div>
                 
-                <?php }}?>
-            </div>
+                <?php } }else{?>
+                <div class="col-md-4">
+                   <div class="static-div">
+                  <h2>UPGRADE YOUR ACCOUNT TO GET THE PRACTICE YOU NEED!</h2>
+                  
+                  <ul>
+                  <li>Full-Length Tests: Online and Printable</li>
+                  <li>Complete Score Report</li>
+                  <li>Over 2200 Practice Exercises</li>
+                  <li>Personalized Prep Plan</li>
+                  <li>Premium Video Course</li>
+                  <li>Tutor Consultation</li></ul>
+                   </div>
+                   </div>
+                <?php }?>
+              
+            </div></div>
         </div>
     </div>
     
