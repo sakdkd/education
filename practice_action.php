@@ -276,18 +276,18 @@ $_SESSION['savebtn']=$nbtnclickval;
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="en" class="no-js">
-<!--<![endif]-->
-<head>
+<!--<![endif]--><head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Home</title>
+<title>BOSH Education | ISEE</title>
 <!-- Standard Favicon -->
 <?php include_once("header.php");?>
 <!-- /.navbar -->
 <section style="padding-top: 92px;">
+
 <div class="upper-box-wrapper">
   <div class="container">
     <div class="row align-items-center">

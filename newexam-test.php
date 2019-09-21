@@ -130,7 +130,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->
@@ -263,10 +263,27 @@ else
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')"><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li>
+                           <!--<span class="check"></span>-->
+                           <label><input name="radio1" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')"><span>A</span> <?php echo $questionset['option1'];?></label>
+
+                           </li>
+                            <li>
+                           <!-- <span class="check"></span>-->
+                            <label><input name="radio1" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"><span>B</span> <?php echo $questionset['option2'];?></label>
+                            </li>
+                            <li>
+                            
+                         <!--   <span class="check"></span>-->
+                            <label><input name="radio1" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"><span>C</span> <?php echo $questionset['option3'];?></label>
+                            
+                            </li>
+                            <li>
+                           <!-- <span class="check"></span>-->
+                            
+                            <label><input name="radio1" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"><span>D</span><?php echo $questionset['option4'];?> </label>
+                            
+                            </li>
                        </ul>
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
 

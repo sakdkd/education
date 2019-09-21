@@ -222,7 +222,7 @@ $imstring_ques=implode(",",$ques_array);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <style>
     .tab-content>div {
     display: none;
@@ -346,12 +346,12 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
          }
          google.charts.setOnLoadCallback(drawChartnew);
       </script>
-<section class="top-head">
+<section class="top-head" style="padding:20px 0;">
     
 
-
+<!--
 <h1>Welcome!
-</h1>
+</h1>-->
 </section>
  
 <section class="main-container">

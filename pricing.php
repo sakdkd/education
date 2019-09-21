@@ -24,7 +24,7 @@ include_once('db_class/hr_functions.php');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
   <?php include_once("header.php");?>
     <!-- /.navbar -->

@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
  <?php include_once("header.php");?>
     <!-- /.navbar -->
@@ -66,7 +66,7 @@
         </div>
         
         <div class="col-sm-5" style="overflow:hidden;">
-        <h3 class="ptl text-center blue-bg white-txt" style="width: 300px;height: 300px;padding: 60px 40px;border-radius:2000px;margin: 0 auto;display: flex;align-items: center;font-size: 23px;line-height: 32px;background: #eb735e; ">Students who use our platform score 70% higher than average</h3></div>
+        <h3 class="ptl text-center blue-bg white-txt" style="width: 300px;height: 300px;padding: 60px 40px;border-radius:2000px;margin: 0 auto;display: flex;align-items: center;font-size: 23px;line-height: 32px;background: #14bf96; ">Students who use our platform score 70% higher than average</h3></div>
         
         </div>  </div>
            

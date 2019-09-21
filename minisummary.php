@@ -212,7 +212,7 @@ else
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
     <?php 
 	foreach($newarr as $key => $value)
@@ -274,12 +274,12 @@ unattempt=parseInt(strArray[2]);
 	}
       
     </script>
-<section class="top-head">
+<section class="top-head" style="padding:20px 0;">
     
 
-
+<!--
 <h1>Welcome!
-</h1>
+</h1>-->
 </section>
  
 <section class="main-container">

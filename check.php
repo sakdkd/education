@@ -14,8 +14,7 @@ function minSum($arr, $n)
 
 	for ( $i = 1; $i < $n; $i++) 
 	{ 
-
-		// If violation happens, 
+         // If violation happens, 
 		// make current value as 
 		// 1 plus previous value 
 		// and add to sum. 

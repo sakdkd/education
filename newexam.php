@@ -210,7 +210,7 @@ else
 }   
     </style>
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->
@@ -381,10 +381,31 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li ><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>></span><span for="Qs<?php echo $question_id;?>1" class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>> </span> <span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>> </span><span class="check"><?php echo $questionset['option4'];?></span></li>
+                       <li>
+                       <label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span>A</span> <?php echo $questionset['option1'];?></label>
+                         
+                       </li>
+                          <!-- <li ><span class="click-btn">
+                                                    
+                           </span></li>-->
+                            <li>
+                              <label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>> <span>B</span><?php echo $questionset['option2'];?></label>
+                            
+                            <!--<span class="click-btn"></span> <span class="check"></span>--></li>
+                            
+                            <li>
+                            <label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span>C</span> <?php echo $questionset['option3'];?></label>
+
+                           <!-- <span class="click-btn"> </span> <span class="check"></span>-->
+                            
+                            </li>
+                            
+                            
+                            
+                            <li><!--<span class="click-btn"> </span><span class="check"></span>-->
+                            <label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span>D</span> <?php echo $questionset['option4'];?></label>
+                            
+                            </li>
                        </ul>
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              

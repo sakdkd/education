@@ -271,7 +271,7 @@ $time_taken=gettimeTakenQuesAttemptedforminiWithCorrectAnswer($conn,$testid,$que
 }
     </style>
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->

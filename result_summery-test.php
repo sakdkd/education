@@ -272,7 +272,7 @@ $newarr[]=$easy_string;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
     <?php 
 	foreach($newarr as $key => $value)

@@ -76,7 +76,7 @@ ul#myTabs1 {
 } 
     </style>
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
    <?php include_once("dheader.php");?>
     <!-- /.navbar -->

@@ -70,7 +70,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
  <?php include_once("dheader.php");   ?>  
 

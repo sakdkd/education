@@ -395,7 +395,7 @@ $Sub_names=$tab_details['name'];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Home</title>
+    <title>BOSH Education | ISEE</title>
     <!-- Standard Favicon -->
 <?php include_once("header.php");?>  
     <!-- /.navbar -->

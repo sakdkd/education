@@ -93,7 +93,8 @@ if($cartcount==0)
     
     <style>
     a.navbar-brand img {
-    width: 190px;
+    width: 200px;
+	vertical-align: middle;
     }
 	
 /*	.carts {position: absolute;
@@ -222,16 +223,16 @@ unattempt=parseInt(strArray[2]);
               
                 <ul class="navbar-nav ml-auto">
 
-                    <li class="nav-item drop_menu"> <a class="nav-link active" href="index.php">Home</a>
+                   <!-- <li class="nav-item drop_menu"> <a class="nav-link active" href="index.php">Home</a>
                        
-                    </li>
+                    </li>-->
                     
                     <li class="nav-item">
                         <a class="nav-link" href="how-it-works.php">How it works</a>
                     </li>
-                    <li class="nav-item drop_menu"> <a class="nav-link" href="testimonials.php">Testimonials</a>
+                   <!-- <li class="nav-item drop_menu"> <a class="nav-link" href="testimonials.php">Testimonials</a>
                         
-                    </li>
+                    </li>-->
                     <li class="nav-item drop_menu"> <a class="nav-link" href="school-data.php">School Data </a>
                         
                     </li>
@@ -250,8 +251,11 @@ unattempt=parseInt(strArray[2]);
                             <?php }}?>
                         </ul>
                     </li>
-        <div style="position:relative">            
-<li class="nav-item drop_menu"> <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i><span id="cart_count" class="carts"><?php echo $cartcount;?></span></a>  </li>
+        <div style="position:relative">  
+             
+<li class="nav-item drop_menu"> <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i>   <?php if($cartcount>0)
+		{?>  <span id="cart_count" class="carts"><?php echo $cartcount;?></span> <?php }?></a>  </li>
+
 </div>
 <?php if($userid=="")
 {?>
