@@ -1,3 +1,4 @@
+
 <?php
 ob_start();
 session_start();
@@ -37,40 +38,13 @@ $attachedlevelid=$level_details['level_id'];
 
 	while($resultset=mysqli_fetch_array($selects))
 	{
+		
 		 $question_id=$resultset['questionid'];
 		$user_answer=$resultset['answer'];
 				 $timetaken=$resultset['timetaken'];
-				  $question_detailsnew=getTableDetailsById($conn,'questions',$question_id);
 
-				 $maincorrectans=$question_detailsnew['correct'];
-				$test_attempt_detailsnew=GetUserCorrectAnsFromTidQid($conn,$question_id,$test_id);
-				$mainuserans=$test_attempt_detailsnew['answer'];
 
-if($mainuserans==0)
-{
-	$maintype=3;
-	$mainclass='Unanswered';
-	$maincolor='Orangee';
-	}
-	else{
-		if($mainuserans==$maincorrectans)
-		{
-			$maintype=1;
-		
-		$maincolor='green';	
-	$mainclass='Correct';
-			}
-			else{
-				$maintype=2;
-				
-		$maincolor='red';
-				$mainclass='Incorrect';
-				}
-		
-		}
-
-$ques_string=$question_id."#".$timetaken."#".$maintype."#".$mainclass."#".$maincolor;		
-	
+$ques_string=$question_id."#".$timetaken;		
 		$ques_array[]=$ques_string;
 		
 		 $difficulty=getdifficultyfromQId($conn,$question_id);
@@ -340,7 +314,7 @@ unattempt=parseInt(strArray[2]);
        <script type = "text/javascript">
          google.charts.load('current', {packages: ['corechart']});     
       </script>
-    <!--<script language = "JavaScript">
+    <script language = "JavaScript">
          function drawChartnew() {
 			 
 
@@ -392,7 +366,7 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
             chart.draw(data, options);
          }
          google.charts.setOnLoadCallback(drawChartnew);
-      </script>-->
+      </script>
 <!--
 <section class="top-head" style="padding:20px 0;margin-top: 0px !important;">
     
@@ -401,7 +375,7 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
 </section>
 -->
  
-<section class="main-container" style="background:#fff">
+<section class="main-container">
 
 
     
@@ -410,7 +384,7 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
       
               
     
-<div class="pt-50 pb-50">
+<div class="gray-bg pt-50 pb-50">
         <div class="container">
            <div class="row">
                <div class="col-md-12">
@@ -891,7 +865,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                        
                    </div>
                    
-                   <?php }else {?> <div class="pt-20 pb-50">
+                   <?php }else {?> <div class="gray-bg pt-20 pb-50">
         <div class="container">
            
                <div class="esaay">
@@ -982,10 +956,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                    <?php  if($sub_details_new['promptbased']!=1) 
 				   { if($btn_val==1){?> 
                    
-                 <div id = "container" style = "width: 100%; margin: 0 auto">
-                                                <div class="text-center"><h2 class="title">How you allocated your time</h2></div>
-
-                 	<canvas id="canvas"></canvas>
+                 <div id = "container" style = "width: 100%; height: 300px; margin: 0 auto">
 </div>  
 <?php } } }?>
                </div>
@@ -1124,248 +1095,6 @@ else if(($correct_val==0) && (($unanswered_val==0)))
     
     
    <?php include_once("footer.php");?>
-    <script src="js/chartmin.js"></script>
-	<script src="js/utils.js"></script>
-   
-    <script>
-
-
-
-		
-var arr=document.getElementById('qattempted').value;
-
-var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-	
-		var color = Chart.helpers.color;
-		var horizontalBarChartData = {
-			labels: [
-			
-			<?php 
-   
-    	$level_details=getTableDetailsById($conn,"levelsubjects",$decodedid);
-
-		$totalnoquestions=$level_details['questions'];
-		//$totaltime=$level_details['timings'];
-		$totaltime=$level_details['timings'];
-		$single="'";
-		for($i=$totalnoquestions;$i>=1;$i--)
-		{
-		echo $single.'Question '.$i.$single.',';
-		}
-		
-		$imstring_quesmain=explode(',',$imstring_ques);
-	//print_r($imstring_quesmain);
-		?>],
-			datasets: [
-			
-			<?php 	
-			$imstring_quesmain=explode(',',$imstring_ques);
-		
-			$arraycount=count($imstring_quesmain);
-			$coreectansarr=array();
-			$incoreectansarr=array();
-			$unansweredarr=array();
-			$maintimeforarray=array();
-			for($i=$arraycount;$i>=1;$i--)
-			{
-				
-			 $mainstringnew=explode('#',$imstring_quesmain[$i-1]);	
-		//	 print_r($mainstringnew);
-		$mainlablefor=$mainstringnew[2];
-			
-		$maintimefor=$mainstringnew[1];
-		
-		array_push($maintimeforarray,$maintimefor);
-		
-			if($mainlablefor==1)
-			{
-		
-			
-			array_push($coreectansarr,$maintimefor);
-			array_push($incoreectansarr,'');
-			array_push($unansweredarr,'');
-			
-				}
-				elseif($mainlablefor==2)
-				{
-			array_push($coreectansarr,'');
-			array_push($incoreectansarr,$maintimefor);
-			array_push($unansweredarr,'');
-			
-				}
-				else
-				{
-					
-			array_push($coreectansarr,'');
-			array_push($incoreectansarr,'');
-			array_push($unansweredarr,1);
-				
-					}
-				}
-				
-			$maximumtime=max($maintimeforarray);
-			if($maximumtime<=0)
-			{
-				$maximumtime='1';
-				}
-				else{$maximumtime=$maximumtime;}
-				
-			$coreectansarr=implode(',',$coreectansarr);
-			
-			$incoreectansarr=implode(',',$incoreectansarr);
-			
-		
-			
-			$unansweredarr=implode(',',$unansweredarr);	
-		
-			$count=0;
-			$incorrectarrtime=array();
-			$correctarrtime=array();
-			
-			foreach ($imstring_quesmain as $imstring_ques){
-				
-				
-			$mainstring=explode('#',$imstring_ques);
-			$mainlable[]=$mainstring[2];
-			$mainlablenew=$mainstring[2];
-				$maintime=$mainstring[1];
-			
-			
-			
-			}
-			$mainlable=array_unique($mainlable);
-			
-			foreach($mainlable as $mainlablevalue){
-				
-			$imstring_quesmain=explode(',',$imstring_ques);
-
-			if($mainlablevalue==1){
-			$name='Correct';
-			$color='green';	
-			}
-			elseif($mainlablevalue==2){
-			$name='Incorrect';	
-			$color='red';
-			}
-			
-			else{
-			$name='Unanswered';	
-			$color='orange';
-			}
-			
-			?>
-			
-			{
-				label: '<?php echo $name?>',
-				backgroundColor: color(window.chartColors.<?php echo $color?>).alpha(0.5).rgbString(),
-				borderColor: window.chartColors.<?php echo $color?>,
-				borderWidth: 1,
-				<?php if($mainlablevalue==1){?>
-				data: [
-					<?php echo $coreectansarr?>
-					
-				]
-				<?php }elseif($mainlablevalue==2){?>
-				data: [
-					<?php echo $incoreectansarr?>
-					
-				]
-				<?php }else{?>
-				data: [
-				<?php echo $unansweredarr?>
-				]
-				<?php }?>
-				
-			}, 
-			<?php }?>
-		
-			]
-
-		};
-
-		window.onload = function() {
-			
-			var ctx = document.getElementById('canvas').getContext('2d');
-			window.myHorizontalBar = new Chart(ctx, {
-				type: 'horizontalBar',
-				
-				data: horizontalBarChartData,
-				options: {
-					// Elements options apply to all of the options unless overridden in a dataset
-					// In this case, we are setting the border of each horizontal bar to be 2px wide
-					elements: {
-						rectangle: {
-							borderWidth: 2,
-						}
-					},
-					responsive: true,
-					legend: {
-						position: 'right',
-					},
-					 showAllTooltips: true,
-		    tooltips: {
-		      custom: function(tooltip) {
-		        if (!tooltip) return;
-		        // disable displaying the color box;
-		        tooltip.displayColors = false;
-		      },
-		callbacks: {
-        label: function(tooltipItem, data) {
-          var datasetLabel = '';
-          var label = data.labels[tooltipItem.index]; 
-		  var timetaken=data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-		  if(timetaken>0){
-		 var text="Time taken: "+timetaken+" secs";
-		  }
-		  else{
-			  var text='';
-			  }
-          return text;
-        }
-      }
-		    },
-					scales: {
-    yAxes: [{
-		
-      scaleLabel: {
-        display: true,
-        labelString: 'Questions'
-      }
-    }],
-	xAxes: [{
-		 ticks: {
-            		min: 0,
-                max:<?php echo trim($maximumtime)?>
-                },
-      scaleLabel: {
-        display: true,
-        labelString: 'Time (secs)'
-      }
-    }]
-  },
-					title: {
-						display: true,
-						text: 'Timing graph'
-					}
-				}
-			});
-
-		};
-
-
-
-
-
-
-
-
-
-	var colorNames = Object.keys(window.chartColors);
-
-
-
-	</script>
    <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
