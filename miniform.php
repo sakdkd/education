@@ -399,7 +399,7 @@ $Sub_names=$tab_details['name'];
     <!-- Standard Favicon -->
 <?php include_once("header.php");?>  
     <!-- /.navbar -->
-    <section style="    padding-top: 92px;">
+    <section style="padding-top: 65px;">
 <div class="upper-box-wrapper">
     <div class="container">
         <div class="row align-items-center">
@@ -415,11 +415,11 @@ $Sub_names=$tab_details['name'];
     </div>
 </div> 
 	</section>
- <section class="end-sec">
+ <section class="end-sec" style="min-height: 450px;">
  
  	<div class="container">
  		<div class="row">
- 			<div class="col-md-8 col-md-offset-2 customer1">
+ 			<div class="col-md-8 offset-md-2 customer1">
  				<h2 class="info-sect">Done with this section?</h2>
  				<p>Please confirm that you would like to end this section.</p>
  				<div class="row">

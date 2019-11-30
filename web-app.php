@@ -6,12 +6,27 @@ include_once('db_class/hr_functions.php');
 $page="web-app.php";
 $userid=$_SESSION['userid'];
 $tbname="orders";
-$order_id=$_SESSION['orderid'];
-$packages_id=$_SESSION['packid']; 
- $stime=$_SESSION['stime']; 
-unset($_SESSION['stime']);
-$order_details=orderidbyUserid($conn,$userid);
+$pageno='1';
 
+$order_id=$_SESSION['orderid'];
+$packages_id=$_SESSION['packid'];  
+ $stime=$_SESSION['stime']; 
+ 
+ $tbname="register";
+$user_details=getTableDetailsById($conn,$tbname,$userid);
+$savedsid=$user_details['sid'];
+
+unset($_SESSION['stime']);
+if($packages_id=="")
+{
+	
+$order_details=orderidbyUserid($conn,$userid);
+ $order_id=$order_details['id'];	
+ $order_list_details1=getSingleBoughtPackagefromOid($conn,$order_id);
+	$packages_id=$order_list_details1['planid'];
+} 
+
+ $package_arr=getBoughtPackagefromOid($conn,$order_id);
 if($order_id=="")
 
 {
@@ -26,7 +41,9 @@ else
 	
 	
 }
+
  $order_list_details=getSingleBoughtPackagefromOid($conn,$order_id);
+ 
 if(isset($_GET['did'])){      
 
 	 $did=base64_decode($_GET['did']); 
@@ -49,10 +66,14 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 	}
 
 
-
 }
-
-							  
+$edu_pricingqfeatures_id=getedu_pricingqfeaturesFrompackidandqid($conn,$packages_id,"2"); 
+if($packages_id=='')
+{
+	
+$levelnamess=getColoumnNameById($conn,"name","edu_levels",$savedsid);
+	
+}
 
 ?>
 <!DOCTYPE html>
@@ -87,7 +108,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                            
                            
                            
-                                               <div class="card">
+                                               <!--<div class="card">
                                                <?php if($trial_val==1){ ?>
                             <div id="accordion">
                             
@@ -98,7 +119,6 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 							{ $created_id="collapse#".
 							$fetch_mini=mysqli_fetch_assoc($mini_query);
 							$created_id="collapse".$fetch_mini['id'];
-							
 							$m_id=$fetch_mini['id'];
       $test_name=$fetch_mini['name'];
 	  $levelcount= count(Getmainrecordids($conn,$m_id));
@@ -132,7 +152,6 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                                  <div class="card-body">
                                  
                                 <?php 
-							//	echo "select * from `minitest` where `view`='1' and `status`='1' and `level_id`='$m_id'"; 
 							$mini_query=mysqli_query($conn,"select * from `minitest` where `view`='1' and `status`='1' and `level_id`='$m_id'"); 
 						  $numrows=mysqli_num_rows($mini_query);
 							if($numrows>0)
@@ -141,26 +160,30 @@ $tab_details=getTableDetailsById($conn,$table,$id);
 						$minitestid=$resultset['id'];  
 							$subjecttab="subjects";
 							
+							
 							$sub_details=getTableDetailsById($conn,$subjecttab,$subject_id);
-
 						$timings=$resultset['timings'];	
 						$questions=$resultset['questions'];	
+						
+						
 						 $test_given_details=getminitest_statusfromTestId($conn,$minitestid,$userid,$subject_id);
-				//print_r($test_given_details);
+			//	print_r($test_given_details);
 						
 						$testgid=$test_given_details['id'];
 	 $button_val=$test_given_details['button'];
 	  $maintid=$test_given_details['id'];
-	  
+	   
 	
+	 // $subject_existence=existenceofattachedsubjectfromlevelandSubject($conn,$levelchoosen,$subject_id);
+	  $subject_existence=1;
+	  if($subject_existence>0)
 	  
-	  
-							?> 
-                                   <div class="rdx complete">
+					{		?> 
+                                /// already <div class="rdx complete">
                                        <div class="row align-items-center">
                                                <!--<div class="col-md-2 text-center">
                                                    <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
-                                               </div>-->
+                                               </div>////already
                                                <div class="col-md-2 text-center">
                                                    <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope"><?php echo $timings;?><br><span>min</span></small></div>
                                                </div>
@@ -191,7 +214,7 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                                                 
                                          </div>
                                    </div>   
-                                   <?php } }?>  
+                                   <?php } } }?>  
                                      
                                      
                                       
@@ -209,30 +232,42 @@ $tab_details=getTableDetailsById($conn,$table,$id);
                            </div>
                            
                            <?php } else {}  ?>
-                                               </div>
+                                               </div>-->
                                 
                                 
                                 
                                <?php 
+ $cval=count($package_arr);
 
+if($cval>0)
+{
 							   foreach($package_arr as $pack_id)
 							   {
 							   
 							   
 							   ?> 
                                 
-                                <div class="card">
+                                <div class="card no-shadow web-app">
                             <div id="accordion">
                             
                             <?php 
-	$main_query=mysqli_query($conn,"select `sets` from `edu_pricingqfeatures` where `qfeatureid`='2' and `pricingid`='$pack_id'");
-						  $numrows=mysqli_num_rows($main_query);
-							if($numrows>0)
-							{ 
-							$setval_detail=mysqli_fetch_row($main_query);
 							
-							$setvals=$setval_detail[0];
-							$setval=$order_list_details['qty']*$setvals;
+	//$main_query=mysqli_query($conn,"select `sets` from `edu_pricingqfeatures` where `qfeatureid`='2' and `pricingid`='$pack_id'");
+//echo "select * from `full_test_created` where `eduqfeature_id`='$edu_pricingqfeatures_id'"; 
+	$main_query=mysqli_query($conn,"select * from `full_test_created` where `eduqfeature_id`='$edu_pricingqfeatures_id' and `status`='1' and `view`='1'");
+						 $numrows=mysqli_num_rows($main_query);
+						 $loopval=0;
+							if($numrows>0)
+							
+							{ 
+							while($result_set=mysqli_fetch_array($main_query))
+							{ 
+							
+							
+							$decoded_testid=$result_set['id'];
+							$new_test_id=base64_encode($result_set['id']);
+						//	print_r($result_set); 
+							
 							$edupricing_details=getTableDetailsById($conn,"edu_pricing",$pack_id);
 $package_lid=$edupricing_details['level_id'];
 $leveltable="edu_levels";
@@ -240,9 +275,8 @@ $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$package_lid);  
 
  $levelname=$level_details['name'];
-							for($loopval=1;$loopval<=$setval;$loopval++)
-							{
-							
+						
+							$loopval++;
 							//$created_id="collapsenew#".
 							$fetch_mini=mysqli_fetch_assoc($mini_query);
 							//$created_id="collapse".$fetch_mini['id'];
@@ -266,7 +300,6 @@ $level_details=getTableDetailsById($conn,$leveltable,$package_lid);
 		  
 		  
 	  }
-	  
 	 
 							?>
                              <div class="card">
@@ -284,11 +317,12 @@ $level_details=getTableDetailsById($conn,$leveltable,$package_lid);
                                  <div class="card-body">
                                  
                                 <?php
+								
 							$mini_query=mysqli_query($conn,"select * from `levelsubjects` where `view`='1' and `status`='1' and `level_id`='$package_lid'");
 						  $numrows=mysqli_num_rows($mini_query);
 							if($numrows>0)
 							{ while($resultset=mysqli_fetch_array($mini_query))
-							{     $subject_id=$resultset['subject_id'];
+							{   $subject_id=$resultset['subject_id'];
 							$minitestid=$resultset['id'];
 							$subjecttab="subjects";
 							$num_ques_attempt='0';
@@ -297,14 +331,16 @@ $level_details=getTableDetailsById($conn,$leveltable,$package_lid);
 							$sub_details=getTableDetailsById($conn,$subjecttab,$subject_id);
  $promptbased=$sub_details['promptbased'];
 
-						$timings=$resultset['timings'];	
+						$timings=$resultset['timings'];	  
 						$questions=$resultset['questions'];	
 						
 						
 						//$test_given_details=gettest_statusfromTestId($conn,$m_id,$userid,$subject_id,$minitestid);
-		$test_given_details=gettest_statusfromTestId($conn,$m_id,$userid,$subject_id,$minitestid,$loopval);				 
+	//	$test_given_details=gettest_statusfromTestId($conn,$m_id,$userid,$subject_id,$minitestid,$loopval);	
+					$test_given_details=gettest_statusfromTestId($conn,$m_id,$userid,$subject_id,$minitestid,$decoded_testid);	
+		// print_r($test_given_details);
 			$tgid=	$test_given_details['id'];		 
-					//print_r($test_given_details);
+				//	print_r($test_given_details);
 					$show_v='0';
 					if($test_given_details=='')
 					{
@@ -324,15 +360,17 @@ $button_val=$test_given_details['button'];
 		 $num_ques_attempt=0;
 	  }
 	  
-	  $redirection_page="newexam.php";
+	//  $redirection_page="newexam.php";
+	  	  $redirection_page="instructions.php";
+
 	  if($promptbased==1)
 	  {
 		 $redirection_page ="essay.php";
 		  
 		  
 	  }
-	 if($sub_details['status']==1)
-											   { ?>
+	// if($sub_details['status']==1)
+											  // { ?>
 							 
                                    <div class="rdx complete">
                                        <div class="row align-items-center">
@@ -365,7 +403,7 @@ $button_val=$test_given_details['button'];
                                                        
                                                          <div class="col-md-2 text-center">
 
-                                               <a href="<?php echo $redirection_page;?>?id=<?php echo base64_encode($minitestid);?>&test=<?php echo $tgid;?>&testtype=practice"> <div class="view-result"><img src="img/icons8-play.png" width="30" alt=""></div> 
+                                               <a href="<?php echo $redirection_page;?>?id=<?php echo base64_encode($minitestid);?>&test=<?php echo $new_test_id;?>&testtype=practice"> <div class="view-result"><img src="img/icons8-play.png" width="30" alt=""></div>  
                                                        <sub>Continue</sub></a>
                                                     </div> <div class="col-md-2 text-center">
                                                  <a onclick="return confirm('Are you sure you want to reset your test!')" href="<?php echo $page ?>?did=<?php echo base64_encode($maintestid); ?>">  <div class="reset"><img src="img/reset.png" width="35" alt=""></div></a>
@@ -376,7 +414,7 @@ $button_val=$test_given_details['button'];
                                                        <?php } else {?>
                                                                                                                                                      <div class="col-md-2 text-center">
 
-                                                       <a href="<?php echo $redirection_page;?>?id=<?php echo base64_encode($minitestid);?>&test=<?php echo $m_id;?>&testtype=practice"> <div class="view-result"><img src="img/icons8-play.png" width="30" alt=""></div> 
+                                                       <a href="<?php echo $redirection_page;?>?id=<?php echo base64_encode($minitestid);?>&test=<?php echo $new_test_id;?>&testtype=practice"> <div class="view-result"><img src="img/icons8-play.png" width="30" alt=""></div> 
                                                        <sub>Start</sub></a>
                                                        </div>
                                                        <?php }?>
@@ -385,7 +423,7 @@ $button_val=$test_given_details['button'];
                                                 
                                          </div>
                                    </div>   
-                                   <?php  } } }?>  
+                                   <?php   } }?>  
                                      
                                      
                                       
@@ -396,7 +434,6 @@ $button_val=$test_given_details['button'];
                                  </div>
                                </div>
                              </div>
-                             
                              <?php }}?>
                              
                              
@@ -405,7 +442,193 @@ $button_val=$test_given_details['button'];
                      
                                                </div>               
                                 
-                                <?php }?>               
+                                <?php } } else {
+									
+									?>
+                                 <div class="card no-shadow web-app">
+                                  <div id="accordion" class="locked">
+                            
+                                                         <div class="card">
+                               <div class="card-header" id="headingOne">
+                                 <h5 class="mb-0">
+                                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapsenewcollapsenew1" aria-expanded="true" aria-controls="collapseOne">
+                                     <div class="small-title"><?=$levelnamess;?></div>
+                                     <div class="big-title">Practice Test #1  <a href="<?= $baseurl;?>/pricing.php"><span class="progress-status">Upgrade <span class="lock-icon"><i class="fa fa-lock"></i></span></span></a></div>  
+                                     
+                                   </button>
+                                 </h5>
+                               </div>
+                           
+                               <div id="collapsenewcollapsenew1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                 <div class="card-body">
+                                 
+                                							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">35<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">Verbal Reasoning</div>
+                                                                                                    <sub>0 of 37 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+
+                                                       <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">35<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">Quantitative Reasoning</div>
+                                                                                                    <sub>0 of 37 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+
+                                                       <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">35<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">Reading Comprehension</div>
+                                                                                                    <sub>0 of 36 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+ <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">60<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">Mathematics Achievement</div>
+                                                                                                    <sub>0 of 4 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+
+                                                       <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">1<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">Essay</div>
+                                                                                                    <sub>0 of 1 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+
+                                                        <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                   <div class="rdx complete">
+                                       <div class="row align-items-center">
+                                               <!--<div class="col-md-2 text-center">
+                                                   <div class="time-status"><img src="img/correct.svg" width="40" alt=""></div>
+                                               </div>-->
+                                              
+                                               
+                                               <div class="col-md-2 text-center">
+                                                   <div class="time-status"><svg width="60" height="60" viewBox="0 0 66 66" class="circle-progress"><circle cx="32" cy="32" r="28" fill="none" stroke="#e3e3e3" stroke-width="5"></circle><circle cx="32" cy="32" r="28" fill="none" stroke="#3ca499" stroke-width="5" stroke-dasharray="175.929" stroke-dashoffset="176" class="progress__value"></circle></svg><small ng-if="sec.timeRemaining &amp;&amp; sec.status != 5" class="center ng-binding ng-scope">10<br><span>min</span></small></div>
+                                               </div>
+                                               <div class="col-md-6">
+                                                   <div class="section-title">General Science</div>
+                                                                                                    <sub>0 of 10 questions complete</sub>   
+                                                                                                 </div>
+                                                                                                                                                                                                    <div class="col-md-2 text-center">
+
+                                                        <div class="q-lock"><i class="fa fa-lock"></i></div>
+                                                       </div>
+                                                                                                     
+                                               
+                                                
+                                         </div>
+                                   </div>   
+                                   							 
+                                
+                                   </div>   
+                                     
+                                     
+                                     
+                                      
+                                     
+                                       
+                                     
+                                    
+                                 </div>
+                               </div>
+                             </div>
+                                                          
+                               </div>
+                             </div>
+                                                          
+                                                          
+                                                          
+                                                          
+                             
+                           </div></div>
+                                    <?php }?>             
                        </div>     
                 </div>
                 
@@ -427,6 +650,7 @@ $button_val=$test_given_details['button'];
 														$pcount=count($package_arr);
 														if($pcount>0)
 														{ 
+														
 														foreach($package_arr as $pack_id)
 							   { 
                                                         
@@ -484,7 +708,7 @@ $package_lid=$edupricing_details['level_id'];
                 </div>
                 
                 <?php } }else{?>
-                <div class="col-md-4">
+                <div class="col-md-4" style="display:none">
                    <div class="static-div">
                   <h2>UPGRADE YOUR ACCOUNT TO GET THE PRACTICE YOU NEED!</h2>
                   

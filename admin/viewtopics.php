@@ -262,8 +262,11 @@ $prompt=$tb_subject1['promptbased'];
 	
 ?>
 <div class="col-md-2 topics-list">
-<div class="topic-font"><?php echo $resultset['topics'];?></div>   
-<div class="topic-font"><span><?php echo $ques_count;?> question(s)</span><a href="<?php echo $page_name;?>?id=<?php echo base64_encode($ids);?>"><button class="btn btn-primary">Add Questions</button></a></div> 
+<div class="topic-font"><strong><?php echo $resultset['topics'];?></strong></div>   
+<div class="topic-font"><span style="line-height:41px;"><?php echo $ques_count;?> question(s)</span>
+<span style="text-align:center"><a href="<?php echo $page_name;?>?id=<?php echo base64_encode($ids);?>"><button class="btn btn-primary">Add Questions</button></a>
+</span>
+</div> 
 
 
 

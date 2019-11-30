@@ -34,7 +34,9 @@ section.top-head {
 if(($orderidcount>1) || ($n_rows>1))
 {
 	
-	$repage="dashboard.php";
+//	$repage="dashboard.php";
+	$repage="web-app.php";
+
 }
 
 else
@@ -62,7 +64,7 @@ else
     </div>
 </div>
 
- <img src="images/call-to-action.png" class="call-toee">
+<!-- <img src="images/call-to-action.png" class="call-toee">-->
 </div>
     
     
@@ -129,7 +131,7 @@ else
                 </div>
                 <div class="col-sm-9"> 
               <div class="cont-boxxx">  
-                <h2>Intractive</h2>
+                <h2>Interactive</h2>
                 <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry</p>
                 </div>
                 </div>
@@ -142,7 +144,7 @@ else
         
         <div class="col-sm-6">
       		<div class="boxxx">
-            	<a href="#">
+            	<a href="<?= $baseurl;?>/contact.php">
                 <div class="row">
                 <div class="col-sm-3">
                 <div class="icon-boxxx">

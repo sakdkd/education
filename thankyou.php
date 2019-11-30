@@ -42,7 +42,7 @@ $my_orderid=base64_decode($_GET['oid']);
  			</div>
             
             <div class="col-sm-12" style="text-align:center; display:inline-block">
- 				<p>Your Order ID is  "<?php echo $my_orderid;?> Please Click <a href="<?php echo $baseurl;?>/welcome.php" style="text-decoration:underline">here</a> to view package</p>
+ 				<p>Your Order ID is  "<b><?php echo $my_orderid;?></b>" Please Click <a href="<?php echo $baseurl;?>/welcome.php" style="text-decoration:underline">here</a> to view package</p>
  			</div>
  		</div>
         <img class="dashboard-img" src="images/dashboard-img.png">

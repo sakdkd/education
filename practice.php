@@ -5,7 +5,7 @@ include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
 $tbname="register";
-
+$pageno='2';
 $order_details=orderidbyUserid($conn,$userid);
  $order_id=$order_details['id'];
 $package_arr=getBoughtPackagefromOid($conn,$order_id);
@@ -57,7 +57,7 @@ $sub_arr=GetLevelSubjectmainidfromLevelid($conn,$levelchoosen);
 </div>
 </section>
 <section class="practice-con">
-   <div class="container background">
+   <div class="container background no-border no-padding">
  <div class="row">
 <div class="main-test col-md-12" style="">
   <div class="row">

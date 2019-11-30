@@ -152,51 +152,6 @@ if(isset($_GET['msg'])){
 
 
 
-  <script>
-
-
-
-function validate(){
-
-	var name=document.getElementById('name').value;
-	name=name.trim();
-place=document.getElementById('place').value;
-description=document.getElementById('description').value;
-	description=description.trim();
-	place=place.trim();
-
-	if(name==''){
-
-	
-
-		alert("Please enter name ");
-
-		return false;	
-
-		}
-
-	if(place==''){
-
-	
-
-		alert("Please enter a place ");
-
-		return false;	
-
-		}if(description==''){
-
-	  
-
-		alert("Please enter description ");
-
-		return false;	
-
-		}
-
-}
-
-</script>
-
   </head>
 
 
@@ -424,16 +379,6 @@ description=document.getElementById('description').value;
       </div>
 
     </div>
-
-    <script>
-	
-	
-
-
-
-	
-
-	</script>
 
 
 

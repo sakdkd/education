@@ -88,7 +88,9 @@ $admission_details=getTableDetailsById($conn,"admissiontype",$admissiontype);
                 </div>
             </div> 
             
-            <div class="row"><div class="col-md-2"><img src="<?php echo $baseurl;?>/docs/<?php echo $school_details['logo'];?>" alt=""></div></div>
+            <div class="row"><div class="col-md-2 mx-auto"><div class="school-logo">
+                <img src="<?php echo $baseurl;?>/docs/<?php echo $school_details['logo'];?>" alt="">
+            </div></div></div>
             
             <div class="row">
                 <div class="col-md-4">

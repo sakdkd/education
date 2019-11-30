@@ -387,7 +387,43 @@ $(".topic_form").validate({
 	
 
 	
+$("#contact_form").validate({
 
+                rules: {
+               
+				contact_name:{
+				required:true,       
+				alls:true,
+                },
+					contact_mobile:{
+				required: true,
+				number: true,
+
+                },
+				   
+				contact_email:{
+				required: true,
+				emailcode: true,
+
+                },
+				
+				contact_msg:{
+				required: true,
+				alls:true,
+
+                },
+				   
+				},
+			  messages: { 
+           
+    } ,
+				
+				
+				
+		    submitHandler: save_contact_details
+		
+			
+	})
 $("#country_form").validate({
 
                 rules: {
@@ -690,6 +726,40 @@ function gotolevel(){
 
 	}
 
+
+$("#choose_level_paper").validate({
+
+                rules: {
+               
+				level:{
+				required:true,       
+                },
+					subjectid:{
+				required: true,
+      
+                },
+				
+				
+				
+				},
+			  messages: { 
+    } ,
+				
+				
+	    submitHandler: gotoTest
+			
+			
+			
+	})
+function gotoTest(){
+		val=document.getElementById('level').value
+		
+	subject=document.getElementById('hiddenvalue').value;
+		
+		
+		window.location.href='show_topics.php?id='+btoa(subject)
+
+	}
 
 function gotoquesdiv(){
 		val=document.getElementById('level').value
@@ -1150,11 +1220,69 @@ alert("Already registered");
 
 		
 		
+	}
+	
+	
+	function save_contact_details()
+	{
+	
+	
+	 var data = $("#contact_form").serialize();
+	
+		email=$("#contact_email").val();
+		name=$("#contact_name").val();
+		mobile=$("#contact_mobile").val();
+				msg=$("#contact_msg").val();
+
+//trial=$("#default_level").val();
+
+///alert(landing_type);
+	$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/contact_form.php", 
+        data: data,
+		dataType:'json', 
+
+        success: function(result) {
+			//alert(result.status);
+        if(result.status==1)
+		 {
+			 
+			 
+			 			 $('#myform').hide();
+
+			 $('#enquirypopup').show();
+			 }  
+		  
+        if(result.status==2)
+		 {
+			 
+			 
+			 
+			 }    
+		 else 		          if(result.status==0)
+
+
+		 {
+			document.getElementById('pagetitle').innerHTML="Some problem has occurred";
+	
+		 }
+		 
+        },
+        error: function(result) {
+            
+        }
+    });
+
 		
+		
+	
 		
 		
 		
 	}
+	
 	
 	function change_password()
 	{
@@ -1913,8 +2041,10 @@ function addtocart(levelid,packageid)
 			if(result.cart>0)
 			{
 				cartval=result.cart;
-				
+			$( "#cart_count" ).addClass( "carts" );
+	
 		$('#cart_count').html(cartval);	
+		
 			
 addtocartmsg();			}
             }
@@ -1930,7 +2060,6 @@ addtocartmsg();			}
 function showdiv(tid,lid)
 {
 	
-	alert();
 	    
 
           $.ajax({
@@ -2149,15 +2278,19 @@ cartclearmsg();
 	
 	function pracquestionvisibility(type)
 	{
-		   
+		 arr_string=$('#hidden_dis_array').val();
+		  
+   
+		  
 	question_value=parseInt(document.getElementById('question_value').value);
+			  var result_arr=arr_string.split(',');
+alert(question_value);
 mainActiveques=document.getElementById('mainActiveques').value;
-	
 	if(type=='2')
 	{
 	
 	var newval=1 + parseInt(question_value);
-	
+	//alert(newval);
 document.getElementById('question_value').value=newval;
 	if(newval>1)
 {
@@ -2356,16 +2489,13 @@ if(document.getElementById('effected'+newval).value!='')
 
 }
 function practiceQuestion(val)   
-{
-	//in active
- 
+{ 
 
 	mainActiveques=document.getElementById('mainActiveques').value;
-
-
 //	mainActiveques=document.getElementById('mainActiveques').value=val;
 
 document.getElementById('question_value').value=val;
+//document.getElementById('question_value').value
 if(val==1)
 {   
 
@@ -2395,13 +2525,12 @@ else
 $('.tab-content').addClass('not-active');
 //	document.getElementById('Q'+val).style.display='block';
 		 $('#Q'+val).addClass("in active").removeClass('not-active');;
+	var question_ids=document.getElementById('Qq'+val).value;
 
-
-	
 	if(document.getElementById('showcommentboxval').value==1)
 {
-showcommentbox(val);
-
+showcommentbox(question_ids);
+ 
 }
 	
 	
@@ -2583,7 +2712,7 @@ request.done(function(msg) {
 			
         },
         success: function(result) {
-		alert();	
+			
         },
         error: function(result) {
             
@@ -2660,19 +2789,434 @@ function setboughtpackage(packid,oid)
 			oid:oid,
 			
         },
-        success: function(result) {},
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+				
+				window.location.href=baseurl+"/web-app.php"; 
+				
+			}
+			
+			
+			},
         error: function(result) {
             
         }
     });
+}
+
+
+function getpackid(packid,uid)
+{
 	
 	
 	
-	
-	
-	
+	$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/getpackid.php",
+        data: { 
+        	packid:packid,
+			uid:uid,
+			
+        },
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+				setboughtpackage(packid,result.oid);
+				//window.location.href=baseurl+"/web-app.php"; 
+				
+			}
+			
+			
+			},
+        error: function(result) {
+            
+        }
+    });
+
 	
 	
 }
 
 
+        $('button').on('click', function() { 
+            var array = []; 
+            $("input:checkbox[name=type]:checked").each(function() { 
+                array.push($(this).val()); 
+            }); 
+            $('#GFG_DOWN').text(array); 
+        }); 
+
+function assigntestplanswithquestion(quesid,planid,qfeaturid,topicid)
+{
+
+
+document.getElementById('loader'+qfeaturid).style.display='block';
+
+
+document.getElementById('buttonid'+qfeaturid).style.display='none';
+
+
+
+
+var items=document.getElementsByName('paper'+qfeaturid);
+		var selectedItems=[];
+		for(var i=0; i<items.length; i++){
+			if(items[i].type=='checkbox' && items[i].checked==true)
+				selectedItems.push(items[i].value);
+		}
+	
+
+		 var xmlHttpReq = false;
+			
+			if (window.XMLHttpRequest)
+	 	
+			{
+		 
+		 xmlHttpReq = new XMLHttpRequest();
+		
+		 }
+else if (window.ActiveXObject)
+{
+	xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlHttpReq.onreadystatechange = function()
+	{
+		
+	if (xmlHttpReq.readyState == 4)
+	{    
+	
+	response=xmlHttpReq.responseText;
+	if(response==1)
+	
+	{
+	
+	document.getElementById('loader'+qfeaturid).style.display='none';
+	document.getElementById('buttonid'+qfeaturid).style.display='block';
+
+	}
+	
+	}
+	else{ 
+	}
+	}
+
+
+	xmlHttpReq.open('GET', baseurl + '/ajaxCallToPhp/assigntestpaers.php?quesid=' + escape(quesid)+ '&planid=' + escape(planid)+ '&qfeaturid=' + escape(qfeaturid) +'&selectedItems=' + escape(selectedItems) +'&topicid=' + escape(topicid), true);
+	    xmlHttpReq.send(null);
+		
+		
+
+	
+	}
+	
+	
+	
+	function Show_come_back(div_id,uid)
+	{
+		tid=$("#testNameid").val();
+		level=$("#LEvel_ids").val();
+
+		if ( $("#li"+div_id).hasClass("click-dot") ) { 
+		  $("#li"+div_id).removeClass("click-dot");
+		 $("#dot"+div_id).removeClass("dot");
+val="delete";
+		}
+		else
+		{
+		 $("#li"+div_id).addClass("click-dot");
+		 $("#dot"+div_id).addClass("dot");
+
+		val="add";
+	
+		}
+		
+		$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/comelater.php",
+        data: { 
+        	level:level,
+			uid:uid,
+			tid:tid,
+			div_id:div_id,
+			val:val
+        },
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+			
+				//window.location.href=baseurl+"/web-app.php"; 
+				
+			}
+			
+			
+			},
+        error: function(result) {
+            
+        }
+    });	
+		
+	}
+	
+	
+	function omitted(div_id,uid)
+	{
+		
+		tid=$("#testNameid").val();
+		level=$("#LEvel_ids").val();
+
+					  $("#cross"+id).toggleClass("line");
+
+		
+		$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/omitted.php",
+        data: { 
+        	level:level,
+			uid:uid,
+			tid:tid,
+			div_id:div_id,
+        },
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+			  $("#cross"+id).toggleClass("line");
+
+				//window.location.href=baseurl+"/web-app.php"; 
+				
+			}
+			
+			
+			},
+        error: function(result) {
+            
+        }
+    });	
+		
+	
+		
+		
+		
+	}
+	
+	function filteredques(myclass)
+	{					   	   $('#next_btn').prop('disabled', false);
+
+				$('#filtered_class').val("");
+my_testId=$('#my_testId').val();
+
+		$('ul li').removeClass("fadeout");;
+
+		$('ul#myTabs1 li').not("."+myclass).addClass("fadeout");;
+
+	//$("ul#list li!"+myclass).addClass("test");
+	
+		
+		$('#filtered_class').val(myclass);
+		
+		$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/jump_to_ques.php",
+        data: { 
+        	myclass:myclass,
+			my_testId:my_testId
+			        },
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+
+			
+			
+				//window.location.href=baseurl+"/web-app.php"; 
+						 arr_string=$('#hidden_dis_array').val(result.m_string);
+	  $('.nav-pills li.active').removeClass('active');
+
+		//	 $('#li1').addClass("active");
+	 //$('#Q'+question_value).removeClass("active");
+
+
+$('#question_value').val(1);
+			}
+			
+			
+			},
+        error: function(result) {
+            
+        }
+    });	
+		
+	}
+	
+	function strikeout(id)
+{
+  $("#cross"+id).toggleClass("line");
+  tid=$("#testNameid").val();
+		level=$("#LEvel_ids").val();
+		uid=$('#Uid').val();
+  var resultset=id.split("_");
+  
+  div_id=resultset[0];
+  ans=resultset[1];;
+		$.ajax({
+        type: "POST",
+		dataType:'json',
+        url: baseurl+"/ajaxCallToPhp/omitted.php",
+        data: { 
+        	level:level,
+			uid:uid,
+			tid:tid,
+			div_id:div_id,
+			ans:ans
+            },
+        success: function(result) {
+			//alert(result);
+			if(result.status==1)
+			{
+			
+				//window.location.href=baseurl+"/web-app.php"; 
+				
+			}
+			
+			
+			},
+        error: function(result) {
+            
+        }
+    });
+	}
+	
+	
+	
+	
+		function pracquestionvisibilityView(type)
+	{ 
+		 arr_string=$('#hidden_dis_array').val();
+		  $('.nav-pills li.active').removeClass('active');
+	  
+		  $('.tab-content').children('div').removeClass('active');
+	question_value=parseInt(document.getElementById('question_value').value);
+			  var result_arr=arr_string.split(',');
+			  
+//alert(result_arr[question_value]);
+mainActiveques=document.getElementById('mainActiveques').value;
+	if(type=='2')
+	{
+	
+	var newval=1 + parseInt(question_value);
+	newval=result_arr[newval-1];
+	//alert(newval);
+document.getElementById('question_value').value=1 + parseInt(question_value);
+	if(newval>1)
+{
+// alert(newval);
+ //alert(question_value);
+	//document.getElementById('prev_btn').style.display='block';
+		  // $('#li'+question_value).removeAttr("active");
+
+		  // $('#li'+newval).addClass("active");
+
+	   $('#prev_btn').removeAttr("disabled");
+	   if(mainActiveques==newval)
+	   {
+		   
+		   	   $('#next_btn').prop('disabled', true);
+
+	   }
+
+	question_id=parseInt(document.getElementById('option'+newval).value);
+		answer_id=document.getElementById('Ans'+question_id).value;
+		//alert(answer_id);
+		if(answer_id!='')
+		{
+		document.getElementById('Qs'+question_id+answer_id).checked=true;
+		}
+}
+
+	  $('.nav-pills li.active').removeClass('active');
+
+			 $('#li'+newval).addClass("active");
+
+	 $('#Q'+question_value).removeClass(" active");
+
+	 $('#Q'+newval).addClass(" active");
+
+	}
+	else if(type=='1')
+	{
+	
+	var newval=parseInt(question_value)-1;
+document.getElementById('question_value').value=parseInt(question_value)-1;
+
+	newval=result_arr[newval-1];
+	if(newval==1)
+{
+
+	   $('#prev_btn').prop('disabled', true);
+	
+	
+}
+else
+{
+	
+		   $('#next_btn').prop('disabled', false);
+
+	
+}
+	  $('.nav-pills li.active').removeClass('active');
+
+			 $('#li'+newval).addClass("active");
+
+	//document.getElementById('question_value').value=newval;
+	
+	 $('#Q'+question_value).removeClass("active");
+
+	 $('#Q'+newval).addClass("active");
+	 question_id=parseInt(document.getElementById('option'+newval).value);
+
+		answer_id=document.getElementById('Ans'+question_id).value;
+if(answer_id!='')
+{
+			document.getElementById('Qs'+question_id+answer_id).checked=true;
+}
+
+	}
+
+if(document.getElementById('showcommentboxval').value==1)
+{
+showcommentbox(question_id);
+
+}
+	}
+	
+	
+
+
+$(document).ready(function () {
+  
+    $(".question-box-new").each(function () {
+	
+        var self = $(this);
+        var numbering = self.find(".lineNumbering").first();
+	
+        var messageText = self.find("p").first();
+        var lineHeight = numbering.text("...").height();
+        var lines = messageText.height() / lineHeight;
+	
+        var lineNumberingHtml = "";
+        for(var i = 1; i <= lines; i++) {
+            lineNumberingHtml = "" + lineNumberingHtml + i + "<br />";
+        }
+        
+        numbering.html(lineNumberingHtml);
+    });
+});

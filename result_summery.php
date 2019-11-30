@@ -5,26 +5,32 @@ session_start();
 include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
+$show_design=0;
+		$aclass="";
+
+ $test_id=$_GET['test'];; 
 
 if(isset($_GET['id']))
 {
  $test_id=$_GET['test'];; 
-		 $att_lid=$_GET['id'];
+ $testname=getColoumnNameById($conn,"testname","testgiven",$test_id);
+		$att_lid=$_GET['id'];
 
-  $decodedid=base64_decode($_GET['id']);   
+$decodedid=base64_decode($_GET['id']);                
  
  							$level_details=getTableDetailsById($conn,"levelsubjects",$decodedid);
-
+   
 
  			$sub_details_new=getTableDetailsById($conn,"subjects",$level_details['subject_id']);
 
-
-
+	$att_level_id=getColoumnNameById($conn,"levelid","testgiven",$test_id);
+		$mySavedTest_Name=getColoumnNameById($conn,"testname","testgiven",$test_id);
+   
 $attachedlevelid=$level_details['level_id'];
 								$subject_arr=GetSubjectsidsfromLevelid($conn,$attachedlevelid);
-	
+	//echo "select * from `testattempted` where `testid`='$test_id'";
 	$selects=mysqli_query($conn,"select * from `testattempted` where `testid`='$test_id'");
-	 $numrows=mysqli_num_rows($selects);
+	$numrows=mysqli_num_rows($selects);
 	
 	if($numrows>0)
 	{      
@@ -32,13 +38,40 @@ $attachedlevelid=$level_details['level_id'];
 
 	while($resultset=mysqli_fetch_array($selects))
 	{
-		
 		 $question_id=$resultset['questionid'];
 		$user_answer=$resultset['answer'];
 				 $timetaken=$resultset['timetaken'];
+				  $question_detailsnew=getTableDetailsById($conn,'questions',$question_id);
 
+				 $maincorrectans=$question_detailsnew['correct'];
+				$test_attempt_detailsnew=GetUserCorrectAnsFromTidQid($conn,$question_id,$test_id);
+				$mainuserans=$test_attempt_detailsnew['answer'];
 
-$ques_string=$question_id."#".$timetaken;		
+if($mainuserans==0)
+{
+	$maintype=3;
+	$mainclass='Unanswered';
+	$maincolor='Orangee';
+	}
+	else{
+		if($mainuserans==$maincorrectans)
+		{
+			$maintype=1;
+		
+		$maincolor='green';	
+	$mainclass='Correct';
+			}
+			else{
+				$maintype=2;
+				
+		$maincolor='red';
+				$mainclass='Incorrect';
+				}
+		
+		}
+
+$ques_string=$question_id."#".$timetaken."#".$maintype."#".$mainclass."#".$maincolor;		
+	
 		$ques_array[]=$ques_string;
 		
 		 $difficulty=getdifficultyfromQId($conn,$question_id);
@@ -198,6 +231,19 @@ else
 }
 
 
+
+
+if(isset($_GET['type']))
+
+{
+	
+	
+	
+	$show_design=1;
+		$aclass="active";
+
+}
+
 //print_r($ques_array);       
 
 $imstring_ques=implode(",",$ques_array);
@@ -267,20 +313,22 @@ unattempt=parseInt(strArray[2]);
 
         var data = google.visualization.arrayToDataTable([
            ['Task', 'Hours per Day'], 
-          ['Correct', correct],
-          ['incorrect',incorrect],
-          ['Unanswered', unattempt], 
+        ['Correct', correct],
+         ['incorrect',incorrect],
+          ['Unanswered', unattempt],
+         
+         // ['Sleep',    7]
         ]);
 
         var options = {
-          pieHole: 0.4,
-		     pieSliceText: 'value-percentage',
-         'width': 350,
-         'height': 400,
-         'chartArea': {'width': '100%', 'height': '80%'},
-         'legend': {'position': 'bottom'} ,
+          pieHole: 0.5,
+		  pieSliceText: 'value-percentage',
+         'width': 400,
+         'height': 300,
+         'chartArea': {'width': '100%', 'height': '80%', left:20, top:0},
+         'legend': {'position': 'right', textStyle: {fontSize: 16, lineHeight:50}} ,
 		// 'color':{'#008000'}  
-		  colors: ['#008000', '#CE1818', '#FDBC00', '#f3b49f', '#fd7e14']  
+		  colors: ['#5cb85c', '#d9534f', '#f0ad4e', '#f3b49f']  
  
         };
 
@@ -293,13 +341,13 @@ unattempt=parseInt(strArray[2]);
        <script type = "text/javascript">
          google.charts.load('current', {packages: ['corechart']});     
       </script>
-    <script language = "JavaScript">
+    <!--<script language = "JavaScript">
          function drawChartnew() {
 			 
 
 var arr=document.getElementById('qattempted').value;
 			
-
+alert(arr);
 	        var strArray = arr.split(",");
 		//	alert(strArray);
             // Define the chart to be drawn.
@@ -345,16 +393,16 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
             chart.draw(data, options);
          }
          google.charts.setOnLoadCallback(drawChartnew);
-      </script>
-<section class="top-head" style="padding:20px 0;">
+      </script>-->
+<!--
+<section class="top-head" style="padding:20px 0;margin-top: 0px !important;">
     
 
-<!--
-<h1>Welcome!
-</h1>-->
+
 </section>
+-->
  
-<section class="main-container">
+<section class="main-container" style="background:#fff">
 
 
     
@@ -363,7 +411,7 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
       
               
     
-<div class="gray-bg pt-20 pb-50">
+<div class="pt-50 pb-50">
         <div class="container">
            <div class="row">
                <div class="col-md-12">
@@ -375,32 +423,53 @@ var tid = Math.round( cstring[1] * 10 ) / 10;
                                    <p>Test <br>Overview</p></a>
                            </div>
                        </div>-->
+                       
+                       <div class="col-md-2">
+                           <div class="tab tabing-new <?=$aclass;?>">
+                               <a href="<?= $baseurl;?>/result_summery.php?id=<?=$att_lid;?>&test=<?=$test_id;?>&type=<?= base64_encode(1);?>"><p class="small">Summary</p>
+                                   <p>Test Overview</p></a>
+                           </div>
+                       </div>
+                       
+                       
                        <?php $tab=0;
 					   
 					   
 					   foreach($subject_arr as $sid)
 					   { 	$sub_details=getTableDetailsById($conn,"subjects",$sid);
-					    
-					    ++$tab;
 					   
-					   $saved_test_details=getdetailsfromUserIdandSubjectId($conn,$userid,$sid);
+					    ++$tab;
+										    $attLevelId=getattachedMainLevelidfromSIdLecelId($conn,$sid,$attachedlevelid);
+
+				  $saved_test_details=getdetailsfromUserIdandSubjectIdAndLevelId($conn,$userid,$sid,$attLevelId,$mySavedTest_Name);
+				  					   $gtid=$saved_test_details['id'];
+										$test_given_details=getTableDetailsById($conn,"testgiven",$gtid);
+
+					   if($saved_test_details=="")
+					   {
+					   
+					   $saved_sub_id=getsubjectIdfromAttachedId($conn,$decodedid);
+					   }
+					   else
+					   {
+										$saved_sub_id=$test_given_details['subject_id'];
+   
+						   
+					   }
 					   $names=$sub_details['name'];
-					   $gtid=$saved_test_details['id'];
 					   $level_id=$saved_test_details['levelid'];
-				$test_given_details=getTableDetailsById($conn,"testgiven",$gtid);
-				$saved_sub_id=$test_given_details['subject_id'];
-				//print_r($saved_test_details);
 				$buttonvalue=$test_given_details['button'];
-				if($saved_sub_id==$sid)
+				if($decodedid==$attLevelId)
 				{
-				$addclass="active";	
+				$addclass_="active";	
 					
 				}
 				else
 				{
 					
-					$addclass="";
+					$addclass_="";
 				}
+				
 				
 		$viewresult="Start";	
 		
@@ -439,7 +508,7 @@ $attache_level_id=getattachedMainLevelidfromSIdLecelId($conn,$sid,$isee_level);
 	
 	$urls="result_summery.php?id=$en_attache_level_id&test=$test_id";
 }
-if($level_id==$decodedid)
+/*if($level_id==$decodedid)
 {
 	
 	$addclass_="active";
@@ -451,34 +520,166 @@ else
 	
 	$addclass_="";
 	
+}*/
+if($show_design==1)
+{
+		$addclass_="";
+
+	
 }
 ?>
+                      
+                      
                        <div class="col-md-2">
                            <div class="tab tabing-new <?php echo $addclass_;?>">
                                <a href="<?php echo $urls;?>"><p class="small"><?php echo $viewresult;?></p>
                                    <p><?php echo $tab."" ;?> <?php echo $names;?></p></a>
                            </div>
-                       </div>
+                       </div> 
                        
                        <?php }?>
                     
                    </div>
                    </div>
-                    <?php 
-				   
+                  <?php
+				   if($show_design==1)
+				   {?>
+                   <div class="test-summary">
+                         
+                         <div class="data-view">
+                             <div class="row">
+                                 <div class="col-md-3">
+                                     <div class="school-list">
+                                         <ul>
+                                             <li>
+                                                 <div class="school active">
+                                                     <h5>Your Test</h5>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class="">
+<!--                                                     <p>Massachusetts</p>-->
+                                                 </div>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                         <small>*We never share your test results with schools</small>
+                                 </div>
+                                 <div class="col-md-9">
+                                     <div class="stanine">
+                                         <table class="table table-striped table-bordered">
+                                             <thead>
+                                                 <th class="col-xs-1">SECTION</th>
+                                                 <th class="col-xs-2">RAW SCORE</th>
+                                                 <th class="col-xs-1">PERCENTILE</th>
+                                                 <th class="col-xs-8">STANINE ANALYSIS
+                                                 <div class="clearfix">
+                                                     <div class="stanine-mark">1</div>
+                                                     <div class="stanine-mark">2</div>
+                                                     <div class="stanine-mark">3</div>
+                                                     <div class="stanine-mark">4</div>
+                                                     <div class="stanine-mark">5</div>
+                                                     <div class="stanine-mark">6</div>
+                                                     <div class="stanine-mark">7</div>
+                                                     <div class="stanine-mark">8</div>
+                                                     <div class="stanine-mark">9</div>
+                                                 </div>
+                                                 </th>
+                                             </thead>
+                                             <tbody> 
+                                             <?php foreach($subject_arr as $sid)
+					   { 	$sub_details=getTableDetailsById($conn,"subjects",$sid);
+					   					   $names=$sub_details['name'];
+				  $saved_test_details=getdetailsfromUserIdandSubjectIdAndLevelId($conn,$userid,$sid,$decodedid,$testname);
+				  $testgivenid=$saved_test_details['id'];
+				  $num_ques_attempt=0;
+	$num_ques_attempt=getAttemptedQuestionsfromTestId($conn,$testgivenid);
+if($saved_test_details!=='')
+{
+					   ?>
+                                                <tr>
+                                                 <td><b><?=$names;?></b></td>
+                                                 <td><?=$num_ques_attempt;?> of 40</td>
+                                                 <td>1<sup>th</sup></td>
+                                                 <td><div class="graph">
+                                                     <div class="timing bg-danger" data-toggle="tooltip" data-placement="top" title="0% - 81%: Needs Improvement">1</div>
+                                                     <div class="timing bg-danger">-</div>
+                                                     <div class="timing bg-danger"></div>
+                                                     <div class="timing bg-danger"></div>
+                                                     <div class="timing bg-warning"></div>
+                                                     <div class="timing bg-success"></div>
+                                                     <div class="timing bg-success"></div>
+                                                     <div class="timing bg-success"></div>
+                                                     <div class="timing bg-success"></div>
+                                                 </div></td>
+                                                    
+                                                </tr>
+                                                <?php }  else {?>
+                                                
+                                                
+                                                <tr>
+                                                 <td><b><?=$names;?></b></td>
+                                                 <td></td>
+                                                 <td></td>
+                                                 <td></td>
+                                                
+                                                </tr>
+                                                
+                                                <?php } }?>
+                                                   
+                                                   
+                                                
+                                                 
+                                             </tbody>
+                                         </table>
+                                         
+                                         <div class="table-footer">
+                                             <div class=""><a href="#"></a></div>
+                                             <div class="">Application to Boston Latin School (BLS) with these scores:
+                                             <ul class="indicator">
+                                                 <li><span class="bg-danger"></span> Needs Improvement</li>
+                                                 <li><span class="bg-warning"></span> Almost There</li>
+                                                 <li><span class="bg-success"></span> Looking Good :-)</li>
+                                             </ul>
+                                             </div>
+                                         </div>
+                                         
+                                       <!--  <div class="your-growth">
+                                            <h3>YOUR GROWTH</h3>
+                                            <p>Please complete an exam to see your graph</p>
+                                         </div>
+                                         
+                                         <div class="download-pdf-wrapper">
+                                             <a href=""><img src="images/pdf.png" width="20" alt=""> Download PDF</a>
+                                         </div>-->
+                                         
+                                         
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                         
+                     </div>
+                  <?php }   
+				  else  if($show_design==0)
+				   {
 				   if($btn_val==1) 
 				   {
 					 if($sub_details_new['promptbased']!=1)
 					 {  
 					   ?>
                    <div class="summery-detail">
+                     
+                       
+                     
                       <div class="row">
-                          <div class="col-md-12 text-center"><h2>How you did, by difficulty</h2></div>
+                          <div class="col-md-12 text-center"><h2><b>How you did, by difficulty</b></h2></div>
                       </div>
-                       <div class="row">
-                           <div class="col-md-4 text-center"><h3>Easy</h3><div id="donutchart0" style="width: 100%; "></div></div>
-                           <div class="col-md-4 text-center"><h3>Medium</h3><div id="donutchart1" style="width: 100%; "></div></div>
-                           <div class="col-md-4 text-center"><h3>Hard</h3><div id="donutchart2" style="width: 100%; "></div></div>
+                       <div class="row dificulties">
+                           <div class="col-md-4 text-center"><h2><b>Easy</b></h2><div id="donutchart0" style="width: 100%; "></div></div>
+                           <div class="col-md-4 text-center"><h2><b>Medium</b></h2><div id="donutchart1" style="width: 100%; "></div></div>
+                           <div class="col-md-4 text-center"><h2><b>Hard</b></h2><div id="donutchart2" style="width: 100%; "></div></div>
                        </div>
                        
                        <div class="row">
@@ -691,7 +892,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                        
                    </div>
                    
-                   <?php }else {?> <div class="gray-bg pt-20 pb-50">
+                   <?php }else {?> <div class="pt-20 pb-50">
         <div class="container">
            
                <div class="esaay">
@@ -742,7 +943,7 @@ else if(($correct_val==0) && (($unanswered_val==0)))
          
           
     </div>
-</div> <?php }?><?php } else if($btn_val==0){?>
+</div><?php }?><?php } else if($btn_val==0){?>
                    
                    <div class="summery-detail">
                       <div class="row">
@@ -782,9 +983,12 @@ else if(($correct_val==0) && (($unanswered_val==0)))
                    <?php  if($sub_details_new['promptbased']!=1) 
 				   { if($btn_val==1){?> 
                    
-                 <div id = "container" style = "width: 100%; height: 300px; margin: 0 auto">
+                 <div id = "container" style = "width: 100%; margin: 0 auto">
+                                                <div class="text-center"><h2 class="title">How you allocated your time</h2></div>
+
+                 	<canvas id="canvas"></canvas>
 </div>  
-<?php } }?>
+<?php } } }?>
                </div>
                
            </div>
@@ -917,4 +1121,229 @@ else if(($correct_val==0) && (($unanswered_val==0)))
     </section>
     <!--recent-blog-->
     <!--footer widget-->
+    
+    
+    
    <?php include_once("footer.php");?>
+    <script src="js/chartmin.js"></script>
+	<script src="js/utils.js"></script>
+   
+    <script>
+
+
+
+		
+var arr=document.getElementById('qattempted').value;
+
+var MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+	
+		var color = Chart.helpers.color;
+		var horizontalBarChartData = {
+			labels: [
+			
+			<?php 
+   
+    	$level_details=getTableDetailsById($conn,"levelsubjects",$decodedid);
+
+		$totalnoquestions=$level_details['questions'];
+		$totaltime=$level_details['timings'];
+		$single="'";
+		for($i=$totalnoquestions;$i>=1;$i--)
+		{
+		echo $single.$i.$single.',';
+		}
+		
+		$imstring_quesmain=explode(',',$imstring_ques);
+	//print_r($imstring_quesmain);
+		?>],
+			datasets: [
+			
+			<?php 	
+			$imstring_quesmain=explode(',',$imstring_ques);
+		
+			$arraycount=count($imstring_quesmain);
+			$coreectansarr=array();
+			$incoreectansarr=array();
+			$unansweredarr=array();
+			for($i=$arraycount;$i>=1;$i--)
+			{
+				
+			 $mainstringnew=explode('#',$imstring_quesmain[$i-1]);	
+		//	 print_r($mainstringnew);
+		$mainlablefor=$mainstringnew[2];
+			
+		$maintimefor=$mainstringnew[1];
+			if($mainlablefor==1)
+			{
+		
+			
+			array_push($coreectansarr,$maintimefor);
+			array_push($incoreectansarr,'');
+			array_push($unansweredarr,'');
+			
+				}
+				elseif($mainlablefor==2)
+				{
+			array_push($coreectansarr,'');
+			array_push($incoreectansarr,$maintimefor);
+			array_push($unansweredarr,'');
+			
+				}
+				else
+				{
+					
+			array_push($coreectansarr,'');
+			array_push($incoreectansarr,'');
+			array_push($unansweredarr,1);
+				
+					}
+				}
+			$coreectansarr=implode(',',$coreectansarr);
+			
+			$incoreectansarr=implode(',',$incoreectansarr);
+			
+		
+			
+			$unansweredarr=implode(',',$unansweredarr);	
+		
+			$count=0;
+			$incorrectarrtime=array();
+			$correctarrtime=array();
+			
+			foreach ($imstring_quesmain as $imstring_ques){
+				
+				
+			$mainstring=explode('#',$imstring_ques);
+			$mainlable[]=$mainstring[2];
+			$mainlablenew=$mainstring[2];
+				$maintime=$mainstring[1];
+			
+			
+			
+			}
+			$mainlable=array_unique($mainlable);
+			
+			foreach($mainlable as $mainlablevalue){
+				
+			$imstring_quesmain=explode(',',$imstring_ques);
+
+			if($mainlablevalue==1){
+			$name='Correct';
+			$color='green';	
+			}
+			elseif($mainlablevalue==2){
+			$name='Incorrect';	
+			$color='red';
+			}
+			
+			else{
+			$name='Unanswered';	
+			$color='orange';
+			}
+			
+			?>
+			
+			{
+				label: '<?php echo $name?>',
+				backgroundColor: color(window.chartColors.<?php echo $color?>).alpha(0.5).rgbString(),
+				borderColor: window.chartColors.<?php echo $color?>,
+				borderWidth: 1,
+				<?php if($mainlablevalue==1){?>
+				data: [
+					<?php echo $coreectansarr?>
+					
+				]
+				<?php }elseif($mainlablevalue==2){?>
+				data: [
+					<?php echo $incoreectansarr?>
+					
+				]
+				<?php }else{?>
+				data: [
+				<?php echo $unansweredarr?>
+				]
+				<?php }?>
+				
+			}, 
+			<?php }?>
+		
+			]
+
+		};
+
+		window.onload = function() {
+			
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myHorizontalBar = new Chart(ctx, {
+				type: 'horizontalBar',
+				data: horizontalBarChartData,
+				options: {
+					// Elements options apply to all of the options unless overridden in a dataset
+					// In this case, we are setting the border of each horizontal bar to be 2px wide
+					elements: {
+						rectangle: {
+							borderWidth: 2,
+						}
+					},
+					responsive: true,
+					legend: {
+						position: 'right',
+					},
+					 showAllTooltips: true,
+		    tooltips: {
+		      custom: function(tooltip) {
+		        if (!tooltip) return;
+		        // disable displaying the color box;
+		        tooltip.displayColors = false;
+		      },
+		      callbacks: {
+		  label: function(t,e) {
+                    var n = e.datasets[t.datasetIndex].label || "",
+					alert(n);
+                        i = e.datasets[t.datasetIndex].data[t.index];
+			        return n + ": (" + t.xLabel + ", " + t.yLabel + ")"
+											
+                }
+        }
+		    },
+					scales: {
+    yAxes: [{
+		
+      scaleLabel: {
+        display: true,
+        labelString: 'Questions'
+      }
+    }],
+	xAxes: [{
+		 ticks: {
+            		min: 0,
+                max:<?php echo $totaltime?>
+                },
+      scaleLabel: {
+        display: true,
+        labelString: 'Time (minutes)'
+      }
+    }]
+  },
+					title: {
+						display: true,
+						text: 'Timing graph'
+					}
+				}
+			});
+
+		};
+
+
+
+		var colorNames = Object.keys(window.chartColors);
+
+
+
+	</script>
+   <script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>

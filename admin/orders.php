@@ -144,7 +144,7 @@ table.pro-table {
 
                   	<?php
 //echo "SELECT * FROM `services` WHERE `status` =1  and  `servicetype`='$sid'   order by `id` Desc";
-					    $ds=$conn->query("SELECT * FROM `orders` order by `id` Desc");  
+					    $ds=$conn->query("SELECT * FROM `orders` order by `pdate` Desc");  
 
 						$numrows=$ds->num_rows;
 
@@ -157,7 +157,7 @@ table.pro-table {
 								$userid=$row['userid'];
 									 $allOids=getallOrderIDfromUserID($conn,$userid);  
 	
-							$oid=$row["id"]	;
+							 $oid=$row["id"]	;
 $plandetails=getSingleBoughtPackagefromOid($conn,$oid);
  $packid=$plandetails['planid'];
  $edupricing_details=getTableDetailsById($conn,"edu_pricing",$packid);

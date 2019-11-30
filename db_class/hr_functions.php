@@ -5266,7 +5266,7 @@ function getcontentpagesbyid($conn,$code){
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function getTableDetailsById($conn,$table,$id){
-	//echo "SELECT * FROM $table where `id`='$id'";
+//echo "SELECT * FROM $table where `id`='$id'";
 	$ds=mysqli_query($conn,"SELECT * FROM $table where `id`='$id'"); 
 	$ds1=mysqli_fetch_assoc($ds);
 	return $ds1;
@@ -5305,7 +5305,7 @@ function getSiteName($conn){
  
 } 
 function getColoumnNameById($conn,$col,$table,$id){
-	
+//	echo "SELECT $col FROM  $table where `id`='$id'"; 
 	$ds=mysqli_query($conn,"SELECT $col FROM  $table where `id`='$id'"); 
 	$ds1=mysqli_fetch_assoc($ds);
 	return $ds1[$col];
@@ -5396,11 +5396,11 @@ return $resultarr;
 
 function getallAttachedIdwithSubId($conn,$cid,$level){
 	 $ds2=mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'"); 
-
 while($resultset=mysqli_fetch_array($ds2))
 { 
+
 	$amtid=$resultset['attachedid'];
-		 $ds=mysqli_query($conn,"SELECT  * FROM `levelsubjects` WHERE  `id`='$amtid' and `level_id`='$level' and `status`='1' and `view`='1'"); 
+$ds=mysqli_query($conn,"SELECT  * FROM `levelsubjects` WHERE  `id`='$amtid' and `level_id`='$level' and `status`='1' and `view`='1'"); 
 if($num=mysqli_num_rows($ds)>0)
 {
 	
@@ -5412,7 +5412,23 @@ if($num=mysqli_num_rows($ds)>0)
 return $resultarr; 
 }
 
+function getallAttachedIdwithSubIdMiniId_OLD($conn,$cid,$level){
+	echo "SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'";
+	 $ds2=mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'"); 
+
+while($resultset=mysqli_fetch_array($ds2))
+{ 
+	 
+	
+	
+	$resultarr[]=$resultset['id'];
+	
+
+}
+return $resultarr; 
+}
 function getallAttachedIdwithSubIdMiniId($conn,$cid,$level){
+	//echo "level".$level; 
 	//echo "SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'";
 	 $ds2=mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE  `subject_id`='$cid' and `status`='1' and `view`='1'"); 
 
@@ -5534,7 +5550,7 @@ $ds2=mysqli_num_rows(mysqli_query($conn,"SELECT  * FROM `register` WHERE  `email
 
 function gettest_statusfromTestId($conn,$tid,$userid,$sid,$lid,$tids)
 { 
-	//echo "SELECT * FROM  `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$lid' and `testname`='$tids' order by `id` desc";
+	
 	$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$lid' and `testname`='$tids' order by `id` desc"); 
 	$numrows=mysqli_num_rows($ds);
 	if($numrows>0)
@@ -5550,6 +5566,28 @@ function gettest_statusfromTestId($conn,$tid,$userid,$sid,$lid,$tids)
 	
 	
 }
+
+
+function gettestDetailsfromTestIduidandlid($conn,$userid,$lid,$tids)
+{ 
+	
+	$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$userid' and `levelid`='$lid' and `testname`='$tids' order by `id` desc"); 
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+	$ds1=mysqli_fetch_assoc($ds);
+	}
+	else
+	{
+		$ds1='';
+		
+	}
+	return $ds1;
+	
+	
+}
+
+
 function getminitest_statusfromTestId($conn,$lid,$userid,$sid)
 { 
 	//echo "SELECT * FROM  `minitestgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$lid' and `testname`='$tids' order by `id` desc";
@@ -5962,8 +6000,6 @@ try {
 
 function GetPausedquestionIdfromTestId($conn,$testgivenid)
 {//	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid' and `button`='0' order by `id` desc"); 
-
-	//echo "SELECT * FROM `testattempted` where `testid`='$testgivenid'"; die;
 	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid'"); 
 	while($resultset=mysqli_fetch_array($ds))
 	{
@@ -6132,6 +6168,40 @@ function getattachedMainLevelidfromSIdLecelId($conn,$sid,$lid)
 	
 }
 
+function getattachedMainLevelidfromSIdLecelIdAll($conn,$sid,$lid)
+{ //echo "SELECT `id` FROM  `levelsubjects` where `subject_id`='$sid' and `level_id`='$lid'";
+	$ds=mysqli_query($conn,"SELECT `id` FROM  `levelsubjects` where `subject_id`='$sid' and `level_id`='$lid'"); 
+	//$ds1=mysqli_fetch_assoc($ds);
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+		
+	while($resultsets=mysqli_fetch_array($ds))
+	{
+		
+		$allids[]=$resultsets[0];
+		
+	}
+	}
+	$implodedstring=implode(",",$allids);
+	$ds2=mysqli_query($conn,"SELECT  * FROM `attachedtopics` WHERE `attachedid` in ($implodedstring)"); 
+
+while($resultset=mysqli_fetch_array($ds2))
+{ 
+	 
+	
+	
+	$resultarr[]=$resultset['id'];
+	
+
+}
+	return $resultarr;
+	
+	
+	
+	
+}
+
 function minigetattachedMainLevelidfromSIdLecelId($conn,$sid,$lid)
 { 
 	$ds=mysqli_query($conn,"SELECT `id` FROM  `minitest` where `subject_id`='$sid' and `level_id`='$lid'"); 
@@ -6145,12 +6215,27 @@ function minigetattachedMainLevelidfromSIdLecelId($conn,$sid,$lid)
 
 function getExistenceofTestIdWithPracticeIdLid($conn,$test_name,$levelids,$userid)
 {      
-	//userid also   
+	//userid also 
+	//echo "SELECT `id` FROM  `testgiven` where `testname`='$test_name' and `levelid`='$levelids' and `userid`='$userid'" ; 
 	//$ds=mysqli_query($conn,"SELECT `id` FROM  `testgiven` where `testname`='$test_name' and `levelid`='$levelids' and `userid`='$userid'");
 	
-		$ds=mysqli_query($conn,"SELECT `id` FROM  `testgiven` where `id`='$test_name' and `levelid`='$levelids' and `userid`='$userid'"); 
+		$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `id`='$test_name' and `levelid`='$levelids' and `userid`='$userid'"); 
 	$ds1=mysqli_fetch_assoc($ds);
 	return $ds1['id'];
+	
+	
+	
+}
+function getExistenceofTestIdWithPracticeIdLidNew($conn,$test_name,$levelids,$userid)
+{      
+
+	
+	 $val="SELECT `id` FROM  `testgiven` where `testname`='$test_name' and `levelid`='$levelids' and `userid`='$userid'";
+	$ds=mysqli_query($conn,$val); 
+		
+	$ds1=mysqli_fetch_row($ds);
+//	print_r($ds1); 
+	return $ds1[0];; 
 	
 	
 	
@@ -6247,7 +6332,14 @@ function existenceofpractice_exerciseinpackage($conn,$packid)
 		
 		
 	}
-
+function existenceofattachedsubjectfromlevelandSubject($conn,$level,$sid)
+	{
+		$ds=mysqli_query($conn,"SELECT * FROM  `levelsubjects` where `level_id`='$level' and `subject_id`='$sid' and `status`='1' and `view`='1'"); 
+	$ds1=mysqli_num_rows($ds);
+	return $ds1;
+		
+		
+	}
 function getOrderCode($conn,$id){
 
 	$val=1000+$id;
@@ -6265,6 +6357,9 @@ function getteststatusfromuseridandtestname($conn,$uid,$tid)
 		
 	}
 	
+	
+	
+	
 	function getlastCountryID($conn)
 	{
 		
@@ -6280,4 +6375,241 @@ function getteststatusfromuseridandtestname($conn,$uid,$tid)
 		
 	}
 	
+	function getLatestorderidbyUserid($conn,$userid){
+	$ds=mysqli_query($conn,"SELECT `id` FROM `orders` where `userid`='$userid' order by `id` desc"); 
+	$ds1=mysqli_fetch_row($ds);
+	return $ds1[0];
+ 
+}
+	function getLastItemBoughtFromUserId($conn,$userid)
+	{
+		
+		$orderid=getLatestorderidbyUserid($conn,$userid);
+	$ds=mysqli_query($conn,"SELECT `planid` FROM `orderlist` where `orderid`='$orderid' order by `id` desc limit 0,1"); 
+	$ds1=mysqli_fetch_row($ds);
+	$planid=$ds1[0];
+	return $level_id=getColoumnNameByIdtableval($conn,"level_id","edu_pricing",$planid)	; 
+		
+	}
+	
+	function getedu_pricingqfeaturesFrompackidandqid($conn,$packid,$qfeatureid)
+	{
+		
+			$ds=mysqli_query($conn,"SELECT * FROM  `edu_pricingqfeatures` where `qfeatureid`='$qfeatureid' and `pricingid`='$packid' and `status`='1' and `view`='1'"); 
+	$ds1=mysqli_fetch_row($ds);
+	return $ds1[0];	
+	}
+	
+	
+	
+	function getqfeaturedidfrompricingid($conn,$id){
+	$ds=mysqli_query($conn,"SELECT `id` FROM `edu_pricingqfeatures` where `pricingid`='$id' and `qfeatureid`='2' and `status`='1' and `view`='1' order by `id` desc"); 
+	$ds1=mysqli_fetch_row($ds);
+	return $ds1[0];
+ 
+}	
+
+
+function gettestpaperidwithquesid($conn,$qid,$planid){
+	$splypes=array();
+	$execQry=mysqli_query($conn,"select * from `assignquestion` where `status` = '1' and `qid`='$qid' and `planid`='$planid' order by `id` desc");
+	$numRows=mysqli_num_rows($execQry);
+	if($numRows>0){
+		while($fetch=mysqli_fetch_array($execQry)){
+			$splypes[]=$fetch['prid'];
+		}
+	}else{
+	}
+	return $splypes;
+}
+
+function GetTest_idFromUIdTidforPause($conn,$uid,$tid)
+	{ //echo "SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='3'"; die;
+//	$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='3' and `levelid`='$levelid'"); 
+$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='3'"); 
+	$ds1=mysqli_fetch_row($ds);
+	return $ds1[0];
+		
+		
+	}
+	
+	function getMAINQuesAttemptedforMain($conn,$testgivenid)
+{
+  	$ds=mysqli_query($conn,"SELECT * FROM `testattempted` where `testid`='$testgivenid'"); 
+	while($resultset=mysqli_fetch_array($ds))
+	{ 
+
+	$data[]=$resultset['questionid'];
+ 
+		
+	}
+		
+		
+	return $data;
+	
+	
+	
+}
+
+
+function getdetailsfromUserIdandSubjectIdAndLevelId($conn,$userid,$sid,$levelid,$testname)
+{
+	//echo "select * from `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$levelid' and `testname`='$testname' order by `id` desc limit 0,1";  
+	$ds=mysqli_query($conn,"select * from `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$levelid' and `testname`='$testname' and `button`='1' order by `id` desc limit 0,1"); 
+	
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+$resultset=mysqli_fetch_assoc($ds);
+	}
+	
+	else
+	{
+	$resultset='';	
+		
+	}
+	return $resultset;
+	
+	
+	
+}
+
+
+function GetLastTestAttemptedBy_User($conn,$userid)
+{
+	$ds=mysqli_query($conn,"select * from `testgiven` where `userid`='$userid' and `button`='1' order by `id` desc limit 0,1"); 
+	
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+$resultset=mysqli_fetch_assoc($ds);
+	}
+	
+	else
+	{
+	$resultset='';	
+		
+	}
+	return $resultset;
+	
+	
+	
+}
+
+	function Array_Creation($conn,$my_ques_id,$testid)
+	{
+	
+		//0th positin correct
+		//1th positin incorrect
+		//2th positin omitted
+		//3rd positin flagged
+		//4th positin less than 30
+		//5th positin 30 to  2 sec
+		//6th positin greater than 2
+		//7th difficulty level
+
+	$my_array=array();	
+	$my_array['correct']="";
+	$my_array['incorrect']="";$my_array['omitted']="";$my_array['flagged']="";$my_array['less30']="";$my_array['30to2']="";$my_array['grt2']="";$my_array['dlevel']="";
+	$user_attmpted_ques=GetUserCorrectAnsFromTidQid($conn,$my_ques_id,$testid);
+$u_ans=$user_attmpted_ques['answer']; 
+$actual_ans=getColoumnNameById($conn,"correct","questions",$my_ques_id);
+if($u_ans==0)
+{
+	$bgcolor="0";
+	
+}
+if($actual_ans!=$u_ans)
+{
+	 
+	$bgcolor="2";
+	$my_array['incorrect']=1;//0th positin correct
+$class="incorrect ";
+}if($actual_ans==$u_ans)
+{
+	$bgcolor="1";
+	$my_array['correct']=1;//0th positin correct
+$class.="correct ";
+
+}
+if($user_attmpted_ques['timetaken']<30.0)
+{ 
+$my_array['less30']=1;
+$class.="less30 ";
+
+}
+if(($user_attmpted_ques['timetaken']>=30) && ($user_attmpted_ques['timetaken']<=120)) 
+{ 
+$my_array['30to2']=1;
+$class.="30to2 ";
+
+}
+
+if($user_attmpted_ques['timetaken']>120.0)
+{ 
+$my_array['grt2']=1;
+
+$class.="grt2 ";
+
+}
+
+
+$dlevel=getColoumnNameById($conn,"difficulty","questions",$my_ques_id)	;
+$my_array['dlevel']=$dlevel;
+$levelname=getColoumnNameById($conn,"name","examlevel",$dlevel);
+$class.="$levelname";
+
+$my_array['quesid']=$my_ques_id;
+return $class;
+		
+		
+	}
+	
+	
+	
+	function getdetailsfromUserIdandSubjectIdAndLevelIdNew($conn,$userid,$sid,$levelid,$testname)
+{
+//echo "select * from `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$levelid' and `testname`='$testname' order by `id` desc limit 0,1";   
+	$ds=mysqli_query($conn,"select * from `testgiven` where `userid`='$userid' and `subject_id`='$sid' and `levelid`='$levelid' order by `id` desc limit 0,1"); 
+	
+	$numrows=mysqli_num_rows($ds);
+	if($numrows>0)
+	{
+$resultset=mysqli_fetch_assoc($ds);   
+	}
+	
+	else
+	{
+	$resultset='';	
+		
+	}
+	
+	return $resultset;
+	
+	
+	
+}
+
+function getOmittedQuesFromTestAndUid($conn,$uid,$tid,$qid,$subject_id)
+	{ //echo "SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='3'"; die;
+//	$ds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `status`='1' and `button`='3' and `levelid`='$levelid'"); 
+$nds=mysqli_query($conn,"SELECT * FROM  `testgiven` where `userid`='$uid' and `testname`='$tid' and `subject_id`='$subject_id' and `button`='0'"); 
+	$numrows=mysqli_num_rows($ds);
+if($numrows>0)
+{
+$ds=mysqli_query($conn,"SELECT * FROM  `omitted` where `uid`='$uid' and `testid`='$tid' and `qid`='$qid'"); 
+	while($fetch=mysqli_fetch_array($ds)){
+		
+			 $data[]=$fetch['ans'];
+		}
+}
+else
+{
+	$data=array();
+	
+}
+	return $data;
+		
+		
+	}
 ?>  

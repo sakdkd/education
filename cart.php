@@ -124,13 +124,13 @@ $totalcount++;
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4" class="clearfix">
+                                        <td colspan="5" class="clearfix">
                                             <div class="float-left">
-                                                <a href="pricing.php" class="btn btn-outline-secondary">Continue Shopping</a>
+                                                <a href="pricing.php" class="btn btn-outline-secondary continue-shop">Continue Shopping</a>
                                             </div><!-- End .float-left -->
 
                                             <div class="float-right">
-                                                <a href="#" class="btn btn-outline-secondary btn-clear-cart" onclick="clearcart()">Clear Shopping Cart</a>
+                                                <a href="#" class="btn btn-outline-secondary btn-clear-cart continue-shop" onclick="clearcart()">Clear Shopping Cart</a>
                                                 <!--<a href="#" class="btn btn-outline-secondary btn-update-cart orange">Update Shopping Cart</a>-->
                                             </div><!-- End .float-right -->
                                         </td>

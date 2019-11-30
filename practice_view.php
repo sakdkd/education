@@ -62,7 +62,7 @@ $test_ids=base64_decode($_GET['test_id']);
     width: 100%;
 }
 .top-head {
-    background: #6e6e6e;
+    background:#0f8bd0;
     color: #fff;
     padding: 7px;
     border-radius: 3px;
@@ -86,31 +86,31 @@ $test_ids=base64_decode($_GET['test_id']);
     font-weight: 500;
 }
 .restart-btn {
-    background: #f47327;
+    background: #0f8bd0;
     color: #fff;
     padding: 3px 14px;
     font-weight: 500;
     font-size: 15px;
     border-radius: 4px;
-    box-shadow: 0px 1px 2px #5f5f5f;
+/*    box-shadow: 0px 1px 2px #5f5f5f;*/
 }
 .buttons-close .new-close {
-    background: #f47327;
+    background: #0f8bd0;
     padding: 0px 12px;
     border-radius: 3px;
     vertical-align: middle;
 }
 .buttons-close .new-close {
-    background: #f47327; 
+    background: #0f8bd0; 
     padding: 0px 12px;
     font-size: 18px;
     border-radius: 3px;
     vertical-align: middle;
     margin-left: 5px;
-    box-shadow: 0px 1px 2px #5f5f5f;
+/*    box-shadow: 0px 1px 2px #5f5f5f;*/
 }
 .buttons-close a:hover{ 
-background: #e65500!important;
+background: #25006a!important;
     color: #fff!important;
 }
 .report {
@@ -141,26 +141,101 @@ background: #e65500!important;
 } 
 
 	</style>
- <!---<?php include_once("dheader.php");?>  -->
+ <?php include_once("dheader.php");?>
 
   
 <section class="test-container" style="margin-top: 50px">
 
 <div class="container">
 <div class="row">
- <div class="col-md-12 back" style="
-">
+ <div class="col-md-12 back">
  <h2 class="practice">PRACTICE EXERCISES FOR <?php echo $levelname;?></h2>
 </div>
 </div>
 </div>
 </section>
 <section class="practice-con">
-   <div class="container background">
+   <div class="container background no-border no-padding">
  <div class="row">
 <div class="main-test col-md-12" style="">
   <div class="row">
-<div class="col-md-10 col-sm-offset-1">
+<div class="col-md-3">
+
+<form action="#" class="form-action" id="sidebar">
+<div class="side-bar">
+<h3 class="result">Results</h3>
+<div class="form-group">
+<input type="text" placeholder="Search by Title" class="input-sm" id="searchtitle" oninput="frontselecttopic('5',this.value)">
+</div>
+</div>
+<div class="side-ba">
+<div class="form-group">
+
+<label>Subject</label>
+<select id="subjectid" class="input-sm " onchange="frontselecttopic('1',this.value)">
+<option value="" selected="selected" label=""></option>
+                <option value="13">Essay</option>
+				
+				                <option value="12">Mathematics Achievement</option>
+				
+				                <option value="11">Reading Comprehension</option>
+				
+				                <option value="10">Quantitative Reasoning</option>
+				
+				                <option value="9">Verbal Reasoning</option>
+				
+					
+</select>
+    </div>
+ <div class="form-group">
+<label>Subtype</label>
+<div id="selectsubtype">
+<select id="subtypid" class="input-sm ">
+<option value="" selected="selected" label=""></option>
+
+</select>
+</div>
+    </div>
+<!--<div class="form-group">
+<label>Status</label>
+<div class="radio">
+      <label><input type="radio" name="status" id="status" class="status" value="0" checked  onchange="frontselecttopic('3',this.value)">All</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="status" id="status" class="status" value="3" onchange="frontselecttopic('3',this.value)">In Progress</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="status" id="status" class="status" value="1" onchange="frontselecttopic('3',this.value)">Completed</label>
+    </div>
+    
+ </div>-->
+ <div class="form-group bmd-form-group is-filled">
+<label class="bmd-label-static">Difficulty</label>
+
+
+<div class="radio">
+      <label><input type="radio" name="level" class="level" value="0" onclick="frontselecttopic('4',this.value)" checked=""><span class="bmd-radio"></span>All</label>
+    </div>
+    
+           <div class="radio">
+      <label><input type="radio" name="level" class="level" value="1" onclick="frontselecttopic('4',this.value)"><span class="bmd-radio"></span>Easy</label>
+    </div>
+    
+        <div class="radio">
+      <label><input type="radio" name="level" class="level" value="2" onclick="frontselecttopic('4',this.value)"><span class="bmd-radio"></span>Medium</label>
+    </div>
+    
+        <div class="radio">
+      <label><input type="radio" name="level" class="level" value="3" onclick="frontselecttopic('4',this.value)"><span class="bmd-radio"></span>Hard</label>
+    </div>
+    
+        
+    
+ </div>
+</div>
+</form>	
+</div>  
+<div class="col-md-9">
 <div class="top-head">
 <div class="row">
 <div class="col-sm-10"><p><?php echo $topic_details['topics'];?></p></div> <div class="col-sm-2 text-right"></div>
@@ -180,7 +255,7 @@ background: #e65500!important;
     
     <div class="report">
     
-   <div class="lines-report">
+   <div class="lines-report review-answer">
     <?php 
    $querys=mysqli_query($conn,"select * from `practicetestgiven` where `subject_id`='$topicid' and `levelid`='$levelid' and `button`='1'");
    $numrows=mysqli_num_rows($querys); 
@@ -198,7 +273,7 @@ background: #e65500!important;
    $date=$resultset['pdate'];
    ?>
    
-    <div class="loop-repeat">
+    <div class="loop-repeat text-black">
     	<div class="col-sm-6"><a href="practice_results.php?testid=<?php echo $test_id;?>"><?php echo changeToStdDate($conn,$date);?></a> </div>
         <div class="col-sm-6"><a href="practice_results.php?testid=<?php echo $test_id;?>" style="color: #f47327;">Review Your Answers <i class="fas fa-arrow-right"></i></a> </div>
          

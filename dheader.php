@@ -2,15 +2,85 @@
 ob_start();
 session_start();
 error_reporting(0);
+  $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF']; 
+   $apage_link = $_SERVER['PHP_SELF']; 
 
 include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
 $order_id=$_SESSION['orderid'];
 $packages_id=$_SESSION['packid']; 
+$test_analysis_details=GetLastTestAttemptedBy_User($conn,$userid);
+if($test_analysis_details!='')
+{
+	$ID=base64_encode($test_analysis_details['levelid']);
+		$TESTID=$test_analysis_details['id'];
+
+	$pageurl="result_summery.php?id=".$ID."&test=".$TESTID."&type=MQ==";
+	
+}
+else
+{
+	$pageurl="";
+	
+}
 $tbname="register";
 $user_details=getTableDetailsById($conn,$tbname,$userid);
-$levelchoosen=$user_details['sid'];
+$savedsid=$user_details['sid'];
+$order_mands=getallOrderIDfromUserID($conn,$userid);   
+foreach($order_mands as $oidss)
+{
+	
+	$result[]=getBoughtPackagefromOid($conn,$oidss);
+	
+}
+foreach($result as $resultids)
+{
+	
+ //	print_r($resultids); 
+	foreach($resultids as $rids)
+	{
+		
+		$all_ids[]=$rids;
+		
+		
+	}
+	
+} 
+$all_ids=array_unique($all_ids); 
+$levelids1=array();
+foreach($all_ids as $planids)
+{
+	
+	$levelids_ids[]=getColoumnNameByIdtableval($conn,"level_id","edu_pricing",$planids);
+array_push($levelids1,$levelids_ids);
+}
+foreach($levelids1 as $ulevel)
+{ 
+
+}
+//$levelchoosen=$user_details['sid'];
+foreach($levelids1 as $ulevel)
+{/*foreach($ulevel as $lids)
+	{ echo "lids".$lids;
+	$levelids[]=$lids;
+	}*/
+	
+	
+}
+
+//print_r($levelids); die;
+
+$levelids=array_unique($levelids); 
+$newlevelids=array_slice($levelids,0,1);
+foreach($newlevelids as $mainid)
+{
+	
+	$main_level_name=getDataFromTable($conn,$mainid,"edu_levels");
+}
+$other_lids=array_slice($levelids,1);
+
+$levelchoosen=getLastItemBoughtFromUserId($conn,$userid);
 $trial_val=$user_details['trial'];
 $leveltable="edu_levels";
 $level_details=getTableDetailsById($conn,$leveltable,$levelchoosen);
@@ -44,7 +114,6 @@ else
 	
 	$package_arr=array_unique($package_arr);
 }  
-
 foreach($package_arr as $pacid)
 {
 	//echo "select * from `edu_pricingqfeatures` where `qfeatureid`='4' and `pricingid`='$pacid'";
@@ -58,7 +127,17 @@ $mains_query=mysqli_query($conn,"select * from `edu_pricingqfeatures` where `qfe
 				}
 						 
 }
+if($packages_id!='')
+{
+	
+	 $level_id=getColoumnNameByIdtableval($conn,"level_id","edu_pricing",$packages_id)	; 
+	$level_details_new=getTableDetailsById($conn,"edu_levels",$level_id);
 
+ $levelname=$level_details_new['name'];
+}
+
+
+   
 ?>
 
 
@@ -185,32 +264,103 @@ unattempt=parseInt(strArray[2]);
             </div>
             <div class="collapse navbar-collapse" id="xeronav">
                 <ul class="navbar-nav ml-auto">
+                    
+                    <?php if(count($order_mands)>0)
+					{?>
+                    <li class="lavelselect">
+                         <?php $allOids=getallOrderIDfromUserID($conn,$userid); 
+					   if($actual_link!="http://78.46.117.226/education/newexam.php")
+					   {
+?>					   
+					    <select onChange="getpackid(this.value,'<?php echo $userid;?>')"> 
+                        <?php
+		 foreach($allOids as $OrderIds)
+		 { 
+		 
+		$all_p_ids= getBoughtPackagefromOid($conn,$OrderIds) ;
+		$all_p_ids_string=implode(",",$all_p_ids);
+		 
+		 $index=0;
+		$selquerys=mysqli_query($conn,"select * from `edu_pricing` where `id` in ($all_p_ids_string)");
+    while($resultset=mysqli_fetch_array($selquerys))
+	{  
+	
+	$index++; 
+	$leveltable="edu_levels";
+$level_details=getTableDetailsById($conn,$leveltable,$resultset['level_id']);
 
+ $levelname_new="(".$level_details['name'].")";
+		
+?>
+		
+                
+                
+                
+                <option value="<?php echo $resultset['id'];?>" <?php if($packages_id==$resultset['id']){?>selected<?php }?>><?=$levelname_new;?></option>
+                
+                <?php }}?>
+                </select>      
+                
+                <?php }?> 
+                    </li>
+
+<?php }?>
                     <li class="nav-item drop_menu"> <a class="nav-link active" href="welcome.php">Dashboard</a>
                        
                     </li>
                         
-                    </li>
+                    
                     <?php if($count_of>0)
 					{?>
                     <li class="nav-item drop_menu"> <a class="nav-link" href="practice.php">Practice Excercise</a></li>
                     <?php }?>
                     
-<li class="nav-item drop_menu"> <a class="nav-link" ><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
+<li class="nav-item drop_menu login-user"> <a class="nav-link" ><i class="fa fa-user-circle"></i><i class="fas fa-caret-down"></i></a>
                         <ul>
-                                        <li class=" drop_menu"> <a class="nav-link" href="#"><?php echo strtolower($user_details['email']);?></a>
+                                        <li class=" drop_menu"> <a class="nav-link" href="#"><?php echo strtolower($user_details['email']);?></a></li>
                        
                         <li><a href="logout.php">Log out</a></li>
 
                         </ul>
-                    </li>
+                       </li> 
+                       
+                       <!--<li class="nav-item drop_menu"> <a class="nav-link" ><?=$main_level_name;?></i>  <?php if(count($other_lids)>0){?><i class="fas fa-caret-down"></i><?php }?></a>
+                        <?php $other_lids; if(count($other_lids)>0)
+					   { ?>
+                        <ul>
+                                        
+                       <?php
+						   foreach($levelids as $o_lids)
+						   {
+							   $level_drop_name=getDataFromTable($conn,$o_lids,"edu_levels");
+
+						   ?>
+                        <li onclick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><a href=""><?=$level_drop_name;?></a></li>
+<?php } ?>
+                        </ul>
+                        <?php }?>
+                       </li>-->
+                       
+                      
 					<!--<li class="nav-item drop_menu"> <a class="nav-link" href="#">Analysis</a></li>
 					<li class="nav-item drop_menu"> <a class="nav-link" href="#">Grit Store</a></li>-->
                 </ul>
             </div>
         </div>
-        <!--/.CONTAINER-->
-    </nav><input type="hidden" id="user_session" value="<?php echo $userid;?>">
-    
+	</nav><input type="hidden" id="user_session" value="<?php echo $userid;?>">
+    <div class="header-d">
+    	<div class="container">
+		<nav>
+			<ul>
+				<li><a href="<?=$baseurl;?>/welcome.php" <?php  if($pageno==1){?> class="active"<?php }?>>Dashboard</a></li>
+				<li><a href="<?=$baseurl;?>/practice.php"<?php  if($pageno==2){?> class="active"<?php }?>>Practice Exercise</a></li>
+                <?php if($pageurl!='')
+				{?>
+				<li><a href="<?=$baseurl."/".$pageurl;?>">Analysis</a></li>
+                <?php }?>
+			</ul>
+		</nav>
+	</div>
+    </div>
     
  

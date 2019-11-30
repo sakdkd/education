@@ -437,13 +437,13 @@ function validate(){
             <th width="3%">Sno</th>
             <th width="36%">View</th>
          <th width="36%">Posted On</th>
+         <th width="12%" style="text-align:center;">Assign (Test Papers)</th>
             <th width="12%" style="text-align:center;">Action</th>
              <th width="16%" style="text-align:center;">Approval</th>
 
   </tr>
 
   <?php
-   
     $ds=mysqli_query($conn,"SELECT * FROM questions where `topic_id`='$en_topic_id' and `view`='1' order by `id` desc " ); 
 
 	 $numrows=mysqli_num_rows($ds);
@@ -458,7 +458,7 @@ function validate(){
 
 			$i++;
 
-			
+			$att_topic_id=base64_encode($en_topic_id);
 $decid=base64_encode($id);
 $date=$fetch['pdate'];			
 
@@ -471,7 +471,7 @@ $date=$fetch['pdate'];
                 <td><?php echo $i; ?></td>
                 <td><a href="view_question.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
                  <th width="36%"><?php echo  changeDateToSlash($conn,$date); ?></th>
-                     <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="saved_questions.php?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
+<td align="center"><a href="assignpaper.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="<?php echo $baseurl?>/admin/images/assignment.png" style="text-align:center; width:40px; height:40px;"></a></td>                     <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="saved_questions.php?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
                        
                        
                        

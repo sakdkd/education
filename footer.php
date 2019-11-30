@@ -95,7 +95,9 @@
                     
                     <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalLong3">Forget Password?</a>
                   </div>
-                  <button class="button primary-bg btn-block" type="submit">Login</button>
+                  <div class="text-center">
+                      <button class="button primary-bg" type="submit">Login</button>
+                  </div>
                 </form>
                 <div class="shortcut-login">
                   <p>Don't have an account? <a href="trial.php">Register</a></p>
@@ -136,7 +138,9 @@
                       </label>
                     </div>
                   </div>
-                  <input type="submit" class="button primary-bg btn-block" name="register" value="Register">
+                  <div class="text-center">
+                      <input type="submit" class="button primary-bg" name="register" value="Register">
+                  </div>
                 </form>
                 <div class="shortcut-login">
                   <p>Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#exampleModalLong">Login</a></p>
@@ -239,7 +243,8 @@
     <!--easing js-->
     <script src="js/vendor/easing.js"></script>
 
-  
+   <!--   <script src="js/line_num.js"></script>
+-->
 
     <!--main script-->
     <script src="js/main.js"></script>

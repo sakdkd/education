@@ -149,17 +149,13 @@ checkIntrusion($buid,$builderbaseurl);
 
             <div class="row">
 
-              <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-4 col-sm-4 col-xs-4">
 
                 <div class="x_panel">
 
                   <div class="x_title">
 
-                    <h2>Dashboard</h2>
-
-
-
-                    
+                    <h2>View Message</h2>
 
                     <div class="clearfix"></div>
 
@@ -167,9 +163,9 @@ checkIntrusion($buid,$builderbaseurl);
 
                   <div class="x_content">
 
-                      <h4 style="font-size:16px;color:Green;">Welcome,  <?php echo $companyName; ?></h4>
+                      <!--<h4 style="font-size:16px;color:Green;">Welcome,  <?php echo $companyName; ?></h4>-->
 
-                                  
+                <a href="message.php"> <img src="<?= $baseurl;?>/images/msg.png" style="vertical-align: middle;width: 60px;padding-left: 5px;text-align: center;"> </a>         
 
                   </div>
 

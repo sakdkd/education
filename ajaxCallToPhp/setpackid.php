@@ -5,10 +5,10 @@ session_start();
 				$order_id=$_POST['oid'];
 
 		 
-$_SESSION['orderid']=$order_id; 
+ $_SESSION['orderid']=$order_id; 
 
 
-$_SESSION['packid']=$packid;
+ $_SESSION['packid']=$packid;
 
 			$arr = array('status' =>1);	
 

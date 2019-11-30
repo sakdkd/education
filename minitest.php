@@ -6,11 +6,21 @@ include_once('db_class/hr_functions.php');
 $userid=$_SESSION['userid'];
 $tbname="register";
 $user_details=getTableDetailsById($conn,$tbname,$userid);
-$levelchoosen=$user_details['sid'];
+//echo "dd".$levelchoosen=$user_details['sid'];
+ $packages_id=$_SESSION['packid']; 
+
+$levelchoosen=getLastItemBoughtFromUserId($conn,$userid); 
+if($packages_id!='')
+{
+	$levelchoosen=getColoumnNameByIdtableval($conn,"level_id","edu_pricing",$packages_id);
+	
+	
+	
+}
 if(isset($_GET['id']))
 {
 	$test_name=$_GET['test'];;
-		 $mini_id=base64_decode($_GET['id']);   
+	 $mini_id=base64_decode($_GET['id']);   
 		
 		$minitids=getMINItestid($conn);
 		 $main_arr=Getmainrecordids($conn,$minitids);
@@ -31,8 +41,6 @@ $section_value=$sectionval+1;
 //}
 
 	$giventestdetails=getTableDetailsById($conn,"minitestgiven",$test_name);
-
-
 if($giventestdetails!='')
 { 
 	$setvalue='3';
@@ -61,9 +69,9 @@ $setvalue='0';
 		}
 	 $mini_id=base64_decode($_GET['id']);
 	$levelids=$mini_id;
-	$mini_details=getTableDetailsById($conn,$tbname,$mini_id);
+	$mini_details=getTableDetailsById($conn,$tbname,$mini_id); 
+	//print_r($mini_details); 
  $subject_id=$mini_details['subject_id']; 
- 
  $sub_details=getTableDetailsById($conn,"subjects",$subject_id);
  $promptbased=$sub_details['promptbased'];
  $subnames=$sub_details['name'];
@@ -76,13 +84,13 @@ $setvalue='0';
 	{
 	 	$timer=$mini_details['timings']; 
 	}
-	$topicid_arr=getallAttachedIdwithSubIdMiniId($conn,$subject_id,$levelchoosen);
-		//print_r($topicid_arr);  die;
+	//$topicid_arr=getallAttachedIdwithSubIdMiniId($conn,$subject_id,$levelchoosen);--- old ones----
+	
+	$topicid_arr=getattachedMainLevelidfromSIdLecelIdAll($conn,$subject_id,$levelchoosen);
 
 	$topic_imploded_string=implode(",",$topicid_arr);   
 	$mainActiveques=GetActiveQuesFromTopicId($conn,$topic_imploded_string); 
 	//$mainActiveques=$question_total;
-	
 	if($question_total>$mainActiveques)
 	{
 		$mainActiveques=$mainActiveques;
@@ -122,7 +130,7 @@ $button='1';
 //echo "INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`) VALUES ('$userid','$pdate','$test_name','$button','1','1')"; die; 
 $insquery=mysqli_query($conn,"INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$subject_id','$levelids')");
 
-if($insquery)
+if($insquery) 
 {
 	$lastid=mysqli_insert_id($conn);
 	foreach($all as $qi)
@@ -210,11 +218,11 @@ if($mainActiveques<$question_total)
 
     <title>Home</title>
     <!-- Standard Favicon -->
-   <?php include_once("dheader.php");?>
+   <?php include_once("dheader.php"); ?>
     <!-- /.navbar -->
  <input type="hidden" id="timer" value="<?php echo $timer;?>"> 
 
-<section class="main-container" style="margin-top: 100px">
+<section class="main-container">
 
 	<?php $question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			$q_div=0;
@@ -312,6 +320,7 @@ if($mainActiveques<$question_total)
 			}
 			else
 			{ 
+			//echo "select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total";
 			$question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			}
 			$q_div=0;
@@ -364,10 +373,12 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li>
+                           <label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="option-click">A</span> <?php echo $questionset['option1'];?> </label>
+                           </li> 
+                            <li><label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="option-click">B</span><?php echo $questionset['option2'];?></label></li>
+                            <li><label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="option-click">C</span><?php echo $questionset['option3'];?></label></li>
+                            <li><label><input name="radio1<?php echo $question_id;?>" id="Qs<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="option-click">D</span><?php echo $questionset['option4'];?></label></li>
                        </ul>
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
 

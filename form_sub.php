@@ -7,10 +7,9 @@ $userid=$_SESSION['userid'];
 
 unset($_SESSION['stime']);
    		extract($_POST);
-//print_r($_POST); die;
 $btnvalues=$btnclickval; 
 $endval=$_GET['end'];
- 
+
 if((isset($_GET['id']))  && ($btnvalues==5))
 {  
 		extract($_POST);
@@ -128,7 +127,6 @@ $getid=$_GET['end'];
 	
 	$resultset=$_SESSION['allresult'];
 	
-	//print_r($resultset); die;
 	 $levelids=$resultset['levelids'];
 	 $test_name=$resultset['test_name'];
 	 $btnclickval=$resultset['btnclickval'];
@@ -138,8 +136,7 @@ $getid=$_GET['end'];
 	 
 	 
 	 	 $savedtime=$resultset['savedtime'];
-
-$existence=getExistenceofTestIdWithPracticeIdLid($conn,$test_name,$levelids,$userid); 
+$existence=getExistenceofTestIdWithPracticeIdLidNew($conn,$test_name,$levelids,$userid); 
 
 	 	if($getid==2)
 {
@@ -166,7 +163,7 @@ else
 
 
 $success='0';
-
+ 
 	$all=$resultset['allques'];
 	
 	$imploded=implode(",",$all);
@@ -249,14 +246,14 @@ else
 else if(isset($_GET['pause']))
 {
 	
-	$lasturl=$_SESSION['lasturl'];
+	$lasturl=$_SESSION['lasturl'];    
 
 
 $pausevalue=$_GET['pause'];
 	$resultset=$_SESSION['allresult'];
 
 	
-//print_r($_SESSION['allresult']); die;
+print_r($_SESSION['allresult']); 
 	
 	
 	$resultset=$_SESSION['allresult'];
@@ -267,8 +264,8 @@ $pausevalue=$_GET['pause'];
 	 $subject_id=$resultset['subject_id'];
 	 $all=$resultset['all'];
 	 		 $savedtime=$resultset['savedtime'];
-$existence=getExistenceofTestIdWithPracticeIdLid($conn,$test_name,$levelids,$userid); 
 
+$existence=getExistenceofTestIdWithPracticeIdLidNew($conn,$test_name,$levelids,$userid); 
 	
 $button=3;
 	
@@ -290,13 +287,12 @@ $success='0';
 			
 	if($existence>0)
 			{ 
-			echo "in";
 $insquery=mysqli_query($conn,"UPDATE `testgiven` set `pdate`='$pdate',`button`='$button',`savedtime`='$savedtime' where `id`='$existence' ");
 $lastid=$existence;
 
 			}
 			else
-			{ echo "out";
+			{ 
 			$insquery=mysqli_query($conn,"INSERT INTO `testgiven`(`userid`, `pdate`, `testname`, `button`, `status`, `view`,`subject_id`,`levelid`,`savedtime`) VALUES ('$userid','$pdate','$test_name','$button','1','1','$subject_id','$levelids','$savedtime')");
 		$lastid=mysqli_insert_id($conn);
 
@@ -434,7 +430,7 @@ $Sub_names=$tab_details['name'];
  
  	<div class="container">
  		<div class="row">
- 			<div class="col-md-8 col-md-offset-2 customer1">
+ 			<div class="col-md-8 mx-auto customer1">
  				<h2 class="info-sect">Done with this section?</h2>
  				<p>Please confirm that you would like to end this section.</p>
  				<div class="row">

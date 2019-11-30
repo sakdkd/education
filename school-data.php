@@ -27,7 +27,7 @@ include('db_class/hr_functions.php');
 
     <!-- /.navbar -->
 <section class="top-head">
-    <h1>Here are some of the schools that our test-takers get into:</h1>
+    <h1>Here are some of the schools that our test-takers get into</h1>
 </section>
  
 <section class="main-container">
@@ -65,7 +65,7 @@ include('db_class/hr_functions.php');
 					$tbschool="schools";			
 
 			?>
-                <div class="item card">
+                <div class="item card back-white">
                     <h3><?=$location_details['name'];?></h3>
                     <ul>
                     <?php 

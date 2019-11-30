@@ -275,6 +275,34 @@ if(isset($_GET['msg'])){
 
     <style>
 
+
+.panel-heading {
+  padding: 0;
+	border:0;
+}
+.panel-title>a, .panel-title>a:active{
+	display:block;
+  color:#555;
+  font-size:16px;
+  font-weight:bold;
+	text-transform:uppercase;
+	letter-spacing:1px;
+	font-weight:500;
+  word-spacing:3px;
+	text-decoration:none;
+}
+.panel-heading  a:before {
+   font-family: 'Glyphicons Halflings';
+   content: "\e114";
+   float: right;
+   transition: all 0.5s;
+}
+.panel-heading.active a:before {
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	transform: rotate(180deg);
+} 
+
 	.img-circle
 
    {
@@ -421,15 +449,12 @@ function validate(){
 					 }
 					 ?>
 
-                    <form action=""  method="Post" id="question_forms" enctype="multipart/form-data"> 
-
-                     <table width="100%" border="0" class="table table-striped table-bordered">
-
-    
-
-              <tr>
-                <td width="19%"><label style="color:#069;font-weight:bold;">Level*</label></td>
-                <td colspan="3"><select  name="difficulty" id="difficulty" class="form-control"  required >
+ <form action=""  method="Post" id="question_forms" enctype="multipart/form-data">
+			<div class="row">
+            <div class="col-sm-3">
+            <div class="form-group">
+    <label for="dd">Level*</label>
+    <select  name="difficulty" id="difficulty" class="form-control"  required >
                   <option value="">Select Difficulty</option>
                   
                   <?php 
@@ -444,40 +469,105 @@ function validate(){
                   <?php }}?>
                   
                   
-                  </select></td>
-              </tr>
-            <tr>
-               
-              <td><label  style="color:#069;font-weight:bold;">Question</label></td>
-              
-              <td colspan="3"><textarea type="text" class="form-control" name="questions" id="question"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['question'])) ?></textarea></td>
-            </tr>
+                  </select>
+  </div>
+            </div>
+            
+            
+            </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+             <div class="row">
+             
+             	<div class="col-sm-12">
+                <h3>Question</h3>
                 
+                <textarea  type="text" class="form-control" name="questions" id="question"  value="" ><?php echo htmlentities(stripslashes($tb_questions['question'])) ?></textarea>
                 
-                    <tr>
+                </div>
+             </div>     
+             
+             <hr style="display:inline-block; width:100%">
+             
+             <div class="">
+                    
+                    	<div class="question-op">
+                        
+<div class="wrapper center-block">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading active" role="tab" id="headingOne">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+         Option 1
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body">
+    <textarea type="text" class="form-control" name="option1" id="option1"  value="" style="height:80px" ><?php echo htmlentities(stripslashes($tb_questions['option1'])) ?></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Option 2
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body">
+    <textarea type="text" class="form-control" name="option2" id="option2"  value="" style="height:80px" ><?php echo htmlentities(stripslashes($tb_questions['option2'])) ?></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Option 3
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+     <textarea type="text" class="form-control" name="option3" id="option3"  value="" style="height:80px" ><?php echo htmlentities(stripslashes($tb_questions['option3'])) ?></textarea>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingFour">
+      <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+          Option 4
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+      <div class="panel-body">
+   <textarea type="text" class="form-control" name="option4" id="option4"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['option4'])) ?></textarea>
+      </div>
+    </div>
+  </div>
+  
+  
+</div>
+</div>
+                        </div>
+                    
+                    </div>  
 
-                <td><label  style="color:#069;font-weight:bold;">Option 1</label></td>
+                     <table width="100%" border="0" class="table table-striped table-bordered">
 
-                <td colspan="3"><textarea type="text" class="form-control" name="option1" id="option1"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['option1'])) ?></textarea></td>
-                </tr>
-                <tr>
-
-                <td><label  style="color:#069;font-weight:bold;">option 2</label></td>
-
-                <td colspan="3"><textarea type="text" class="form-control" name="option2" id="option2"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['option2'])) ?></textarea></td>
-                </tr>
-                <tr>
-
-                <td><label  style="color:#069;font-weight:bold;">option 3</label></td>
-
-                <td colspan="3"><textarea type="text" class="form-control" name="option3" id="option3"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['option3'])) ?></textarea></td>
-                </tr>
-                <tr>
-
-                <td><label  style="color:#069;font-weight:bold;">option 4</label></td>
-
-                <td colspan="3"><textarea type="text" class="form-control" name="option4" id="option4"  value="" style="height:50px" ><?php echo htmlentities(stripslashes($tb_questions['option4'])) ?></textarea></td>
-                </tr> 
              <tr>
 
                 <td><label  style="color:#069;font-weight:bold;">Correct Answer</label></td>
@@ -547,10 +637,12 @@ function validate(){
   <tr>
 
             <th width="3%">Sno</th>
-            <th width="36%">View</th>
-         <th width="36%">Posted On</th>
-            <th width="12%" style="text-align:center;">Action</th>
-             <th width="16%" style="text-align:center;">Approval</th>
+            <th width=""><div align="center">View</div></th>
+         <th width=""><div align="center">Posted On</div></th>
+         
+         <th width=""><div align="center">Assign (Test Papers)</div></th>
+            <th width="" style="text-align:center;">Action</th>
+             <th width="" style="text-align:center;">Approval</th>
 
   </tr>
 
@@ -581,8 +673,10 @@ $date=$fetch['pdate'];
 		    <tr>
 
                 <td><?php echo $i; ?></td>
-                <td><a href="view_question.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
-                 <th width="36%"><?php echo  changeDateToSlash($conn,$date); ?></th>
+                <td align="center"><a href="view_question.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
+                 <td align="center"><?php echo  changeDateToSlash($conn,$date); ?></td>
+                                 <td align="center"><a href="assignpaper.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="<?php echo $baseurl?>/admin/images/assignment.png" style="text-align:center; width:40px; height:40px;"></a></td>  
+
                      <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="<?php echo $page ?>?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
                        
                        
@@ -641,22 +735,7 @@ $date=$fetch['pdate'];
 
  					 </div>
 
-                   
-
-                     
-
-
-					 
-
-                     
-
-					
-
-                    
-
-                    
-
-
+      
                   </div>
 
                 </div>
@@ -689,7 +768,7 @@ $date=$fetch['pdate'];
 
 			CKEDITOR.replace( 'option1', {
       extraPlugins: 'uploadimage,eqneditor',
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -735,7 +814,7 @@ $date=$fetch['pdate'];
     });
 			CKEDITOR.replace( 'option2',{
       extraPlugins: 'uploadimage',
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -781,7 +860,7 @@ $date=$fetch['pdate'];
     } );
 			CKEDITOR.replace( 'option3' , {
       extraPlugins: 'uploadimage',
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -827,7 +906,7 @@ $date=$fetch['pdate'];
     });
 			CKEDITOR.replace( 'option4',{
       extraPlugins: 'uploadimage',
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -873,7 +952,7 @@ $date=$fetch['pdate'];
     } );
 						CKEDITOR.replace( 'question',{
       extraPlugins: 'uploadimage', 
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -920,7 +999,7 @@ $date=$fetch['pdate'];
 
 			CKEDITOR.replace( 'fullsol',{
       extraPlugins: 'uploadimage',
-      height: 300,
+      height: 100,
 
       // Upload images to a CKFinder connector (note that the response type is set to JSON).
       uploadUrl: 'upload.php?command=QuickUpload&type=Files&responseType=json',
@@ -965,6 +1044,17 @@ $date=$fetch['pdate'];
       image2_disableResizer: true
     } );
 
+
+
+
+
+ $('.panel-collapse').on('show.bs.collapse', function () {
+    $(this).siblings('.panel-heading').addClass('active');
+  });
+
+  $('.panel-collapse').on('hide.bs.collapse', function () {
+    $(this).siblings('.panel-heading').removeClass('active');
+  });
 
 
 		</script>

@@ -43,8 +43,10 @@ $useraddress=getUserAddress($conn,$userid);
  		<div class="row">
  			<div class="col-md-12 customer">
  				<h2 class="info">Customer information</h2>
- 				<p>Order information will be sent to your account e-mail listed below.</p>
- 				<p><b><?php echo $user_details['email'];?></b></p>
+ 				<div class="customer-body">
+ 				    <p>Order information will be sent to your account e-mail listed below.</p>
+ 				    <p><b><?php echo $user_details['email'];?></b></p>
+ 				</div>
  			</div>
  		</div>
  	</div>
@@ -53,9 +55,12 @@ $useraddress=getUserAddress($conn,$userid);
 <div class="gray-bg pt-50 pb-50">
         <div class="container">
                 <div class="row">
-                    <div class="col-lg-8 padding-right-lg bill-info">
+                    <div class="col-lg-8 padding-right-lg">
+                    
+                    <div class="bill-info">
+                    <h2 class="billing">Billing information</h2>
                     <form method="post" action="" id="checkout_form">
-                    	<h2 class="billing">Billing information</h2>
+                    	
                     	<div class="row">
                     		
 							<div class="col-md-6">
@@ -153,10 +158,10 @@ $useraddress=getUserAddress($conn,$userid);
 							</div>
 						</div>
                         
-                   <div class="col-md-12">
+                   <div class="col-md-12 text-center">
                    	<input type="submit" value="Place Order" class="order-p" id="checkbtn">
                    </div>
-                    </form>
+                    </form></div>
 <!--
                         
 -->

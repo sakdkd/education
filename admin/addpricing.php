@@ -86,9 +86,11 @@ if(isset($_POST['update'])){
 				$price=$priceText;
 				
 				$insQry2=mysqli_query($conn,"INSERT INTO `edu_pricingqfeatures` (`id`, `pricingid`, `qfeatureid`, `status`, `view`,`sets`) VALUES (NULL, '$id', '$qfid', '1', '1','$price');");
+				
 				if(!$insQry2){
 					$flag=0;
 				}
+				
 			}
 		}
 
@@ -176,11 +178,27 @@ if(isset($_POST['submit'])){
 				$price=$$priceText;
 				
 				$insQry2=mysqli_query($conn,"INSERT INTO `edu_pricingqfeatures` (`id`, `pricingid`, `qfeatureid`, `status`, `view`,`sets`) VALUES (NULL, '$insId', '$qfid', '1', '1','$price');");
+				
+					
+										
+
+					//$si=0;
+					$last_id=mysqli_insert_id($conn);
+					$pdate=date("Y-m-d"); 
+					for($si=1;$si<=$price;$si++)
+					{ 
+					
+						$pname="Practice Test #".$si;
+				$insQry=mysqli_query($conn,"INSERT INTO `full_test_created`(`eduqfeature_id`, `name`, `pdate`) VALUES ('$last_id','$pname','$pdate')");
+					}
+					 
+				
 				if(!$insQry2){
 					$flag=0;
 				}
+				 
 			}
-		}
+		}     
 		
 
 		
@@ -191,7 +209,7 @@ if(isset($_POST['submit'])){
 		
 
 	}
-	
+
 	if($flag==1){
 		mysqli_query($conn,"COMMIT");
 		header("location:".$page."?msg=ins&id=$lid");
@@ -701,6 +719,7 @@ function validate(){
 
             <th width="3%">Sno</th>
             <th width="36%">Subject</th>
+            <th width="12%" style="text-align:center;">View</th>
             
             <th width="12%" style="text-align:center;">Action</th>
              <th width="16%" style="text-align:center;">Approval</th>
@@ -727,9 +746,10 @@ function validate(){
 
 			$name=$fetch['name'];
 			
+			$pricingid=$fetch['id'];
 			
 
-			
+		$decoded_edu_id=base64_encode(getedu_pricingqfeaturesFrompackidandqid($conn,$pricingid,'2')); 
 
 			?>
 
@@ -742,6 +762,7 @@ function validate(){
             
                 
                    <td><?php echo $name; ?></td>
+                   <td style="text-align:center;"><a href="show_topics.php?id=<?=$decoded_edu_id;?>">View </a>  </td>           
                   
                       <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $lid ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="<?php echo $page ?>?did=<?php echo base64_encode($id); ?>&id=<?php echo $lid ?>" style="color:#F00;">Delete</a> 
                         

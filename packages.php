@@ -4,16 +4,7 @@ session_start();
 include_once('db_class/dbconfig.php');
 include_once('db_class/hr_functions.php');
 
-if(isset($_GET['slug']))
-{
-	
-	 $slug=$_GET['slug'];
-	
-	$level_id=getlevelIdfromslug($conn,$slug);
-	$table="edu_levels";
-	$level_details=getTableDetailsById($conn,$table,$level_id);
-	
-}
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -36,16 +27,25 @@ if(isset($_GET['slug']))
     <!-- /.navbar -->
 <section class="top-head">
     
+<?php 
+if(isset($_GET['slug']))
+{
+	
+	  $slug=$_GET['slug'];
+	
+	 $level_id=getlevelIdfromslug($conn,$slug);
+	$table="edu_levels";
+	$level_details=getTableDetailsById($conn,$table,$level_id);
 
-
-<h1><?=$level_details['name'];?></h1>
+}?>
+<h1><?php echo $level_details['name'] ?></h1>
 </section>
  
 <section class="main-container">
    
     
     
-<div class="gray-bg pt-50 pb-50">
+<div class="pt-50 pb-50">
         <div class="container">
          <div class="wraper-box">
         <div class="get_plan_sec new-price">
@@ -102,10 +102,10 @@ if(isset($_GET['slug']))
           <div class="package-detail">
           <img class="fees-icon" src="images/fees.png"> 
                 <strong><?=$packages['name'];?></strong>
-               <?php foreach ($features_list as $f_key => $f_pair)
-                          { $q_table="qfeature"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$f_key);?>
-                <p><?php echo $f_pair." ".$feature_d['name'];?></p>
-                <?php }?>
+              <div class="testinfo"> <?php foreach ($features_list as $f_key => $f_pair)
+                              { $q_table="qfeature"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$f_key);?>
+                    <p><?php echo $f_pair." ".$feature_d['name'];?></p>
+                    <?php }?></div>
                   <ul>
                    <?php foreach ($nonfeatures_list as $nfkey)
                           { $q_table="nqfeatures"; $feature_d= getTableDetailsByIdwithstatus($conn,$q_table,$nfkey);?> 

@@ -29,7 +29,7 @@ if(isset($_GET['id']))
 		
 				$tb_attach=getTableDetailsById($conn,'levelsubjects',$attach_id);
 $subjectid=$tb_attach['subject_id'];
-
+ 
 $subject_tb=getTableDetailsById($conn,'subjects',$subjectid);
 
 		$sub_id=$tb_topic['subtype_id'];
@@ -504,6 +504,7 @@ function validate(){
             <th width="3%">Sno</th>
             <th width="36%">View</th>
          <th width="36%">Posted On</th>
+         <th width=""><div align="center">Assign (Test Papers)</div></th>
             <th width="12%" style="text-align:center;">Action</th>
              <th width="16%" style="text-align:center;">Approval</th>
 
@@ -538,6 +539,7 @@ $date=$fetch['pdate'];
                 <td><?php echo $i; ?></td>
                 <td><a href="view_question.php?id=<?php echo $decid;?>"><img src="../images/view.png" style="text-align:center; width:40px; height:40px;"></a></td>  
                  <th width="36%"><?php echo  changeDateToSlash($conn,$date); ?></th>
+                 <td align="center"><a href="assignpaper.php?qid=<?php echo $decid;?>&id=<?php echo $att_topic_id;?>"><img src="<?php echo $baseurl?>/admin/images/assignment.png" style="text-align:center; width:40px; height:40px;"></a></td>                 
                      <td style="text-align:center;">&nbsp;&nbsp;<a href="<?php echo $page ?>?eid=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#06F;">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a onClick="return confirm('Are you sure you want to delete!')" href="<?php echo $page ?>?did=<?php echo base64_encode($id); ?>&id=<?php echo $att_topic_id ?>" style="color:#F00;">Delete</a> 
                        
                        

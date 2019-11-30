@@ -11,8 +11,8 @@ $question_id=$_GET['question_id'];
 
 
 $solution=$givenquesdetails['solution'];
-
-
+if($solution!='')
+{
 ?>
 
 <div class="sol-Box">
@@ -20,7 +20,7 @@ $solution=$givenquesdetails['solution'];
            	<span><p class="scope"><?php  echo stripslashes($solution);?></p></span>
            </div>
            
-           
+  <?php }?>         
            
            
       

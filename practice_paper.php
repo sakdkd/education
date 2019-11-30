@@ -82,7 +82,7 @@ ul#myTabs1 {
     <!-- /.navbar -->
  <input type="hidden" id="timer" value="<?php echo $timer;?>"> 
 
-<section class="main-container" style="margin-top: 100px">
+<section class="main-container">
 
 	<?php 
 	 $question_query=mysqli_query($conn,"select * from `questions` where `topic_id`='$topic_id'  and `difficulty`='$level_id' and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
@@ -98,7 +98,7 @@ ul#myTabs1 {
 	 
 	        
     
-<div class="gray-bg pt-20 pb-50">
+<div class="gray-bg pt-50 pb-50">
         <div class="container">
             <div class="wraper-box">
             
@@ -150,7 +150,7 @@ ul#myTabs1 {
 					}
 				   ?>
 				   
-                       <li class=" page-item nav nav-pills <?php echo $added_class_new;?>" id="li<?php echo $i;?>" onclick="practiceQuestion('<?php echo $i;?>')"><a href="javascript:void(0)"><?php echo $i;?></a></li>
+                       <li class=" page-item nav nav-pills <?php echo $added_class_new;?>" id="li<?php echo $i;?>" onclick="practiceQuestion('<?php echo $i;?>')"><a href="javascript:void(0)" class=""><?php echo $i;?></a></li>
                        <?php }?>
                    </ul>
                </div>
@@ -235,16 +235,30 @@ if($user_attmpted_ques['buttonval']!=1)
                        <div class="col-md-4 orange-bg">
                            <div class="answer-gray-bg">
                        <ul>
-                           <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option1'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option2'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option3'];?></span></li>
-                            <li><span class="click-btn"><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>></span> <span class="check"><?php echo $questionset['option4'];?></span></li>
+                           <li>
+                           
+                          <label>
+                          	<input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>1" type="radio" value="1" class="" onclick="setanswer('1','<?php echo $question_id;?>')" <?php if($user_ans==1){?> checked <?php }?>><span class="option-click">A</span> <?php echo $questionset['option1'];?>
+                          </label>
+                           </li>
+                            <li>
+                            <label>
+                              <input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>2" type="radio" value="2" onclick="setanswer('2','<?php echo $question_id;?>')"  <?php if($user_ans==2){?> checked <?php }?>><span class="option-click">B</span><?php echo $questionset['option2'];?>
+                            </label>
+                           </li>
+                            <li>
+                            <label><input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>3" type="radio" value="3" onclick="setanswer('3','<?php echo $question_id;?>')"  <?php if($user_ans==3){?> checked <?php }?>><span class="option-click">C</span> <?php echo $questionset['option3'];?></label></li>
+                            <li>
+                            <label>
+                            <input name="radio1<?php echo $question_id;?>" id="Q<?php echo $question_id;?>4" type="radio" value="4" onclick="setanswer('4','<?php echo $question_id;?>')"  <?php if($user_ans==4){?> checked <?php }?>><span class="option-click">D</span> <?php echo $questionset['option4'];?>
+                            </label>
+                            </li>
                        </ul> 
                                    <input name="option<?php echo $q_div;?>" id="option<?php echo $q_div;?>" type="hidden" value="<?php echo $question_id;?>">    
              
                                   <input name="allques[]" id="" type="hidden" value="<?php echo $question_id;?>">    
                                    
-
+						<div class="come-back-btn"> <a href="#"><i class="fa fa-flag"></i> come back later</a></div>
 
                    </div>
                        </div>

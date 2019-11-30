@@ -68,7 +68,7 @@ $level_details=getTableDetailsById($conn,$leveltable,$resultset['level_id']);
  $levelname_new="(".$level_details['name'].")";
 		
 ?>
-  <li><a class="btn-start" href="web-app.php" onclick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><?php echo $resultset['name'].$levelname_new;?></a></li>
+  <li><a class="btn-start" href="javascript:void(0)" onclick="setboughtpackage('<?php echo $resultset['id'];?>','<?php echo $OrderIds;?>')"><?php echo $resultset['name'].$levelname_new;?></a></li>
         <?php }?>
         </ul>
            

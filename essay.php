@@ -185,7 +185,7 @@ else
     <!-- /.navbar -->
  <input type="hidden" id="timer" value="<?php echo $timer;?>">
 
-<section class="main-container" style="margin-top: 100px">
+<section class="main-container">
 
 	<?php $question_query=mysqli_query($conn,"select * from `questions` where `topic_id` in ($topic_imploded_string) and `status`='1' and `view`='1' order by rand() limit 0,$question_total");
 			$q_div=0;
@@ -229,7 +229,7 @@ else
 	  
 	        
     
-<div class="gray-bg pt-20 pb-50">
+<div class="gray-bg pt-50 pb-50">
         <div class="container">
            
                <div class="esaay">

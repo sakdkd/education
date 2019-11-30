@@ -254,7 +254,7 @@ unattempt=parseInt(strArray[2]);
         <div style="position:relative">  
              
 <li class="nav-item drop_menu"> <a class="nav-link" href="cart.php"><i class="fa fa-shopping-cart"></i>   <?php if($cartcount>0)
-		{?>  <span id="cart_count" class="carts"><?php echo $cartcount;?></span> <?php }?></a>  </li>
+		{?>  <span id="cart_count" class="carts"><?php echo $cartcount;?></span> <?php } else{?>  <span id="cart_count" class=""></span><?php }?></a>  </li> 
 
 </div>
 <?php if($userid=="")
